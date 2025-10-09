@@ -1507,7 +1507,7 @@
 					"javaClassName": "",
 					"javaMethodName": "getUserInumByUsername",
 					"javaVariableName": "PhonenumberUpdateService",
-					"exceptionVariableField": "",
+					"exceptionVariableField": "E",
 					"callType": "Call method on instance",
 					"arguments": [
 						"username"
@@ -1588,8 +1588,8 @@
 				"previousNodeId": "whenNode-fa0b22f5-156a-4ead-aef9-ec1904218524",
 				"branching": "otherwise",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"User update failed. Error : %\" E",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
@@ -1622,12 +1622,18 @@
 				},
 				"previousNodeId": "logNode-beea0193-affe-4647-a026-1028072dd731",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "\"User update failed\"",
+							"assignedVariableName": "uiFeedback.errorMessage"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "ASSIGNMENT",
 					"hasComment": true,
 					"comment": ""
 				}
@@ -1636,7 +1642,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -1861,7 +1867,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-dd5c7d5a-82a5-4b88-8d2d-dbad51e617cd",
@@ -2938,8 +2944,8 @@
 		}
 	],
 	"viewport": {
-		"x": -2822.8698004271323,
-		"y": 101.25022708826577,
-		"zoom": 0.5
+		"x": -5825.448637778395,
+		"y": -217.2142745938562,
+		"zoom": 0.8802590135631504
 	}
 }
