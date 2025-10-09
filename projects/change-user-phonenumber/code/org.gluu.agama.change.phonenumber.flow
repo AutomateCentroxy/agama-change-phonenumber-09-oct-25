@@ -62,7 +62,8 @@ Repeat 6 times max
                               When inum is not null
                                    // UserAPiCall method
                                    UserServiceAPiCall = Call PhonenumberUpdateService syncUserWithExternal inum
-                                   Log "@ " __________
+                                   // "User update api called"
+                                   Log "@info User update api called"
                               Otherwise
                                    Log "@ " __________
                          Otherwise
@@ -83,5 +84,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_emfqx = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_emfqx
+it_hhtvb = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_hhtvb
