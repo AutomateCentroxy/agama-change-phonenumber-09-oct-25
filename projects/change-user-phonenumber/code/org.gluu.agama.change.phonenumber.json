@@ -2140,7 +2140,7 @@
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "Error Logs",
+					"displayName": "success",
 					"hasComment": true,
 					"comment": ""
 				}
@@ -3217,8 +3217,8 @@
 		}
 	],
 	"viewport": {
-		"x": -9068.745287077507,
-		"y": -765.736725205197,
-		"zoom": 1.1518876423493571
+		"x": -6157.192736003022,
+		"y": -550.8355838607288,
+		"zoom": 0.8681402276010423
 	}
 }
