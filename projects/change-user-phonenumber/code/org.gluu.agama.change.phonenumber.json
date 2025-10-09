@@ -407,7 +407,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "whenNode-6df494d2-9f76-4828-95c1-40d8f561ab41",
@@ -428,20 +428,28 @@
 					"variableField": "",
 					"valueField": "",
 					"conditionInputField": "",
-					"conditions": [],
+					"conditions": [
+						{
+							"variable": "authCheck.valid",
+							"operator": "is",
+							"dataValue": "false",
+							"combinator": "none"
+						}
+					],
 					"nodeIcon": "ph:swap",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Check if token validation failed"
 				}
 			},
 			"measured": {
 				"width": 110,
 				"height": 59
-			}
+			},
+			"selected": true
 		}
 	],
 	"edges": [
@@ -656,8 +664,8 @@
 		}
 	],
 	"viewport": {
-		"x": -687.1168487199136,
-		"y": -80.04920274726419,
-		"zoom": 0.8561882845464566
+		"x": -2366.407074360145,
+		"y": -336.26699462876036,
+		"zoom": 1.290562490451778
 	}
 }
