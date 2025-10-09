@@ -7,5 +7,24 @@ Repeat __________ times max
      RRF "__________" 
      When 
           Finish __________
+     Otherwise
+          When 
+               Log "@ " __________
+               When 
+          Otherwise
+               Log "@ " __________
+               Call __________#__________ 
+               Log "@ " __________
+               When 
+                    Log "@ " __________
+                    Iterate over  using item
+               Otherwise
+                    Call __________#__________ 
+                    Log "@ " __________
+                    When 
+                         Log "@ " __________
+                         Finish __________
+                    Otherwise
+                         Log "@ " __________
 Log "@ " __________
 Finish __________
