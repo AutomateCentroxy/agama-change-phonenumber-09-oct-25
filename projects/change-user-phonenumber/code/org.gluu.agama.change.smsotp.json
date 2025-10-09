@@ -65,8 +65,8 @@
 				}
 			},
 			"measured": {
-				"width": 168,
-				"height": 120
+				"width": 170,
+				"height": 122
 			},
 			"selected": false
 		},
@@ -367,8 +367,8 @@
 				}
 			},
 			"measured": {
-				"width": 168,
-				"height": 120
+				"width": 170,
+				"height": 122
 			},
 			"selected": false
 		},
@@ -389,7 +389,7 @@
 				"previousNodeId": "whenNode-565629fd-462f-41ea-9569-63364bb79245",
 				"branching": "otherwise",
 				"agamaData": {
-					"logMessage": "\"Information provided by the user is : \" otpCreds.code",
+					"logMessage": "\"Information provided by the user is : \" otpCreds.code phone",
 					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
@@ -401,8 +401,8 @@
 				}
 			},
 			"measured": {
-				"width": 168,
-				"height": 120
+				"width": 170,
+				"height": 122
 			},
 			"selected": false
 		},
@@ -444,7 +444,8 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "logNode-50f1a038-394b-480f-8f50-84cf776b199e",
@@ -474,8 +475,8 @@
 				}
 			},
 			"measured": {
-				"width": 168,
-				"height": 120
+				"width": 170,
+				"height": 122
 			},
 			"selected": false
 		},
@@ -583,7 +584,7 @@
 				"agamaData": {
 					"javaClassName": "",
 					"javaMethodName": "validateOTPCode",
-					"javaVariableName": "validationAttempts",
+					"javaVariableName": "PhonenumberUpdateService",
 					"exceptionVariableField": "",
 					"callType": "Call method on instance",
 					"arguments": [
@@ -831,7 +832,7 @@
 			"type": "logNode",
 			"position": {
 				"x": 2880.200883265409,
-				"y": 408.5259889924593
+				"y": 407.3741013501099
 			},
 			"data": {
 				"id": "logNode-f2e8f64e-824e-40a0-acce-a5d19efa7cb3",
@@ -855,10 +856,11 @@
 				}
 			},
 			"measured": {
-				"width": 168,
-				"height": 120
+				"width": 170,
+				"height": 122
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "assignmentNode-50a70c3d-93ee-4d21-a021-2d41e201b932",
@@ -1340,8 +1342,8 @@
 				}
 			},
 			"measured": {
-				"width": 168,
-				"height": 120
+				"width": 170,
+				"height": 122
 			},
 			"selected": false
 		},
@@ -2132,8 +2134,8 @@
 		}
 	],
 	"viewport": {
-		"x": -93.93693119116278,
-		"y": 188.64384151937134,
+		"x": -6.654117641529865,
+		"y": 222.96582191683052,
 		"zoom": 0.5
 	}
 }
