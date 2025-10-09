@@ -7,7 +7,7 @@ import io.jans.orm.exception.operation.EntryNotFoundException;
 import io.jans.service.cdi.util.CdiUtil;
 import io.jans.util.StringHelper;
 
-import org.gluu.agama.user.UsernameUpdate;
+import org.gluu.agama.change.users.UserphoneUpdate;
 import io.jans.agama.engine.script.LogUtils;
 import java.io.IOException;
 import io.jans.as.common.service.common.ConfigurationService;
@@ -30,7 +30,13 @@ import io.jans.as.server.model.common.AuthorizationGrant;
 import io.jans.as.server.model.common.AuthorizationGrantList;
 import io.jans.as.server.model.common.AbstractToken;
 
-public class JansUsernameUpdate extends UsernameUpdate {
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+
+public class PhonenumberUpdate extends UserphoneUpdate {
+
+    private final UserService userService = CdiUtil.bean(UserService.class);
 
     private static final String MAIL = "mail";
     private static final String UID = "uid";
@@ -39,23 +45,29 @@ public class JansUsernameUpdate extends UsernameUpdate {
     private static final String LAST_NAME = "sn";
     private static final String PASSWORD = "userPassword";
     private static final String INUM_ATTR = "inum";
+    private static final int OTP_LENGTH = 6;
+    private static final int OTP_CODE_LENGTH = 6;
+    private static final String PHONE_VERIFIED = "phoneNumberVerified";
+    private static final String PHONE_NUMBER = "mobile";
     private static final String EXT_ATTR = "jansExtUid";
     private static final String USER_STATUS = "jansStatus";
     private static final String EXT_UID_PREFIX = "github:";
     private static final String LANG = "lang";
+    private Map<String, String> flowConfig;
     private static final SecureRandom RAND = new SecureRandom();
 
-    private static JansUsernameUpdate INSTANCE = null;
+    private static PhonenumberUpdate INSTANCE = null;
 
-    public JansUsernameUpdate() {
+    public PhonenumberUpdate() {
     }
 
-    public static synchronized JansUsernameUpdate getInstance() {
-        if (INSTANCE == null)
-            INSTANCE = new JansUsernameUpdate();
-
-        return INSTANCE;
+    public static synchronized PhonenumberUpdate getInstance(Map<String, String> config) {
+    if (INSTANCE == null) {
+        INSTANCE = new PhonenumberUpdate();
+        INSTANCE.flowConfig = config; // if you want to use it in sendOTPCode
     }
+    return INSTANCE;
+}
 
     // validate token starts here
     public static Map<String, Object> validateBearerToken(String access_token) {
@@ -166,6 +178,7 @@ public class JansUsernameUpdate extends UsernameUpdate {
             String givenName = getSingleValuedAttr(user, GIVEN_NAME);
             String sn = getSingleValuedAttr(user, LAST_NAME);
             String lang = getSingleValuedAttr(user, LANG);
+            String phone = getSingleValuedAttr(user, PHONE_NUMBER);
 
             if (name == null) {
                 name = getSingleValuedAttr(user, DISPLAY_NAME);
@@ -182,32 +195,12 @@ public class JansUsernameUpdate extends UsernameUpdate {
             userMap.put(DISPLAY_NAME, displayName);
             userMap.put(LAST_NAME, sn);
             userMap.put(LANG, lang);
+            userMap.put(PHONE_NUMBER, phone);
 
             return userMap;
         }
 
         return new HashMap<>();
-    }
-
-    public String addNewUser(Map<String, String> profile) throws Exception {
-        Set<String> attributes = Set.of("uid", "mail", "displayName", "givenName", "sn", "userPassword");
-        User user = new User();
-
-        attributes.forEach(attr -> {
-            String val = profile.get(attr);
-            if (StringHelper.isNotEmpty(val)) {
-                user.setAttribute(attr, val);
-            }
-        });
-
-        UserService userService = CdiUtil.bean(UserService.class);
-        user = userService.addUser(user, true); // Set user status active
-
-        if (user == null) {
-            throw new EntryNotFoundException("Added user not found");
-        }
-
-        return getSingleValuedAttr(user, INUM_ATTR);
     }
 
     public String updateUser(Map<String, String> profile) throws Exception {
@@ -305,80 +298,217 @@ public class JansUsernameUpdate extends UsernameUpdate {
         return userService.getUserByAttribute(attributeName, value, true);
     }
 
-    public boolean sendUsernameUpdateEmail(String to, String newUsername, String lang) {
-    try {
-        // Fetch SMTP configuration
-        ConfigurationService configService = CdiUtil.bean(ConfigurationService.class);
-        SmtpConfiguration smtpConfig = configService.getConfiguration().getSmtpConfiguration();
+   
 
-        if (smtpConfig == null) {
-            LogUtils.log("SMTP configuration is missing.");
+    public Map<String, Object> syncUserWithExternal(String inum) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            // Load config
+            Map<String, String> config = getAgamaConfig();
+            String publicKey = config.get("PUBLIC_KEY");
+
+            if (publicKey == null) {
+                result.put("status", "error");
+                result.put("message", "PUBLIC_KEY missing in config");
+                return result;
+            }
+
+            // Generate signature using PRIVATE_KEY from config
+            String signature = generateSignature(inum);
+            if (signature == null) {
+                result.put("status", "error");
+                result.put("message", "Failed to generate signature");
+                return result;
+            }
+
+            // Build webhook URL
+            String url = String.format("https://api.phiwallet.dev/v1/webhooks/users/%s/sync", inum);
+
+            // HTTP request
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("X-AUTH-CLIENT", publicKey)
+                    .header("X-HMAC-SIGNATURE", signature)
+                    .POST(HttpRequest.BodyPublishers.noBody())
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            logger.info("Webhook sync response status: {}, body: {}", response.statusCode(), response.body());
+
+            if (response.statusCode() == 200) {
+                result.put("status", "success");
+            } else {
+                result.put("status", "error");
+            }
+
+            return result;
+
+        } catch (Exception e) {
+            logger.error("Error syncing user {}: {}", inum, e.getMessage());
+            result.put("status", "error");
+            result.put("message", e.getMessage());
+            return result;
+        }
+    }
+
+    public boolean isPhoneVerified(String username) {
+        try {
+            User user = userService.getUser(username);
+            if (user == null) return false;
+
+            Object val = user.getAttribute("phoneNumberVerified", true, false);
+            return val != null && Boolean.parseBoolean(val.toString());
+        } catch (Exception e) {
+            logger.error("Error checking phone verification for {}: {}", username, e.getMessage(), e);
             return false;
         }
+    }
 
-        // Preferred language from user profile or fallback to English
-        String preferredLang = (lang != null && !lang.isEmpty())
-                ? lang.toLowerCase()
-                : "en";
+    public boolean isPhoneUnique(String username, String phone) {
+        try {
+            // Normalize phone number
+            String normalizedPhone = phone.startsWith("+") ? phone : "+" + phone;
+
+            // Check DB for existing users
+            List<User> users = userService.getUsersByAttribute("mobile", normalizedPhone, true, 10);
+
+            if (users != null && !users.isEmpty()) {
+                for (User u : users) {
+                    if (!u.getUserId().equalsIgnoreCase(username)) {
+                        logger.info("Phone {} is NOT unique. Already used by {}", phone, u.getUserId());
+                        return false; // duplicate
+                    }
+                }
+            }
+
+            logger.info("Phone {} is unique", phone);
+            return true;
+        } catch (Exception e) {
+            logger.error("Error checking phone uniqueness for {}", phone, e);
+            return false; // safest default on error
+        }
+    }
 
 
-        // Select correct template
-        Map<String, String> templateData;
-        switch (preferredLang) {
-            case "ar":
-                templateData = SendEmailTemplateAr.get(newUsername);
-                break;
-            case "es":
-                templateData = SendEmailTemplateEs.get(newUsername);
-                break;
-            case "fr":
-                templateData = SendEmailTemplateFr.get(newUsername);
-                break;
-            case "id":
-                templateData = SendEmailTemplateId.get(newUsername);
-                break;
-            case "pt":
-                templateData = SendEmailTemplatePt.get(newUsername);
-                break;
-            default:
-                templateData = SendEmailTemplateEn.get(newUsername);
-                break;
+    public String getPhoneNumber(String username) {
+        try {
+            User user = userService.getUser(username);
+            if (user == null) return null;
+            Object phone = user.getAttribute(PHONE_NUMBER, true, false);
+            return phone != null ? phone.toString() : null;
+        } catch (Exception e) {
+            logger.error("Error fetching phone number for {}: {}", username, e.getMessage(), e);
+            return null;
+        }
+    }
+
+
+    public String markPhoneAsVerified(String username, String phone) {
+        try {
+            User user = userService.getUser(username);
+            if (user == null) {
+                logger.warn("User {} not found while marking phone verified", username);
+                return "User not found.";
+            }
+
+            // Set the phone number and mark it as verified
+            user.setAttribute(PHONE_NUMBER, phone);
+            user.setAttribute("phoneNumberVerified", Boolean.TRUE);
+            userService.updateUser(user);
+
+            logger.info("Phone {} verified and updated for user {}", phone, username);
+            return "Phone " + phone + " verified successfully for user " + username;
+        } catch (Exception e) {
+            logger.error("Error marking phone verified for {}: {}", username, e.getMessage(), e);
+            return "Error: " + e.getMessage();
+        }
+    }
+
+    private String generateSMSOtpCode(int codeLength) {
+        String numbers = "0123456789";
+        SecureRandom random = new SecureRandom();
+        char[] otp = new char[codeLength];
+        for (int i = 0; i < codeLength; i++) {
+            otp[i] = numbers.charAt(random.nextInt(numbers.length()));
+        }
+        return new String(otp);
+    }
+
+    public boolean sendOTPCode(String username, String phone) {
+        try {
+            // Get user preferred language from profile
+            User user = userService.getUser(username);
+            String lang = null;
+            if (user != null) {
+                Object val = user.getAttribute("lang", true, false);
+                if (val != null) {
+                    lang = val.toString().toLowerCase();
+                }
+            }
+            if (lang == null || lang.isEmpty()) {
+                lang = "en";
+            }
+
+            // Generate OTP
+            String otpCode = generateSMSOtpCode(OTP_LENGTH);
+            otpStore.put(phone, otpCode);
+            logger.info("Generated OTP {} for phone {}", otpCode, phone);
+
+            // Localized message
+            Map<String, String> messages = new HashMap<>();
+
+            messages.put("ar", "رمز Phi Wallet الخاص بك هو " + otpCode + ". لا تشاركه مع أي شخص.");
+            messages.put("en", "Your Phi Wallet OTP is " + otpCode + ". Do not share it with anyone.");
+            messages.put("es", "Tu código de Phi Wallet es " + otpCode + ". No lo compartas con nadie.");
+            messages.put("fr", "Votre code Phi Wallet est " + otpCode + ". Ne le partagez avec personne.");
+            messages.put("id", "Kode Phi Wallet Anda adalah " + otpCode + ". Jangan bagikan kepada siapa pun.");
+            messages.put("pt", "O seu código da Phi Wallet é " + otpCode + ". Não o partilhe com ninguém.");
+            
+            String message = messages.getOrDefault(lang, messages.get("en"));
+
+            // Send SMS
+            PhoneNumber FROM_NUMBER = new PhoneNumber(flowConfig.get("FROM_NUMBER"));
+            PhoneNumber TO_NUMBER = new PhoneNumber(phone);
+
+            Twilio.init(flowConfig.get("ACCOUNT_SID"), flowConfig.get("AUTH_TOKEN"));
+            Message.creator(TO_NUMBER, FROM_NUMBER, message).create();
+
+            logger.info("OTP {} sent successfully to {}", otpCode, phone);
+            return true;
+        } catch (Exception ex) {
+            logger.error("Failed to send OTP to {}. Error: {}", phone, ex.getMessage(), ex);
+            return false;
+        }
+    }
+
+    public boolean validateOTPCode(String phone, String code) {
+        try {
+            String storedCode = otpStore.getOrDefault(phone, "NULL");
+            logger.info("User submitted code: {} — Stored code: {}", code, storedCode);
+            if (storedCode.equalsIgnoreCase(code)) {
+                otpStore.remove(phone); // remove after successful validation
+                return true;
+            }
+            return false;
+        } catch (Exception ex) {
+            logger.error("Error validating OTP {} for phone {}: {}", code, phone, ex.getMessage(), ex);
+            return false;
+        }
+    }
+
+    public String getUserInumByUsername(String username) {
+        User user = getUser(UID, username);
+        boolean local = user != null;
+        LogUtils.log("There is % local account for %", local ? "a" : "no", username);
+
+        if (local) {
+            String inum = getSingleValuedAttr(user, INUM_ATTR);
+            return inum;
         }
 
-        String subject = templateData.get("subject");
-        String htmlBody = templateData.get("body");
-        String textBody = htmlBody.replaceAll("\\<.*?\\>", ""); // crude HTML → text
-
-        // Send signed email
-        MailService mailService = CdiUtil.bean(MailService.class);
-        boolean sent = mailService.sendMailSigned(
-                smtpConfig.getFromEmailAddress(),
-                smtpConfig.getFromName(),
-                to,
-                null,
-                subject,
-                textBody,
-                htmlBody
-        );
-
-        if (sent) {
-            LogUtils.log("Localized username update email sent successfully to %", to);
-        } else {
-            LogUtils.log("Failed to send localized username update email to %", to);
-        }
-
-        return sent;
-
-    } catch (Exception e) {
-        LogUtils.log("Failed to send username update email: %", e.getMessage());
-        return false;
+        return null; // or return "" if you prefer
     }
-}
 
 
-    // Helper method to fetch SMTP configuration
-    private SmtpConfiguration getSmtpConfiguration() {
-        ConfigurationService configurationService = CdiUtil.bean(ConfigurationService.class);
-        return configurationService.getConfiguration().getSmtpConfiguration();
-    }
 }
