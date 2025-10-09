@@ -1194,7 +1194,7 @@
 				"width": 110,
 				"height": 59
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-68452e8b-8241-4327-8ebe-57a93d67900a",
@@ -1213,21 +1213,22 @@
 				"previousNodeId": "whenNode-d023e3d1-c4ef-4413-a08b-01df36d50e30",
 				"branching": "continue",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"New OTP code send successfully!\" resendHasSucceed",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "New OTP code send successfully!"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "assignmentNode-37e6d9b8-83f4-4f1a-ad04-ff6d3a089a6c",
@@ -1245,20 +1246,32 @@
 				},
 				"previousNodeId": "logNode-68452e8b-8241-4327-8ebe-57a93d67900a",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "\"An OTP code has been send to your register mobile number.\"",
+							"assignedVariableName": "otpUiFeedback.infoMessage"
+						},
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "\"\"",
+							"assignedVariableName": "otpUiFeedback.errorMessage"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "\"A new OTP code has been send to you on your mobile phone.\""
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "assignmentNode-0b499cd0-db78-4d33-b2d3-bedd819a2f8b",
@@ -1320,8 +1333,8 @@
 				}
 			},
 			"measured": {
-				"width": 170,
-				"height": 122
+				"width": 168,
+				"height": 120
 			},
 			"selected": false
 		},
@@ -2093,8 +2106,8 @@
 		}
 	],
 	"viewport": {
-		"x": -1887.0880370664217,
-		"y": -314.9728117791366,
+		"x": -2476.0880370664217,
+		"y": -374.9728117791366,
 		"zoom": 0.8802590135631504
 	}
 }
