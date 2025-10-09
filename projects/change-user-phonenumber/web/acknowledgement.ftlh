@@ -1,34 +1,13 @@
+[#ftl output_format="HTML"]
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Welcome
-	</title>
-  </head>
-  <body>
-	<div align="center" class="registration-container shadow">
-	  <div class="flex">
-		<img src="https://gluu.org/wp-content/uploads/2020/12/logo.png" id="inh1m">
-	  </div>
-	  <h1>WELCOME
-	  </h1>
-	  <div class="separator">
-	  </div>
-	  <p class="message">
-		You've successfully Re-set your password!!!
-		<br>
-	  </p>
-	  <form method="post" id="myForm" class="my-8">
-		<div class="space-y-9">
-		  <div class="button">
-			<button type="submit" class="btn">Continue</button>
-		  </div>
-		</div>
-	  </form>
-	</div>
-  </body>
-  <style>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Welcome
+	</title></head>
+<body><div align="center" class="registration-container shadow"><div class="flex"><img src="https://gluu.org/wp-content/uploads/2020/12/logo.png" id="inh1m"></div><h1>WELCOME
+	  </h1><div class="separator">
+	  </div><p class="message">You've successfully Re-set your number!!!
+		<br></p><form method="post" id="myForm" class="my-8"><div class="space-y-9"><div class="button"><button type="submit" class="btn">Continue</button></div></div></form></div></body>
+<style>
 	body {
 	  font-family: Arial, sans-serif;
 	  text-align: center;
@@ -95,7 +74,7 @@
 	  background-color: #009624;
 	}
   </style>
-  <script>
+<script>
 	window.onload = function () {
 	  var form = document.querySelector("form");
 	};
