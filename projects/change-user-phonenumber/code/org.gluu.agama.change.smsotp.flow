@@ -4,6 +4,10 @@ Flow org.gluu.agama.change.smsotp
      Inputs PhonenumberUpdateService username phone
 // Log flow imputs provided by the flow caller.
 Log "@info Information received from the caller: " username phone
+// Declare feedback Variable
+otpUiFeedback = {}
+resendCount = 0
+validationAttempts = 0
 Repeat __________ times max
      RRF "__________" 
      When 
