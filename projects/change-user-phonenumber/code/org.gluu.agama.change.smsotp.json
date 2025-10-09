@@ -1045,7 +1045,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-79d17209-412d-4f82-a886-63edf1a35f6d",
@@ -1064,21 +1064,22 @@
 				"previousNodeId": "whenNode-9d8420e5-ffa7-4dd2-8f27-3540457b3079",
 				"branching": "success",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"Maximum resend attempts exceeded\"",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "\"Maximum resend attempts exceeded\""
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "assignmentNode-62f9cfdb-e93b-4bf0-ad83-e8f5b48e3692",
@@ -1096,20 +1097,28 @@
 				},
 				"previousNodeId": "logNode-79d17209-412d-4f82-a886-63edf1a35f6d",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "{success: false, error: \"ExceededResendAttempts\"}",
+							"assignedVariableName": "it_resend"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "ExceededResendAttempts"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "finishNode-04547c00-53cd-45f2-bc2f-1f969fffed7b",
@@ -1134,14 +1143,16 @@
 					"hasComment": true,
 					"comment": "",
 					"flowfilename": "",
-					"returnVariable": "",
+					"returnVariable": "it_resend",
+					"finishMode": "withVariable",
 					"nodeIcon": "material-symbols:line-end-square-rounded"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "whenNode-d023e3d1-c4ef-4413-a08b-01df36d50e30",
@@ -2074,8 +2085,8 @@
 		}
 	],
 	"viewport": {
-		"x": -1335.3976619919483,
-		"y": -251.70831522163792,
-		"zoom": 0.764188260382583
+		"x": -1887.0880370664217,
+		"y": -314.9728117791366,
+		"zoom": 0.8802590135631504
 	}
 }
