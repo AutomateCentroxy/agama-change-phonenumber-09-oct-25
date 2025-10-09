@@ -9,7 +9,8 @@ otpUiFeedback = {}
 resendCount = 0
 validationAttempts = 0
 maxSMS = Repeat 20 times max
-     RRF "__________" 
+     //  Show UI to collect OTP code from user.
+     otpCreds = RRF "smsOtp.ftlh" otpUiFeedback
      When 
           Log "@ " __________
           When 
