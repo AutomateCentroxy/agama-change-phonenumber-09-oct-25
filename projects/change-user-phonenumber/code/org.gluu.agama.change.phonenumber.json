@@ -257,7 +257,7 @@
 				"width": 110,
 				"height": 59
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "assignmentNode-ea871a61-db49-457d-bc37-c8c586d36320",
@@ -276,20 +276,27 @@
 				"previousNodeId": "whenNode-d12d2612-54d0-480e-aeb0-65555cc8d788",
 				"branching": "success",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "searchUserInput.access_token",
+							"assignedVariableName": "accessToken"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Validate access token first"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "logNode-73f600f3-3592-4826-ab5f-550e479501e2",
@@ -642,8 +649,8 @@
 		}
 	],
 	"viewport": {
-		"x": -185.1168487199136,
-		"y": 65.95079725273575,
+		"x": -561.1168487199136,
+		"y": -38.04920274726419,
 		"zoom": 0.8561882845464566
 	}
 }
