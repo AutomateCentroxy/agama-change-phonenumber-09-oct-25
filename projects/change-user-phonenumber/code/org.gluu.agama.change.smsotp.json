@@ -149,7 +149,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-ca599358-dab0-44bb-a86a-85b06fd8ea39",
@@ -168,21 +168,22 @@
 				"previousNodeId": "repeatNode-1837b2b3-fb17-4d9d-9ddb-565e2ab15a55",
 				"branching": "continue",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"OTP verification loop completed\"",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "\"OTP verification loop completed\""
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "assignmentNode-71530d3e-429a-41c7-8dc5-183d9e016a11",
@@ -349,8 +350,8 @@
 				}
 			},
 			"measured": {
-				"width": 170,
-				"height": 122
+				"width": 168,
+				"height": 120
 			}
 		},
 		{
@@ -1310,8 +1311,8 @@
 		}
 	],
 	"viewport": {
-		"x": -401.1591091097778,
-		"y": 86.53495991908733,
-		"zoom": 1.1518876423493567
+		"x": -551.2483684481633,
+		"y": 115.91259558721777,
+		"zoom": 0.9999999999999991
 	}
 }
