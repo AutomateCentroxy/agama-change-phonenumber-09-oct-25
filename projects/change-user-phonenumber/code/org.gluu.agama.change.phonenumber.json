@@ -1978,8 +1978,8 @@
 			"id": "logNode-6e54c0a4-7575-4f93-b996-19645150b679",
 			"type": "logNode",
 			"position": {
-				"x": 3513.873573007109,
-				"y": -78.68130375457035
+				"x": 3515.025460649458,
+				"y": -79.83319139691972
 			},
 			"data": {
 				"id": "logNode-6e54c0a4-7575-4f93-b996-19645150b679",
@@ -1991,8 +1991,8 @@
 				"previousNodeId": "whenNode-6227f7dc-1309-4966-93c9-3bca1ca57357",
 				"branching": "otherwise",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"Input Phone number page \"",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
@@ -2006,7 +2006,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
