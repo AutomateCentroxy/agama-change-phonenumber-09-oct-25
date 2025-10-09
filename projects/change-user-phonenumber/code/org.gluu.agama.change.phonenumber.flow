@@ -42,7 +42,8 @@ Repeat 6 times max
                     Log "@info Check phone number for user +++++++:" phone
                     UniqueNumber = Call PhonenumberUpdateService isPhoneUnique username phone
                     When UniqueNumber is true
-                         Call __________#__________ 
+                         // sent sms otp
+                         smsOtpSend = Call PhonenumberUpdateService sendOTPCode username phone
                          Log "@ " __________
                          Trigger __________ 
                          Log "@ " __________
@@ -54,5 +55,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_mvwje = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_mvwje
+it_odcoi = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_odcoi
