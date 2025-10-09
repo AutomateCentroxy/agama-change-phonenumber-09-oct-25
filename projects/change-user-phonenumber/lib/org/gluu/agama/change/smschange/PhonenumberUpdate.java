@@ -441,7 +441,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             User user = userService.getUser(username);
             String lang = null;
             if (user != null) {
-                Object val = user.getAttribute("LANG", true, false);
+                Object val = user.getAttribute("lang", true, false);
                 if (val != null) {
                     lang = val.toString().toLowerCase();
                 }
