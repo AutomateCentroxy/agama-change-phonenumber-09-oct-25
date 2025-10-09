@@ -39,7 +39,7 @@ maxSMS = Repeat 20 times max
           isResending = true
      Otherwise
           //  Add log entry with collected code in log file.
-          Log "@info Information provided by the user is : " otpCreds.code
+          Log "@info Information provided by the user is : " otpCreds.code phone
           // validationAttempts
           validationAttempts = Call org.gluu.agama.login.CounterHelper#increment validationAttempts
           // Add log entry withvalidation result in log file.
