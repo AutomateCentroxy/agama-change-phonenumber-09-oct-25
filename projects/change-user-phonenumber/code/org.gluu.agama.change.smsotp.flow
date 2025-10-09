@@ -7,25 +7,22 @@ Log "@info Information received from the caller: " username phone
 Repeat __________ times max
      RRF "__________" 
      When 
-          Finish __________
+          Log "@ " __________
+          When 
      Otherwise
+          Log "@ " __________
+          Call __________#__________ 
+          Log "@ " __________
           When 
                Log "@ " __________
-               When 
+               Iterate over  using item
           Otherwise
-               Log "@ " __________
                Call __________#__________ 
                Log "@ " __________
                When 
                     Log "@ " __________
-                    Iterate over  using item
+                    Finish __________
                Otherwise
-                    Call __________#__________ 
                     Log "@ " __________
-                    When 
-                         Log "@ " __________
-                         Finish __________
-                    Otherwise
-                         Log "@ " __________
 Log "@ " __________
 Finish __________
