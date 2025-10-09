@@ -78,7 +78,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "repeatNode-70773b08-e992-4a2c-bed0-3e41e0e53e70",
@@ -97,20 +97,21 @@
 				"previousNodeId": "assignmentNode-d38bb9d1-c7ff-4150-9080-7db65ba06740",
 				"agamaData": {
 					"nodeIcon": "material-symbols:event-repeat-outline-rounded",
-					"maxIteration": "",
+					"maxIteration": "6",
 					"maxIterationVariableName": "",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "REPEAT",
 					"hasComment": true,
-					"comment": ""
+					"comment": " Iterate x times max"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "logNode-6389d3e1-b352-48d8-9d8d-d10998dbb6ad",
@@ -129,21 +130,22 @@
 				"previousNodeId": "repeatNode-70773b08-e992-4a2c-bed0-3e41e0e53e70",
 				"branching": "continue",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"Maximum attempt reached\"",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "LOG",
 					"hasComment": true,
-					"comment": ""
+					"comment": " Maximum attempt reached"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "finishNode-d4051a6f-2f0c-462e-a6af-13f974a98295",
@@ -164,18 +166,20 @@
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "END BLOCK",
 					"hasComment": true,
-					"comment": "",
+					"comment": " User Registration flow failed",
 					"flowfilename": "",
-					"returnVariable": "",
+					"returnVariable": "User update flow reached max attempts try later",
+					"finishMode": "withFailure",
 					"nodeIcon": "material-symbols:line-end-square-rounded"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e",
@@ -628,8 +632,8 @@
 		}
 	],
 	"viewport": {
-		"x": 115.8831512800864,
-		"y": 49.950797252735754,
+		"x": -185.1168487199136,
+		"y": 65.95079725273575,
 		"zoom": 0.8561882845464566
 	}
 }
