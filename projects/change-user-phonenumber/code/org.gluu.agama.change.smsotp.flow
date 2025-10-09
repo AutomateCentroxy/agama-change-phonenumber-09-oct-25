@@ -34,7 +34,7 @@ maxSMS = Repeat 20 times max
                // If otp validation was successful
                When otpValidationResult is true
                     Log "@info OTP validated Successfully"
-                    Finish __________
+                    Finish otpValidationResult
                Otherwise
                     // The maximum number of attempt has been reached.
                     Log "@info Invalid code provided "
