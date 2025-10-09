@@ -1600,8 +1600,8 @@
 				}
 			},
 			"measured": {
-				"width": 170,
-				"height": 122
+				"width": 168,
+				"height": 120
 			},
 			"selected": false,
 			"dragging": false
@@ -1861,7 +1861,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "logNode-dd5c7d5a-82a5-4b88-8d2d-dbad51e617cd",
@@ -1895,7 +1895,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "rrfNode-8d1a59be-c35b-4984-a4e3-b065d1117945",
@@ -2938,8 +2938,8 @@
 		}
 	],
 	"viewport": {
-		"x": -7641.917890666689,
-		"y": -501.2713332755909,
-		"zoom": 0.9862327044933586
+		"x": -2822.8698004271323,
+		"y": 101.25022708826577,
+		"zoom": 0.5
 	}
 }
