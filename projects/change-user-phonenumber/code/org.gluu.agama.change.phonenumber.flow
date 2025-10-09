@@ -53,8 +53,8 @@ Repeat 6 times max
                          // Check if OTP validation vas okay
                          When otpFeedBack.success is true
                               PhonenumberUpdated = Call PhonenumberUpdateService markPhoneAsVerified username phone
-                              RRF "__________" 
-                              Finish __________
+                              // "Phone Number updated in user profile"
+                              uiFeedback.infoMessage = "Phone Number updated in user profile"
                          Otherwise
                               // "ExceededResendAttempts"
                               When otpFeedBack.error is "ExceededResendAttempts"
@@ -72,5 +72,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_zwnsr = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_zwnsr
+it_dszfl = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_dszfl
