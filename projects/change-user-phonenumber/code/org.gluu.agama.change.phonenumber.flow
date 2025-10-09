@@ -50,7 +50,8 @@ Repeat 6 times max
                          otpFeedBack = Trigger org.gluu.agama.change.smsotp PhonenumberUpdateService username phone
                          // OTP Code validation is completed.
                          Log "@info OTP Code validation completed with status: " otpFeedBack
-                         When 
+                         // Check if OTP validation vas okay
+                         When otpFeedBack.success is true
                               Call __________#__________ 
                               RRF "__________" 
                               Finish __________
@@ -69,5 +70,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_pfbss = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_pfbss
+it_rcuhq = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_rcuhq
