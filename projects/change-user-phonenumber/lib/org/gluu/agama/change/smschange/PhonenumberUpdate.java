@@ -24,6 +24,8 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.jans.as.server.service.token.TokenService;
 import io.jans.as.server.model.common.AuthorizationGrant;
@@ -35,6 +37,8 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
 public class PhonenumberUpdate extends UserphoneUpdate {
+
+    private static final Logger logger = LoggerFactory.getLogger(PhonenumberUpdate.class);
 
     private static final String MAIL = "mail";
     private static final String UID = "uid";
