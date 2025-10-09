@@ -35,7 +35,7 @@ Repeat 6 times max
                     // show error
                     uiFeedback.errorMessage = "User not registered with this UserName"
                Otherwise
-                    Log "@ " __________
+                    Log "@info Input Phone number page "
                     Repeat __________ times max
                          // Display update user page
                          phoneInput = RRF "InputMobileNumber.ftlh" uiFeedback
@@ -99,5 +99,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_jzrrc = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_jzrrc
+it_cyuhs = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_cyuhs
