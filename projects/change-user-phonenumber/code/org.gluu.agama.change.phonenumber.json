@@ -1,0 +1,36 @@
+{
+  "nodes": [
+    {
+      "id": "startNode-bc732644-93e3-4f68-8486-2c8e2dedfdac",
+      "type": "startNode",
+      "sourcePosition": "right",
+      "position": {
+        "x": 30,
+        "y": 30
+      },
+      "deletable": false,
+      "data": {
+        "id": "startNode-bc732644-93e3-4f68-8486-2c8e2dedfdac",
+        "type": "startNode",
+        "position": {
+          "x": 30,
+          "y": 40
+        },
+        "agamaData": {
+          "isTopLevelFlow": true,
+          "basepath": "",
+          "configParams": "{}",
+          "nodeIcon": "material-symbols:line-start-square",
+          "timeout": "",
+          "inputs": "",
+          "configs": "",
+          "flowname": "org.gluu.agama.change.phonenumber",
+          "displayName": "org.gluu.agama.change.phonenumber",
+          "creationDate": "09/10/2025",
+          "hasComment": true,
+          "comment": ""
+        }
+      }
+    }
+  ]
+}
