@@ -560,7 +560,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "callNode-e70c7370-4983-44e4-a1f4-fe8e4ba11628",
@@ -579,12 +579,50 @@
 				"previousNodeId": "assignmentNode-fb744ae6-c2a8-4aac-a2bd-195d51ee13a8",
 				"agamaData": {
 					"javaClassName": "",
-					"javaMethodName": "",
-					"javaVariableName": "",
+					"javaMethodName": "getUserEntityByUsername",
+					"javaVariableName": "PhonenumberUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call static method",
-					"arguments": [],
+					"callType": "Call method on instance",
+					"arguments": [
+						"userName"
+					],
 					"nodeIcon": "material-symbols:code",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "CALL",
+					"hasComment": true,
+					"comment": "get user by username",
+					"asssignedVariableName": "userWithUid"
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": false
+		},
+		{
+			"id": "whenNode-6227f7dc-1309-4966-93c9-3bca1ca57357",
+			"type": "whenNode",
+			"position": {
+				"x": 3280,
+				"y": 404
+			},
+			"data": {
+				"id": "whenNode-6227f7dc-1309-4966-93c9-3bca1ca57357",
+				"type": "whenNode",
+				"position": {
+					"x": 3280,
+					"y": 404
+				},
+				"previousNodeId": "callNode-e70c7370-4983-44e4-a1f4-fe8e4ba11628",
+				"agamaData": {
+					"variableField": "",
+					"valueField": "",
+					"conditionInputField": "",
+					"conditions": [],
+					"nodeIcon": "ph:swap",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
@@ -594,8 +632,8 @@
 				}
 			},
 			"measured": {
-				"width": 170,
-				"height": 122
+				"width": 110,
+				"height": 59
 			}
 		}
 	],
@@ -884,11 +922,30 @@
 			},
 			"labelShowBg": true,
 			"sourceHandle": "source_assignmentNode-fb744ae6-c2a8-4aac-a2bd-195d51ee13a8"
+		},
+		{
+			"id": "callNode-e70c7370-4983-44e4-a1f4-fe8e4ba11628-whenNode-6227f7dc-1309-4966-93c9-3bca1ca57357",
+			"type": "default",
+			"source": "callNode-e70c7370-4983-44e4-a1f4-fe8e4ba11628",
+			"target": "whenNode-6227f7dc-1309-4966-93c9-3bca1ca57357",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_callNode-e70c7370-4983-44e4-a1f4-fe8e4ba11628"
 		}
 	],
 	"viewport": {
-		"x": -2823.4070743601455,
-		"y": -286.26699462876036,
+		"x": -3103.4070743601455,
+		"y": -257.26699462876036,
 		"zoom": 1.290562490451778
 	}
 }
