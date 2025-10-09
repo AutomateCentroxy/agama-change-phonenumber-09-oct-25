@@ -16,7 +16,10 @@
         ],
         "noDirectLaunch": [],
         "configs": {
-            "org.gluu.agama.change.phonenumber": {}
+            "org.gluu.agama.change.phonenumber": {
+                "PRIVATE_KEY": "your_private_key_here",
+                "PUBLIC_KEY": "your_public_key_here"
+            }
         },
         "name": "change-user-phonenumber"
     }
