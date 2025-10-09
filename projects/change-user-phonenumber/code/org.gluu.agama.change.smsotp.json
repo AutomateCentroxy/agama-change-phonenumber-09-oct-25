@@ -404,7 +404,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "callNode-7d1be4ad-4c7b-4560-b5c6-00888d8ec0fb",
@@ -583,7 +583,7 @@
 				"agamaData": {
 					"javaClassName": "",
 					"javaMethodName": "validateOTPCode",
-					"javaVariableName": "validationAttempts",
+					"javaVariableName": "PhonenumberUpdateService",
 					"exceptionVariableField": "",
 					"callType": "Call method on instance",
 					"arguments": [
@@ -604,7 +604,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "logNode-1c83b6bc-3cda-4381-941a-5f609d01a12b",
@@ -2133,8 +2133,8 @@
 		}
 	],
 	"viewport": {
-		"x": -1368.3068880204435,
-		"y": 162.89635072260762,
+		"x": -1812.3068880204437,
+		"y": 199.89635072260762,
 		"zoom": 0.8681402276010428
 	}
 }
