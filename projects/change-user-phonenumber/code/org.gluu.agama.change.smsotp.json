@@ -255,7 +255,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "rrfNode-e648f293-0be3-49fc-b069-38f1e1ccf4fd",
@@ -276,21 +276,22 @@
 				"agamaData": {
 					"assignments": [],
 					"nodeIcon": "ph:globe-simple",
-					"templatePath": "",
-					"asssignedVariableName": "",
+					"templatePath": "smsOtp.ftlh",
+					"asssignedVariableName": "otpCreds",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "RRF",
 					"hasComment": true,
-					"comment": ""
+					"comment": " Show UI to collect OTP code from user.",
+					"arguments": "otpUiFeedback"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -1320,8 +1321,8 @@
 		}
 	],
 	"viewport": {
-		"x": -551.2483684481633,
-		"y": 115.91259558721777,
+		"x": -774.2483684481633,
+		"y": -1.0874044127822344,
 		"zoom": 0.9999999999999991
 	}
 }
