@@ -2006,7 +2006,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -2026,12 +2026,12 @@
 				"previousNodeId": "logNode-6e54c0a4-7575-4f93-b996-19645150b679",
 				"agamaData": {
 					"nodeIcon": "material-symbols:event-repeat-outline-rounded",
-					"maxIteration": "",
-					"maxIterationVariableName": "",
+					"maxIteration": "20",
+					"maxIterationVariableName": "max",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "max",
 					"hasComment": true,
 					"comment": ""
 				}
@@ -2039,7 +2039,8 @@
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "logNode-289cc8f3-a341-47a7-9a71-3b5ea0af44d5",
