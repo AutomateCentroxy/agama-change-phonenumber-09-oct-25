@@ -2026,12 +2026,12 @@
 				"previousNodeId": "logNode-6e54c0a4-7575-4f93-b996-19645150b679",
 				"agamaData": {
 					"nodeIcon": "material-symbols:event-repeat-outline-rounded",
-					"maxIteration": "20",
-					"maxIterationVariableName": "max",
+					"maxIteration": "10",
+					"maxIterationVariableName": "ValidMobileNum",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "max",
+					"displayName": "ValidMobileNum",
 					"hasComment": true,
 					"comment": ""
 				}
@@ -2071,8 +2071,8 @@
 				}
 			},
 			"measured": {
-				"width": 170,
-				"height": 122
+				"width": 168,
+				"height": 120
 			}
 		},
 		{
