@@ -15,11 +15,12 @@ Repeat 6 times max
           accessToken = searchUserInput.access_token
           // accessToken
           Log "@info Validating access token: %" accessToken
-          Call __________#__________ 
+          // Create an instance of Update service
+          PhonenumberUpdateService = Call org.gluu.agama.change.users.UserphoneUpdate#getInstance 
           Call __________#__________ 
           When 
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_inzgt = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_inzgt
+it_bwlrr = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_bwlrr
