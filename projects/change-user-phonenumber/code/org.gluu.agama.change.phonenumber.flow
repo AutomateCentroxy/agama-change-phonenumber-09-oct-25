@@ -7,7 +7,8 @@ uiFeedback = {}
 uiFeedback.errorMessage = ""
 //  Iterate x times max
 Repeat 6 times max
-     RRF "__________" 
+     //  Retrieve user profile  from UI
+     searchUserInput = RRF "searchUser.ftlh" uiFeedback
      When 
           Log "@ " __________
           Call __________#__________ 
@@ -16,5 +17,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_ailnv = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_ailnv
+it_xljsq = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_xljsq
