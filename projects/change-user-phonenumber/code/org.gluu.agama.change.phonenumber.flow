@@ -21,11 +21,13 @@ Repeat 6 times max
           authCheck = Call org.gluu.agama.change.smschange.PhonenumberUpdate#validateBearerToken accessToken
           // Check if token validation failed
           When authCheck.valid is false
+               // CHANGED: Instead of Finish, set error message and continue loop
+               uiFeedback.errorMessage = authCheck.errorMessage
           Otherwise
                Log "@ " __________
                Call __________#__________ 
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_rbzvd = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_rbzvd
+it_ufiwf = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_ufiwf
