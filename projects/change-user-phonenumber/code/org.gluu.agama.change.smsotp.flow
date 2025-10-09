@@ -53,7 +53,7 @@ maxSMS = Repeat 20 times max
                Finish it_otpmax
           Otherwise
                //  Validate the OTP code provided by the user.
-               otpValidationResult = Call validationAttempts validateOTPCode phone otpCreds.code
+               otpValidationResult = Call PhonenumberUpdateService validateOTPCode phone otpCreds.code
                // Add log entry withvalidation result in log file.
                Log "@info OTP validation result is:" otpValidationResult
                // If otp validation was successful
