@@ -15,6 +15,9 @@
             "jans"
         ],
         "noDirectLaunch": [],
-        "configs": {}
+        "configs": {
+            "org.gluu.agama.change.phonenumber": {}
+        },
+        "name": "change-user-phonenumber"
     }
 }
