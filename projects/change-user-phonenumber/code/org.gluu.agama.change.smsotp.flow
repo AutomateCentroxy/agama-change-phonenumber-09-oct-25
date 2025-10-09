@@ -2,7 +2,8 @@ Flow org.gluu.agama.change.smsotp
      Basepath ""
      Timeout 900 seconds
      Inputs PhonenumberUpdateService username phone
-Log "@ " __________
+// Log flow imputs provided by the flow caller.
+Log "@info Information received from the caller: " username phone
 Repeat __________ times max
      RRF "__________" 
      When 
