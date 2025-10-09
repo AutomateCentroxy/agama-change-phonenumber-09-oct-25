@@ -60,6 +60,8 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     private Map<String, String> flowConfig;
     private static final SecureRandom RAND = new SecureRandom();
 
+    private static final Map<String, String> otpStore = new HashMap<>();
+
     private static PhonenumberUpdate INSTANCE = null;
 
     public PhonenumberUpdate() {
