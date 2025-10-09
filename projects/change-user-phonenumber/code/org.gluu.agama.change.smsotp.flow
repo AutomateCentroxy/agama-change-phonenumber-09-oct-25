@@ -24,7 +24,9 @@ maxSMS = Repeat 20 times max
           Log "@info Validation attempt number: " validationAttempts
           // Check validation
           When validationAttempts is 4
-               Log "@ " __________
+               // Log validation exceeded
+               Log "@info Maximum validation attempts exceeded"
+               it_otpmax = { success: false, error: "ExceededTheNumberOfAttemptsAllowed" }
                Iterate over  using item
           Otherwise
                //  Validate the OTP code provided by the user.
