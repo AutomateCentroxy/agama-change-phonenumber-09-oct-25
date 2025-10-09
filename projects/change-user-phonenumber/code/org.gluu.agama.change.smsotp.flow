@@ -28,5 +28,6 @@ maxSMS = Repeat 20 times max
                     Finish __________
                Otherwise
                     Log "@ " __________
-Log "@ " __________
+// "OTP verification loop completed"
+Log "@info OTP verification loop completed"
 Finish __________
