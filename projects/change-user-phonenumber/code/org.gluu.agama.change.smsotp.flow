@@ -1,2 +1,4 @@
 Flow org.gluu.agama.change.smsotp
      Basepath ""
+     Timeout 900 seconds
+     Inputs PhonenumberUpdateService username phone
