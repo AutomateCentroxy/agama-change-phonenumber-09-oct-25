@@ -25,7 +25,7 @@
 					"inputs": "",
 					"configs": "conf",
 					"flowname": "org.gluu.agama.change.phonenumber",
-					"displayName": "org.gluu.agama.change.phonenumber",
+					"displayName": "Phonenumber Update Flow",
 					"creationDate": "09/10/2025",
 					"hasComment": true,
 					"comment": ""
