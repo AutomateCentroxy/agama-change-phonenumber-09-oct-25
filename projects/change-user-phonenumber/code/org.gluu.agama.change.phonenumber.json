@@ -1712,7 +1712,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -1731,22 +1731,22 @@
 				},
 				"previousNodeId": "callNode-1604d2d0-9c62-4c42-801c-d6e844b6874c",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"User update api called\"",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "\"User update api called\""
 				}
 			},
 			"measured": {
 				"width": 168,
 				"height": 120
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		}
 	],
@@ -2608,8 +2608,8 @@
 		}
 	],
 	"viewport": {
-		"x": -8330.33113279542,
-		"y": -573.0200935096266,
+		"x": -9277.33113279542,
+		"y": -656.0200935096266,
 		"zoom": 1.3085780714550097
 	}
 }
