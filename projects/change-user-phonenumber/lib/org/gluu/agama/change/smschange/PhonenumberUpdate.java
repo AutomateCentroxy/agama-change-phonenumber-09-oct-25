@@ -7,7 +7,7 @@ import io.jans.orm.exception.operation.EntryNotFoundException;
 import io.jans.service.cdi.util.CdiUtil;
 import io.jans.util.StringHelper;
 
-import org.gluu.agama.user.UsernameUpdate;
+import org.gluu.agama.user.UserphoneUpdate;
 import io.jans.agama.engine.script.LogUtils;
 import java.io.IOException;
 import io.jans.as.common.service.common.ConfigurationService;
