@@ -16,15 +16,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.regex.Pattern;
-import org.gluu.agama.smtp.SendEmailTemplateEn;
-import org.gluu.agama.smtp.SendEmailTemplateAr;
-import org.gluu.agama.smtp.SendEmailTemplateEs;
-import org.gluu.agama.smtp.SendEmailTemplateFr;
-import org.gluu.agama.smtp.SendEmailTemplateId;
-import org.gluu.agama.smtp.SendEmailTemplatePt;
-
-import io.jans.model.SmtpConfiguration;
-import io.jans.service.MailService;
 
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
