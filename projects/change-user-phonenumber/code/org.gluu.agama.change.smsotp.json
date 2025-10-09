@@ -404,7 +404,7 @@
 				"width": 168,
 				"height": 120
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "callNode-7d1be4ad-4c7b-4560-b5c6-00888d8ec0fb",
@@ -422,25 +422,29 @@
 				},
 				"previousNodeId": "logNode-ebb1a63c-79c3-429a-8584-5792c4e85b0d",
 				"agamaData": {
-					"javaClassName": "",
-					"javaMethodName": "",
+					"javaClassName": "org.gluu.agama.login.CounterHelper",
+					"javaMethodName": "increment",
 					"javaVariableName": "",
 					"exceptionVariableField": "",
 					"callType": "Call static method",
-					"arguments": [],
+					"arguments": [
+						"validationAttempts"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "validationAttempts",
 					"hasComment": true,
-					"comment": ""
+					"comment": "validationAttempts",
+					"asssignedVariableName": "validationAttempts"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "logNode-50f1a038-394b-480f-8f50-84cf776b199e",
