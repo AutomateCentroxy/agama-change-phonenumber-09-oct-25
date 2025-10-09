@@ -72,5 +72,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_dszfl = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_dszfl
+it_tdsig = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_tdsig
