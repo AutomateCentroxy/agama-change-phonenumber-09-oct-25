@@ -24,7 +24,7 @@ maxSMS = Repeat 20 times max
           Log "@info Resend attempt number: " resendCount
           // Resend otp
           resendHasSucceed = Call PhonenumberUpdateService sendOTPCode username phone
-          When 
+          When resendHasSucceed is null
                Log "@ " __________
           Log "@ " __________
      Otherwise
