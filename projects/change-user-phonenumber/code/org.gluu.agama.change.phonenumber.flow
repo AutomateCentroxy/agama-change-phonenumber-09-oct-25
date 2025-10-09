@@ -56,6 +56,7 @@ Repeat 6 times max
                               // "Phone Number updated in user profile"
                               uiFeedback.infoMessage = "Phone Number updated in user profile"
                               inum = Call PhonenumberUpdateService getUserInumByUsername username
+                              Log "@ " __________
                               //  If user update success
                               When inum is not null
                                    // UserAPiCall method
@@ -81,5 +82,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_abavs = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_abavs
+it_cwksw = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_cwksw
