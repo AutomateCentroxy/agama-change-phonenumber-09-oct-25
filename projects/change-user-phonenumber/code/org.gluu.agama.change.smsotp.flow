@@ -30,6 +30,7 @@ maxSMS = Repeat 20 times max
                // "Error occurs while sending new code to you. Please contact site administrator."
                otpUiFeedback.errorMessage = "Error occurs while sending new code to you. Please contact site administrator."
                otpUiFeedback.infoMessage = ""
+               isResending = true
           // New OTP code send successfully!
           Log "@info New OTP code send successfully!" resendHasSucceed
           // "A new OTP code has been send to you on your mobile phone."
