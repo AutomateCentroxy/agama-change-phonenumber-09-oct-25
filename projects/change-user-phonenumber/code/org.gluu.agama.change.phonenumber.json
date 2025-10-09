@@ -907,7 +907,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "assignmentNode-3aeff8a3-28bd-469e-8e58-7dd969ba2a08",
@@ -925,7 +925,18 @@
 				},
 				"previousNodeId": "logNode-de6ee282-f3d6-43ab-894e-49aa0557142a",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "\"This phone is already used by another account. Please enter a different one.\"",
+							"assignedVariableName": "uiFeedback.errorMessage"
+						},
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "\"Please enter a new number\"",
+							"assignedVariableName": "uiFeedback.infoMessage"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
@@ -938,7 +949,8 @@
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "callNode-434b1955-eeda-4dc9-b996-bcd81c141d76",
