@@ -444,7 +444,8 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "logNode-50f1a038-394b-480f-8f50-84cf776b199e",
@@ -604,7 +605,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-1c83b6bc-3cda-4381-941a-5f609d01a12b",
@@ -2133,8 +2134,8 @@
 		}
 	],
 	"viewport": {
-		"x": -1812.3068880204437,
-		"y": 199.89635072260762,
-		"zoom": 0.8681402276010428
+		"x": -6.654117641529865,
+		"y": 222.96582191683052,
+		"zoom": 0.5
 	}
 }
