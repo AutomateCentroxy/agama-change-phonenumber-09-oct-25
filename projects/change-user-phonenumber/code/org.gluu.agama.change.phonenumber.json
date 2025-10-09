@@ -681,7 +681,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "rrfNode-aaf3c2d1-fd93-4e14-a1bc-dd13afa8d9e0",
@@ -702,20 +702,22 @@
 				"agamaData": {
 					"assignments": [],
 					"nodeIcon": "ph:globe-simple",
-					"templatePath": "",
-					"asssignedVariableName": "",
+					"templatePath": "InputMobileNumber.ftlh",
+					"asssignedVariableName": "userInput",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "RRF",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Display update user page",
+					"arguments": "uiFeedback"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		}
 	],
 	"edges": [
@@ -1063,8 +1065,8 @@
 		}
 	],
 	"viewport": {
-		"x": -3922.407074360146,
-		"y": -105.26699462876047,
-		"zoom": 1.290562490451778
+		"x": -3383.2295852683583,
+		"y": -46.038183033503856,
+		"zoom": 1.1203892141941751
 	}
 }
