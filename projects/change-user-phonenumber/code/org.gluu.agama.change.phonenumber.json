@@ -1226,7 +1226,7 @@
 				"width": 110,
 				"height": 59
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -1418,24 +1418,30 @@
 				"branching": "success",
 				"agamaData": {
 					"javaClassName": "",
-					"javaMethodName": "",
-					"javaVariableName": "",
+					"javaMethodName": "markPhoneAsVerified",
+					"javaVariableName": "PhonenumberUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call static method",
-					"arguments": [],
+					"callType": "Call method on instance",
+					"arguments": [
+						"username",
+						"phone"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "PhonenumberUpdated",
 					"hasComment": true,
-					"comment": ""
+					"comment": "",
+					"asssignedVariableName": "PhonenumberUpdated"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true,
+			"dragging": false
 		},
 		{
 			"id": "assignmentNode-2f780213-7237-4909-a96f-6e8cf36199bc",
