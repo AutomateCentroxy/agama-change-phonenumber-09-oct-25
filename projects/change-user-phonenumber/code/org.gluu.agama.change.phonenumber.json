@@ -2040,7 +2040,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-289cc8f3-a341-47a7-9a71-3b5ea0af44d5",
@@ -2059,21 +2059,22 @@
 				"previousNodeId": "repeatNode-a048e6bd-8311-49cb-8ed9-af1438d73cad",
 				"branching": "continue",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"Phone loop completed\"",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "\"Phone loop completed\""
 				}
 			},
 			"measured": {
 				"width": 168,
 				"height": 120
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "assignmentNode-469b1d95-8dae-4acb-8269-37aa2d942bc2",
