@@ -86,20 +86,37 @@
 				},
 				"previousNodeId": "logNode-49b8e2aa-a9dd-4649-a440-dec7cfacb9d4",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "{}",
+							"assignedVariableName": "otpUiFeedback"
+						},
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "0",
+							"assignedVariableName": "resendCount"
+						},
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "0",
+							"assignedVariableName": "validationAttempts"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "Declare feedback Variable",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Declare feedback Variable"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "repeatNode-1837b2b3-fb17-4d9d-9ddb-565e2ab15a55",
@@ -262,7 +279,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -1292,8 +1309,8 @@
 		}
 	],
 	"viewport": {
-		"x": -469.40554844183544,
-		"y": 11.818841416017108,
-		"zoom": 0.8681402276010423
+		"x": -401.1591091097778,
+		"y": 86.53495991908733,
+		"zoom": 1.1518876423493567
 	}
 }
