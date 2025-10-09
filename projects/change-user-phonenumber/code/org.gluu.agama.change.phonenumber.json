@@ -873,7 +873,7 @@
 				"width": 110,
 				"height": 59
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-de6ee282-f3d6-43ab-894e-49aa0557142a",
@@ -892,21 +892,22 @@
 				"previousNodeId": "whenNode-d4dfb8e2-af03-4ebf-a597-57eef39b387e",
 				"branching": "otherwise",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"This phone is already used by another account. Please enter a different one.\"",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "\"This phone is already used by another account. Please enter a different one.\""
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "assignmentNode-3aeff8a3-28bd-469e-8e58-7dd969ba2a08",
