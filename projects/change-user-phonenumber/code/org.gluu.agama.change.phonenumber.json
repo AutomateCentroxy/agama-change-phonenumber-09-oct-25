@@ -787,8 +787,8 @@
 				}
 			},
 			"measured": {
-				"width": 168,
-				"height": 120
+				"width": 170,
+				"height": 122
 			},
 			"selected": false
 		},
@@ -1022,10 +1022,10 @@
 				}
 			},
 			"measured": {
-				"width": 168,
-				"height": 120
+				"width": 170,
+				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "triggerNode-cab00db2-9dd0-4ff0-8ad4-63c42edaa8a1",
@@ -1044,22 +1044,28 @@
 				"previousNodeId": "logNode-ea2bb0c5-5e4f-41cd-95f8-27a2404677ac",
 				"agamaData": {
 					"nodeIcon": "fluent-mdl2:trigger-approval",
-					"flowFileName": "",
-					"arguments": [],
-					"asssignedVariableName": "",
+					"flowFileName": "org.gluu.agama.change.smsotp",
+					"arguments": [
+						"PhonenumberUpdateService",
+						"username",
+						"phone"
+					],
+					"asssignedVariableName": "otpFeedBack",
 					"exceptionVariableField": "",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "Launch OTP Subflow",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Trigger OTP subflow",
+					"overrides": []
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "logNode-975b0d35-6992-4960-ab83-ec85fcd4ceb1",
@@ -1629,8 +1635,8 @@
 		}
 	],
 	"viewport": {
-		"x": -7080.336343301368,
-		"y": -189.81828964577608,
-		"zoom": 1.5283765207651658
+		"x": -4668.156849388375,
+		"y": 53.69468004480257,
+		"zoom": 0.9999999999999997
 	}
 }
