@@ -31,4 +31,5 @@ maxSMS = Repeat 20 times max
 // "OTP verification loop completed"
 Log "@info OTP verification loop completed"
 it_loopmax = { success: false, error: "UnexpectedLoopCompletion" }
-Finish __________
+// SMS OTP error
+Finish it_loopmax
