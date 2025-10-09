@@ -36,8 +36,6 @@ import com.twilio.type.PhoneNumber;
 
 public class PhonenumberUpdate extends UserphoneUpdate {
 
-    private final UserService userService = CdiUtil.bean(UserService.class);
-
     private static final String MAIL = "mail";
     private static final String UID = "uid";
     private static final String DISPLAY_NAME = "displayName";
@@ -62,12 +60,16 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     }
 
     public static synchronized PhonenumberUpdate getInstance(Map<String, String> config) {
-    if (INSTANCE == null) {
-        INSTANCE = new PhonenumberUpdate();
-        INSTANCE.flowConfig = config; // if you want to use it in sendOTPCode
+        if (INSTANCE == null) {
+            INSTANCE = new PhonenumberUpdate();
+            INSTANCE.flowConfig = config; // if you want to use it in sendOTPCode
+        }
+        return INSTANCE;
     }
-    return INSTANCE;
-}
+
+    private UserService getUserService() {
+        return CdiUtil.bean(UserService.class);
+    }
 
     // validate token starts here
     public static Map<String, Object> validateBearerToken(String access_token) {
@@ -298,8 +300,6 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return userService.getUserByAttribute(attributeName, value, true);
     }
 
-   
-
     public Map<String, Object> syncUserWithExternal(String inum) {
         Map<String, Object> result = new HashMap<>();
         try {
@@ -354,8 +354,9 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
     public boolean isPhoneVerified(String username) {
         try {
-            User user = userService.getUser(username);
-            if (user == null) return false;
+             User user = getUserService().getUser(username);
+            if (user == null)
+                return false;
 
             Object val = user.getAttribute("phoneNumberVerified", true, false);
             return val != null && Boolean.parseBoolean(val.toString());
@@ -371,7 +372,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             String normalizedPhone = phone.startsWith("+") ? phone : "+" + phone;
 
             // Check DB for existing users
-            List<User> users = userService.getUsersByAttribute("mobile", normalizedPhone, true, 10);
+            List<User> users = getUserService().getUsersByAttribute("mobile", normalizedPhone, true, 10);
 
             if (users != null && !users.isEmpty()) {
                 for (User u : users) {
@@ -390,11 +391,11 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         }
     }
 
-
     public String getPhoneNumber(String username) {
         try {
-            User user = userService.getUser(username);
-            if (user == null) return null;
+            User user = getUserService().getUser(username);
+            if (user == null)
+                return null;
             Object phone = user.getAttribute(PHONE_NUMBER, true, false);
             return phone != null ? phone.toString() : null;
         } catch (Exception e) {
@@ -403,10 +404,9 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         }
     }
 
-
     public String markPhoneAsVerified(String username, String phone) {
         try {
-            User user = userService.getUser(username);
+            User user = getUserService().getUser(username);
             if (user == null) {
                 logger.warn("User {} not found while marking phone verified", username);
                 return "User not found.";
@@ -415,7 +415,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             // Set the phone number and mark it as verified
             user.setAttribute(PHONE_NUMBER, phone);
             user.setAttribute("phoneNumberVerified", Boolean.TRUE);
-            userService.updateUser(user);
+            getUserService().updateUser(user);
 
             logger.info("Phone {} verified and updated for user {}", phone, username);
             return "Phone " + phone + " verified successfully for user " + username;
@@ -438,7 +438,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     public boolean sendOTPCode(String username, String phone) {
         try {
             // Get user preferred language from profile
-            User user = userService.getUser(username);
+            User user = getUserService().getUser(username);
             String lang = null;
             if (user != null) {
                 Object val = user.getAttribute("lang", true, false);
@@ -464,7 +464,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             messages.put("fr", "Votre code Phi Wallet est " + otpCode + ". Ne le partagez avec personne.");
             messages.put("id", "Kode Phi Wallet Anda adalah " + otpCode + ". Jangan bagikan kepada siapa pun.");
             messages.put("pt", "O seu código da Phi Wallet é " + otpCode + ". Não o partilhe com ninguém.");
-            
+
             String message = messages.getOrDefault(lang, messages.get("en"));
 
             // Send SMS
@@ -509,6 +509,5 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
         return null; // or return "" if you prefer
     }
-
 
 }
