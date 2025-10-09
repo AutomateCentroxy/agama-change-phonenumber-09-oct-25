@@ -1140,7 +1140,7 @@
 				"width": 110,
 				"height": 59
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "whenNode-3671f3ee-ab58-490e-8311-3f866213a611",
@@ -1162,20 +1162,28 @@
 					"variableField": "",
 					"valueField": "",
 					"conditionInputField": "",
-					"conditions": [],
+					"conditions": [
+						{
+							"variable": "otpFeedBack.error",
+							"operator": "is",
+							"dataValue": "\"ExceededResendAttempts\"",
+							"combinator": "none"
+						}
+					],
 					"nodeIcon": "ph:swap",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "\"ExceededResendAttempts\""
 				}
 			},
 			"measured": {
 				"width": 110,
 				"height": 59
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "whenNode-02f4ac2d-783c-4550-9191-b1563bf95c32",
@@ -1334,8 +1342,8 @@
 				"previousNodeId": "whenNode-3671f3ee-ab58-490e-8311-3f866213a611",
 				"branching": "success",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"Resend attempts exceeded in OTP flow\"",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
@@ -1348,7 +1356,8 @@
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "finishNode-ba33d2c0-730f-4ad1-8591-372be5e6c70c",
@@ -1373,14 +1382,16 @@
 					"hasComment": true,
 					"comment": "",
 					"flowfilename": "",
-					"returnVariable": "",
+					"returnVariable": "otpFeedBack",
+					"finishMode": "withVariable",
 					"nodeIcon": "material-symbols:line-end-square-rounded"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "callNode-86544a85-45aa-438c-86d8-f55dd42f9da9",
