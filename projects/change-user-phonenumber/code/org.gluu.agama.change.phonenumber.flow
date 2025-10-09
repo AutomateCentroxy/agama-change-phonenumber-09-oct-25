@@ -13,12 +13,13 @@ Repeat 6 times max
      When searchUserInput.formType is "searchUserForm"
           // Validate access token first
           accessToken = searchUserInput.access_token
-          Log "@ " __________
+          // accessToken
+          Log "@info Validating access token: %" accessToken
           Call __________#__________ 
           Call __________#__________ 
           When 
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_syjcg = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_syjcg
+it_inzgt = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_inzgt
