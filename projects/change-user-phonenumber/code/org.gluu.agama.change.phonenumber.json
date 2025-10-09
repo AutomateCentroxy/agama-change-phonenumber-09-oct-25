@@ -1065,7 +1065,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-975b0d35-6992-4960-ab83-ec85fcd4ceb1",
@@ -1083,21 +1083,22 @@
 				},
 				"previousNodeId": "triggerNode-cab00db2-9dd0-4ff0-8ad4-63c42edaa8a1",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"OTP Code validation completed with status: \" otpFeedBack",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "Log SMS OTP result",
 					"hasComment": true,
-					"comment": ""
+					"comment": "OTP Code validation is completed."
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		}
 	],
 	"edges": [
