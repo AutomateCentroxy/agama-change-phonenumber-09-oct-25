@@ -24,10 +24,11 @@ Repeat 6 times max
                // CHANGED: Instead of Finish, set error message and continue loop
                uiFeedback.errorMessage = authCheck.errorMessage
           Otherwise
-               Log "@ " __________
+               // Token is valid, proceed with user search
+               Log "@info Token validation successful for user: %" authCheck.username
                Call __________#__________ 
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_ufiwf = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_ufiwf
+it_dhyco = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_dhyco
