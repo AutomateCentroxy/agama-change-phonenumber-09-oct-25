@@ -1266,7 +1266,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -1298,8 +1298,8 @@
 				}
 			},
 			"measured": {
-				"width": 168,
-				"height": 120
+				"width": 170,
+				"height": 122
 			},
 			"selected": false,
 			"dragging": false
@@ -1487,6 +1487,46 @@
 				"height": 122
 			},
 			"selected": false
+		},
+		{
+			"id": "callNode-72380a9d-5898-41f4-86a4-f48ed01c9bf4",
+			"type": "callNode",
+			"position": {
+				"x": 6530,
+				"y": 670
+			},
+			"data": {
+				"id": "callNode-72380a9d-5898-41f4-86a4-f48ed01c9bf4",
+				"type": "callNode",
+				"position": {
+					"x": 6530,
+					"y": 670
+				},
+				"previousNodeId": "assignmentNode-2f780213-7237-4909-a96f-6e8cf36199bc",
+				"agamaData": {
+					"javaClassName": "",
+					"javaMethodName": "getUserInumByUsername",
+					"javaVariableName": "PhonenumberUpdateService",
+					"exceptionVariableField": "",
+					"callType": "Call method on instance",
+					"arguments": [
+						"username"
+					],
+					"nodeIcon": "material-symbols:code",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "get user inum",
+					"hasComment": true,
+					"comment": "",
+					"asssignedVariableName": "inum"
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": true
 		}
 	],
 	"edges": [
@@ -2211,11 +2251,30 @@
 			},
 			"labelShowBg": true,
 			"sourceHandle": "source_callNode-86544a85-45aa-438c-86d8-f55dd42f9da9"
+		},
+		{
+			"id": "assignmentNode-2f780213-7237-4909-a96f-6e8cf36199bc-callNode-72380a9d-5898-41f4-86a4-f48ed01c9bf4",
+			"type": "default",
+			"source": "assignmentNode-2f780213-7237-4909-a96f-6e8cf36199bc",
+			"target": "callNode-72380a9d-5898-41f4-86a4-f48ed01c9bf4",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_assignmentNode-2f780213-7237-4909-a96f-6e8cf36199bc"
 		}
 	],
 	"viewport": {
-		"x": -5836.059796007993,
-		"y": 86.1689874092176,
-		"zoom": 0.9999999999999992
+		"x": -8076.205486100946,
+		"y": -448.01725530480917,
+		"zoom": 1.30857807145501
 	}
 }
