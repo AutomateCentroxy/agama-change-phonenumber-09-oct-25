@@ -670,7 +670,7 @@
 				"width": 110,
 				"height": 59
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-40a9057c-7f7b-4ec3-b841-a23ae6394b5f",
@@ -689,21 +689,22 @@
 				"previousNodeId": "whenNode-5596e065-1f33-42db-a454-cc1f89e59ea2",
 				"branching": "otherwise",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"Invalid code provided \"",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "Log invalid code",
 					"hasComment": true,
-					"comment": ""
+					"comment": "The maximum number of attempt has been reached."
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "assignmentNode-93e25ccb-9795-45db-b492-11eeb627c357",
@@ -721,20 +722,32 @@
 				},
 				"previousNodeId": "logNode-40a9057c-7f7b-4ec3-b841-a23ae6394b5f",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "\"Invalid code provided.\"",
+							"assignedVariableName": "otpUiFeedback.errorMessage"
+						},
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "\"\"",
+							"assignedVariableName": "otpUiFeedback.infoMessage"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "Provide feedback",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Provide feedback to user."
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "logNode-3a60855c-7abf-45a9-a26a-34db60545fd7",
