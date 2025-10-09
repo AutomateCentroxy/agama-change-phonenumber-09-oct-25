@@ -775,21 +775,22 @@
 				},
 				"previousNodeId": "assignmentNode-198bbb98-dd7c-450b-a559-6fe672ac0404",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"Check phone number for user +++++++:\" phone",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "\"Check phone number for user +++++++:\" phone"
 				}
 			},
 			"measured": {
-				"width": 170,
-				"height": 122
-			}
+				"width": 168,
+				"height": 120
+			},
+			"selected": false
 		},
 		{
 			"id": "callNode-3c363e9f-f593-4035-b69e-a632559c0199",
@@ -808,24 +809,29 @@
 				"previousNodeId": "logNode-8754dec8-8867-41f0-8acd-0497eabddc5f",
 				"agamaData": {
 					"javaClassName": "",
-					"javaMethodName": "",
-					"javaVariableName": "",
+					"javaMethodName": "isPhoneUnique",
+					"javaVariableName": "PhonenumberUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call static method",
-					"arguments": [],
+					"callType": "Call method on instance",
+					"arguments": [
+						"username",
+						"phone"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "Valid Mobile Number",
 					"hasComment": true,
-					"comment": ""
+					"comment": "",
+					"asssignedVariableName": "UniqueNumber"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "whenNode-d4dfb8e2-af03-4ebf-a597-57eef39b387e",
@@ -1596,8 +1602,8 @@
 		}
 	],
 	"viewport": {
-		"x": -2927.6235836583096,
-		"y": 225.64424362072555,
-		"zoom": 0.6542890357275049
+		"x": -5864.047686695403,
+		"y": -63.551596091178,
+		"zoom": 1.5283765207651658
 	}
 }
