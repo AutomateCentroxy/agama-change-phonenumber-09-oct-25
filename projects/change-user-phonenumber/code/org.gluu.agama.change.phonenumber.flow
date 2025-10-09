@@ -56,9 +56,10 @@ Repeat 6 times max
                               RRF "__________" 
                               Finish __________
                          Otherwise
-                              When 
-                                   Log "@ " __________
-                                   Finish __________
+                              // "ExceededResendAttempts"
+                              When otpFeedBack.error is "ExceededResendAttempts"
+                                   Log "@info Resend attempts exceeded in OTP flow"
+                                   Finish otpFeedBack
                               When 
                                    Log "@ " __________
                                    Finish __________
@@ -70,5 +71,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_rcuhq = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_rcuhq
+it_vqbji = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_vqbji
