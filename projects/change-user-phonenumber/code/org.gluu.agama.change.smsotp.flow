@@ -22,7 +22,8 @@ maxSMS = Repeat 20 times max
           validationAttempts = Call org.gluu.agama.login.CounterHelper#increment validationAttempts
           // Add log entry withvalidation result in log file.
           Log "@info Validation attempt number: " validationAttempts
-          When 
+          // Check validation
+          When validationAttempts is 4
                Log "@ " __________
                Iterate over  using item
           Otherwise
