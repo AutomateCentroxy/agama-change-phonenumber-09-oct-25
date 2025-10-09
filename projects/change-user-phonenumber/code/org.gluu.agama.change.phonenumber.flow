@@ -28,9 +28,11 @@ Repeat 6 times max
                Log "@info Token validation successful for user: %" authCheck.username
                // Assign username to a variable
                userName = searchUserInput.uid
-               Call __________#__________ 
+               // get user by username
+               userWithUid = Call PhonenumberUpdateService getUserEntityByUsername userName
+               When 
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_tarlu = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_tarlu
+it_zimqu = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_zimqu
