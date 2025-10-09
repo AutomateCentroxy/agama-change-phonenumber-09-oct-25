@@ -834,21 +834,22 @@
 				"previousNodeId": "whenNode-f9ebdc7e-d721-4918-824f-b38b8038e305",
 				"branching": "success",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"Maximum validation attempts exceeded\"",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "Log validation exceeded",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Log validation exceeded"
 				}
 			},
 			"measured": {
 				"width": 168,
 				"height": 120
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "assignmentNode-50a70c3d-93ee-4d21-a021-2d41e201b932",
@@ -866,12 +867,18 @@
 				},
 				"previousNodeId": "logNode-f2e8f64e-824e-40a0-acce-a5d19efa7cb3",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "{ success: false, error: \"ExceededTheNumberOfAttemptsAllowed\" }",
+							"assignedVariableName": "it_otpmax"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "Set validation error",
 					"hasComment": true,
 					"comment": ""
 				}
@@ -879,7 +886,8 @@
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "iterateOverNode-0520ffc9-fed3-4107-af27-830de213457a",
@@ -1373,8 +1381,8 @@
 		}
 	],
 	"viewport": {
-		"x": -1751.2437874835427,
-		"y": 219.07650679040927,
-		"zoom": 0.7536674547791895
+		"x": -2145.431295369999,
+		"y": 32.93886834728113,
+		"zoom": 0.8681402276010417
 	}
 }
