@@ -31,7 +31,8 @@ maxSMS = Repeat 20 times max
                otpValidationResult = Call validationAttempts validateOTPCode phone otpCreds.code
                // Add log entry withvalidation result in log file.
                Log "@info OTP validation result is:" otpValidationResult
-               When 
+               // If otp validation was successful
+               When otpValidationResult is true
                     Log "@ " __________
                     Finish __________
                Otherwise
