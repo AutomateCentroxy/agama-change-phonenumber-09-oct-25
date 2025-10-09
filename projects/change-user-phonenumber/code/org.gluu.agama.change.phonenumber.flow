@@ -2,3 +2,6 @@ Flow org.gluu.agama.change.phonenumber
      Basepath ""
      Timeout 900 seconds
      Configs conf
+Repeat __________ times max
+Log "@ " __________
+Finish __________
