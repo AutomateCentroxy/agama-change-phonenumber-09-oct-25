@@ -1,36 +1,47 @@
 {
-  "nodes": [
-    {
-      "id": "startNode-bc732644-93e3-4f68-8486-2c8e2dedfdac",
-      "type": "startNode",
-      "sourcePosition": "right",
-      "position": {
-        "x": 30,
-        "y": 30
-      },
-      "deletable": false,
-      "data": {
-        "id": "startNode-bc732644-93e3-4f68-8486-2c8e2dedfdac",
-        "type": "startNode",
-        "position": {
-          "x": 30,
-          "y": 40
-        },
-        "agamaData": {
-          "isTopLevelFlow": true,
-          "basepath": "",
-          "configParams": "{}",
-          "nodeIcon": "material-symbols:line-start-square",
-          "timeout": "",
-          "inputs": "",
-          "configs": "",
-          "flowname": "org.gluu.agama.change.phonenumber",
-          "displayName": "org.gluu.agama.change.phonenumber",
-          "creationDate": "09/10/2025",
-          "hasComment": true,
-          "comment": ""
-        }
-      }
-    }
-  ]
+	"nodes": [
+		{
+			"id": "startNode-bc732644-93e3-4f68-8486-2c8e2dedfdac",
+			"type": "startNode",
+			"sourcePosition": "right",
+			"position": {
+				"x": 30,
+				"y": 30
+			},
+			"deletable": false,
+			"data": {
+				"id": "startNode-bc732644-93e3-4f68-8486-2c8e2dedfdac",
+				"type": "startNode",
+				"position": {
+					"x": 30,
+					"y": 40
+				},
+				"agamaData": {
+					"isTopLevelFlow": true,
+					"basepath": "",
+					"configParams": "{\n  \"PRIVATE_KEY\": \"your_private_key_here\",\n  \"PUBLIC_KEY\": \"your_public_key_here\"\n}",
+					"nodeIcon": "material-symbols:line-start-square",
+					"timeout": "",
+					"inputs": "",
+					"configs": "",
+					"flowname": "org.gluu.agama.change.phonenumber",
+					"displayName": "org.gluu.agama.change.phonenumber",
+					"creationDate": "09/10/2025",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": true
+		}
+	],
+	"edges": [],
+	"viewport": {
+		"x": 0,
+		"y": 0,
+		"zoom": 1
+	}
 }
