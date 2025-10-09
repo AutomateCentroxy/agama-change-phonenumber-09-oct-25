@@ -2074,7 +2074,7 @@
 				"width": 168,
 				"height": 120
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "assignmentNode-469b1d95-8dae-4acb-8269-37aa2d942bc2",
@@ -2092,20 +2092,27 @@
 				},
 				"previousNodeId": "logNode-289cc8f3-a341-47a7-9a71-3b5ea0af44d5",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "{ success: false, error: \"ExceededTheNumberOfAttemptsAllowed\" }",
+							"assignedVariableName": "it_ValidMobileNum"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "{ success: false, error: \"ExceededTheNumberOfAttemptsAllowed\" }"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "finishNode-554fd7d7-ae43-423d-8a27-eed7d7aaebc0",
