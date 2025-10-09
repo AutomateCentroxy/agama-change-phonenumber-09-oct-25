@@ -14,7 +14,7 @@ maxSMS = Repeat 20 times max
      When otpCreds.hasRequestedNewCode is "yes"
           // Log new code request
           Log "@info User has requested a new code."
-          When 
+          When resendCount is 3
                Log "@ " __________
                Finish __________
           Call __________#__________ 
