@@ -7,7 +7,6 @@ import org.gluu.agama.change.smschange.PhonenumberUpdate;
 
 
 public abstract class UserphoneUpdate {
-    public abstract String addNewUser(Map<String, String> profile) throws Exception;
 
     public abstract boolean usernamePolicyMatch(String userName);
 
@@ -17,11 +16,13 @@ public abstract class UserphoneUpdate {
 
     public abstract Map<String, String> getUserEntityByInum(String inum);
 
-    public abstract boolean isPhoneVerified(String username);
-
     public abstract boolean isPhoneUnique(String username, String phone);
 
     public abstract String markPhoneAsVerified(String username, String phone);
+
+    public abstract Map<String, String> getUserEntityByUsername(String username);
+
+    public abstract String getUserInumByUsername(String username);
 
     public abstract boolean sendOTPCode(String username, String phone);
 
