@@ -11,6 +11,8 @@ Repeat 6 times max
      searchUserInput = RRF "searchUser.ftlh" uiFeedback
      // When searchUserForm is submitted
      When searchUserInput.formType is "searchUserForm"
+          // Validate access token first
+          accessToken = searchUserInput.access_token
           Log "@ " __________
           Call __________#__________ 
           Call __________#__________ 
@@ -18,5 +20,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_abuwa = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_abuwa
+it_syjcg = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_syjcg
