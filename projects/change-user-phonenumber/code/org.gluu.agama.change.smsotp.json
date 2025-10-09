@@ -519,7 +519,8 @@
 				"width": 110,
 				"height": 59
 			},
-			"selected": true
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "whenNode-f9ebdc7e-d721-4918-824f-b38b8038e305",
@@ -948,25 +949,29 @@
 				"previousNodeId": "whenNode-9d8420e5-ffa7-4dd2-8f27-3540457b3079",
 				"branching": "continue",
 				"agamaData": {
-					"javaClassName": "",
-					"javaMethodName": "",
+					"javaClassName": "org.gluu.agama.login.CounterHelper",
+					"javaMethodName": "increment",
 					"javaVariableName": "",
 					"exceptionVariableField": "",
 					"callType": "Call static method",
-					"arguments": [],
+					"arguments": [
+						"resendCount"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "Increment resend counter",
 					"hasComment": true,
-					"comment": ""
+					"comment": "",
+					"asssignedVariableName": "resendCount"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "logNode-5262be35-6550-4fb2-9a2e-c830b3c994af",
@@ -984,13 +989,13 @@
 				},
 				"previousNodeId": "callNode-17c8d260-5680-4d29-b727-f65182c69df9",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"Resend attempt number: \" resendCount",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "\"Resend attempt number: \" resendCount",
 					"hasComment": true,
 					"comment": ""
 				}
@@ -998,7 +1003,8 @@
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "callNode-f043f6f0-0b31-41b0-b6ee-a35e219b26d6",
@@ -1017,24 +1023,29 @@
 				"previousNodeId": "logNode-5262be35-6550-4fb2-9a2e-c830b3c994af",
 				"agamaData": {
 					"javaClassName": "",
-					"javaMethodName": "",
-					"javaVariableName": "",
+					"javaMethodName": "sendOTPCode",
+					"javaVariableName": "PhonenumberUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call static method",
-					"arguments": [],
+					"callType": "Call method on instance",
+					"arguments": [
+						"username",
+						"phone"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "Resend otp",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Resend otp",
+					"asssignedVariableName": "resendHasSucceed"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "logNode-79d17209-412d-4f82-a886-63edf1a35f6d",
