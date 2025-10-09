@@ -1652,24 +1652,28 @@
 				"branching": "success",
 				"agamaData": {
 					"javaClassName": "",
-					"javaMethodName": "",
-					"javaVariableName": "",
+					"javaMethodName": "syncUserWithExternal",
+					"javaVariableName": "PhonenumberUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call static method",
-					"arguments": [],
+					"callType": "Call method on instance",
+					"arguments": [
+						"inum"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "UserAPiCall method",
+					"asssignedVariableName": "UserServiceAPiCall"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "logNode-feffdc1e-196a-466a-9386-a002f6546a1c",
@@ -2543,8 +2547,8 @@
 		}
 	],
 	"viewport": {
-		"x": -8803.205486100946,
-		"y": -633.0172553048092,
-		"zoom": 1.30857807145501
+		"x": -6655.228115146891,
+		"y": -397.8292967946161,
+		"zoom": 0.986232704493359
 	}
 }
