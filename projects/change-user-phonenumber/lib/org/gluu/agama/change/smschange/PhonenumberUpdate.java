@@ -308,22 +308,40 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return userService.getUserByAttribute(attributeName, value, true);
     }
 
+    @Override
     public Map<String, Object> syncUserWithExternal(String inum) {
         Map<String, Object> result = new HashMap<>();
         try {
             // Load config
-            Map<String, String> config = getAgamaConfig();
+            Map<String, String> config = flowConfig; // use existing flowConfig
             String publicKey = config.get("PUBLIC_KEY");
+            String privateKey = config.get("PRIVATE_KEY");
 
-            if (publicKey == null) {
+            if (publicKey == null || privateKey == null) {
                 result.put("status", "error");
-                result.put("message", "PUBLIC_KEY missing in config");
+                result.put("message", "PUBLIC_KEY or PRIVATE_KEY missing in config");
                 return result;
             }
 
-            // Generate signature using PRIVATE_KEY from config
-            String signature = generateSignature(inum);
-            if (signature == null) {
+            // Generate HMAC-SHA256 signature (hex lowercase)
+            String signature = null;
+            try {
+                javax.crypto.Mac mac = javax.crypto.Mac.getInstance("HmacSHA256");
+                javax.crypto.spec.SecretKeySpec secretKey = new javax.crypto.spec.SecretKeySpec(
+                        privateKey.getBytes(java.nio.charset.StandardCharsets.UTF_8),
+                        "HmacSHA256");
+                mac.init(secretKey);
+                byte[] hashBytes = mac.doFinal(inum.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                StringBuilder hex = new StringBuilder();
+                for (byte b : hashBytes) {
+                    String h = Integer.toHexString(0xff & b);
+                    if (h.length() == 1)
+                        hex.append('0');
+                    hex.append(h);
+                }
+                signature = hex.toString().toLowerCase();
+            } catch (Exception ex) {
+                logger.error("Error generating signature for {}: {}", inum, ex.getMessage(), ex);
                 result.put("status", "error");
                 result.put("message", "Failed to generate signature");
                 return result;
@@ -348,12 +366,13 @@ public class PhonenumberUpdate extends UserphoneUpdate {
                 result.put("status", "success");
             } else {
                 result.put("status", "error");
+                result.put("message", response.body());
             }
 
             return result;
 
         } catch (Exception e) {
-            logger.error("Error syncing user {}: {}", inum, e.getMessage());
+            logger.error("Error syncing user {}: {}", inum, e.getMessage(), e);
             result.put("status", "error");
             result.put("message", e.getMessage());
             return result;
@@ -362,7 +381,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
     public boolean isPhoneVerified(String username) {
         try {
-             User user = getUserService().getUser(username);
+            User user = getUserService().getUser(username);
             if (user == null)
                 return false;
 
