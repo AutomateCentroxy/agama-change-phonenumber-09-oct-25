@@ -1271,7 +1271,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "assignmentNode-0b499cd0-db78-4d33-b2d3-bedd819a2f8b",
@@ -1289,7 +1289,13 @@
 				},
 				"previousNodeId": "assignmentNode-37e6d9b8-83f4-4f1a-ad04-ff6d3a089a6c",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "true",
+							"assignedVariableName": "isResending"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
@@ -1302,7 +1308,8 @@
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": false
 		},
 		{
 			"id": "logNode-9bb9f398-4cbb-46a5-abc3-0d5cc515d370",
@@ -1321,15 +1328,15 @@
 				"previousNodeId": "whenNode-d023e3d1-c4ef-4413-a08b-01df36d50e30",
 				"branching": "success",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"Fail to resend new code to user. \" resendHasSucceed",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "\"Fail to resend new code to user. \" resendHasSucceed"
 				}
 			},
 			"measured": {
@@ -1354,20 +1361,32 @@
 				},
 				"previousNodeId": "logNode-9bb9f398-4cbb-46a5-abc3-0d5cc515d370",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "\"Error occurs while sending new code to you. Please contact site administrator.\"",
+							"assignedVariableName": "otpUiFeedback.errorMessage"
+						},
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "\"\"",
+							"assignedVariableName": "otpUiFeedback.infoMessage"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": "\"Error occurs while sending new code to you. Please contact site administrator.\""
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "assignmentNode-e40fb35a-4caf-4ae5-80ec-e2fa4e1dc4a4",
