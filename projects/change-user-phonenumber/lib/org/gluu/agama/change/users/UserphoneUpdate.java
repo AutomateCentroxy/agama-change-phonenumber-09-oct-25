@@ -1,5 +1,6 @@
 package org.gluu.agama.change.users;
 
+import java.util.HashMap;
 import java.util.Map;
 import org.gluu.agama.change.smschange.PhonenumberUpdate;
 
@@ -16,9 +17,17 @@ public abstract class UserphoneUpdate {
 
     public abstract Map<String, String> getUserEntityByInum(String inum);
 
-    public abstract boolean sendUsernameUpdateEmail(String to, String newUsername, String lang);
+    public abstract boolean isPhoneVerified(String username);
 
-    public static UsernameUpdate getInstance(HashMap config){
-        return  JansUsernameUpdate.getInstance(config);
+    public abstract boolean isPhoneUnique(String username, String phone);
+
+    public abstract String markPhoneAsVerified(String username, String phone);
+
+    public abstract boolean sendOTPCode(String username, String phone);
+
+    public abstract boolean validateOTPCode(String phone, String code);
+
+    public static UserphoneUpdate getInstance(HashMap config){
+        return  PhonenumberUpdate.getInstance(config);
     }    
 }
