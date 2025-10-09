@@ -17,10 +17,11 @@ Repeat 6 times max
           Log "@info Validating access token: %" accessToken
           // Create an instance of Update service
           PhonenumberUpdateService = Call org.gluu.agama.change.users.UserphoneUpdate#getInstance 
-          Call __________#__________ 
+          // Validate the bearer token
+          authCheck = Call org.gluu.agama.change.smschange.PhonenumberUpdate#validateBearerToken accessToken
           When 
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_bwlrr = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_bwlrr
+it_ixrzo = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_ixrzo
