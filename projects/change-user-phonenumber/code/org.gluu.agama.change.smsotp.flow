@@ -5,5 +5,7 @@ Flow org.gluu.agama.change.smsotp
 Log "@ " __________
 Repeat __________ times max
      RRF "__________" 
+     When 
+          Finish __________
 Log "@ " __________
 Finish __________
