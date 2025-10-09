@@ -15,6 +15,14 @@ maxSMS = Repeat 20 times max
           // Log new code request
           Log "@info User has requested a new code."
           When 
+               Log "@ " __________
+               Finish __________
+          Call __________#__________ 
+          Log "@ " __________
+          Call __________#__________ 
+          When 
+               Log "@ " __________
+          Log "@ " __________
      Otherwise
           //  Add log entry with collected code in log file.
           Log "@info Information provided by the user is : " otpCreds.code
