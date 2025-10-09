@@ -19,9 +19,10 @@ Repeat 6 times max
           PhonenumberUpdateService = Call org.gluu.agama.change.users.UserphoneUpdate#getInstance 
           // Validate the bearer token
           authCheck = Call org.gluu.agama.change.smschange.PhonenumberUpdate#validateBearerToken accessToken
-          When 
+          // Check if token validation failed
+          When authCheck.valid is false
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_ixrzo = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_ixrzo
+it_qeozm = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_qeozm
