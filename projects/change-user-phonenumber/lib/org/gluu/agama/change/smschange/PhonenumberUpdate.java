@@ -36,6 +36,8 @@ import com.twilio.type.PhoneNumber;
 
 public class PhonenumberUpdate extends UserphoneUpdate {
 
+    private final UserService userService = CdiUtil.bean(UserService.class);
+
     private static final String MAIL = "mail";
     private static final String UID = "uid";
     private static final String DISPLAY_NAME = "displayName";
@@ -43,12 +45,15 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     private static final String LAST_NAME = "sn";
     private static final String PASSWORD = "userPassword";
     private static final String INUM_ATTR = "inum";
+    private static final int OTP_LENGTH = 6;
+    private static final int OTP_CODE_LENGTH = 6;
     private static final String PHONE_VERIFIED = "phoneNumberVerified";
     private static final String PHONE_NUMBER = "mobile";
     private static final String EXT_ATTR = "jansExtUid";
     private static final String USER_STATUS = "jansStatus";
     private static final String EXT_UID_PREFIX = "github:";
     private static final String LANG = "lang";
+    private Map<String, String> flowConfig;
     private static final SecureRandom RAND = new SecureRandom();
 
     private static PhonenumberUpdate INSTANCE = null;
@@ -56,12 +61,13 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     public PhonenumberUpdate() {
     }
 
-    public static synchronized PhonenumberUpdate getInstance() {
-        if (INSTANCE == null)
-            INSTANCE = new PhonenumberUpdate();
-
-        return INSTANCE;
+    public static synchronized PhonenumberUpdate getInstance(Map<String, String> config) {
+    if (INSTANCE == null) {
+        INSTANCE = new PhonenumberUpdate();
+        INSTANCE.flowConfig = config; // if you want to use it in sendOTPCode
     }
+    return INSTANCE;
+}
 
     // validate token starts here
     public static Map<String, Object> validateBearerToken(String access_token) {
@@ -172,6 +178,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             String givenName = getSingleValuedAttr(user, GIVEN_NAME);
             String sn = getSingleValuedAttr(user, LAST_NAME);
             String lang = getSingleValuedAttr(user, LANG);
+            String phone = getSingleValuedAttr(user, PHONE_NUMBER);
 
             if (name == null) {
                 name = getSingleValuedAttr(user, DISPLAY_NAME);
@@ -188,32 +195,12 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             userMap.put(DISPLAY_NAME, displayName);
             userMap.put(LAST_NAME, sn);
             userMap.put(LANG, lang);
+            userMap.put(PHONE_NUMBER, phone);
 
             return userMap;
         }
 
         return new HashMap<>();
-    }
-
-    public String addNewUser(Map<String, String> profile) throws Exception {
-        Set<String> attributes = Set.of("uid", "mail", "displayName", "givenName", "sn", "userPassword");
-        User user = new User();
-
-        attributes.forEach(attr -> {
-            String val = profile.get(attr);
-            if (StringHelper.isNotEmpty(val)) {
-                user.setAttribute(attr, val);
-            }
-        });
-
-        UserService userService = CdiUtil.bean(UserService.class);
-        user = userService.addUser(user, true); // Set user status active
-
-        if (user == null) {
-            throw new EntryNotFoundException("Added user not found");
-        }
-
-        return getSingleValuedAttr(user, INUM_ATTR);
     }
 
     public String updateUser(Map<String, String> profile) throws Exception {
@@ -408,7 +395,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         try {
             User user = userService.getUser(username);
             if (user == null) return null;
-            Object phone = user.getAttribute("PHONE_NUMBER", true, false);
+            Object phone = user.getAttribute(PHONE_NUMBER, true, false);
             return phone != null ? phone.toString() : null;
         } catch (Exception e) {
             logger.error("Error fetching phone number for {}: {}", username, e.getMessage(), e);
@@ -509,5 +496,19 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             return false;
         }
     }
+
+    public String getUserInumByUsername(String username) {
+        User user = getUser(UID, username);
+        boolean local = user != null;
+        LogUtils.log("There is % local account for %", local ? "a" : "no", username);
+
+        if (local) {
+            String inum = getSingleValuedAttr(user, INUM_ATTR);
+            return inum;
+        }
+
+        return null; // or return "" if you prefer
+    }
+
 
 }
