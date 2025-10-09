@@ -1,5 +1,6 @@
 package org.gluu.agama.change.smschange;
 
+import io.jans.agama.engine.service.FlowService;
 import io.jans.as.common.model.common.User;
 import io.jans.as.common.service.common.EncryptionService;
 import io.jans.as.common.service.common.UserService;
@@ -26,6 +27,7 @@ import java.nio.charset.StandardCharsets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import io.jans.agama.engine.script.LogUtils;
 
 import io.jans.as.server.service.token.TokenService;
 import io.jans.as.server.model.common.AuthorizationGrant;
@@ -38,7 +40,7 @@ import com.twilio.type.PhoneNumber;
 
 public class PhonenumberUpdate extends UserphoneUpdate {
 
-    private static final Logger logger = LoggerFactory.getLogger(PhonenumberUpdate.class);
+    private static final Logger logger = LoggerFactory.getLogger(FlowService.class);
 
     private static final String MAIL = "mail";
     private static final String UID = "uid";
