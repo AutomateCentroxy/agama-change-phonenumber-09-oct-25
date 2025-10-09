@@ -64,6 +64,13 @@ Repeat 6 times max
                                    UserServiceAPiCall = Call PhonenumberUpdateService syncUserWithExternal inum
                                    // "User update api called"
                                    Log "@info User update api called"
+                                   When UserServiceAPiCall.status is "success"
+                                        // Error Logs
+                                        Log "@error External user sync failed: %" UserServiceAPiCall.message
+                                        // API Error Message
+                                        uiFeedback.errorMessage = UserServiceAPiCall.message
+                                   Otherwise
+                                        Call __________#__________ 
                               Otherwise
                                    Log "@ " __________
                          Otherwise
@@ -84,5 +91,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_hhtvb = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_hhtvb
+it_orxlz = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_orxlz
