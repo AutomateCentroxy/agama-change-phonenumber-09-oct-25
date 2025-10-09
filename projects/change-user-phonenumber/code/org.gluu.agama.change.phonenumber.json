@@ -703,7 +703,7 @@
 					"assignments": [],
 					"nodeIcon": "ph:globe-simple",
 					"templatePath": "InputMobileNumber.ftlh",
-					"asssignedVariableName": "userInput",
+					"asssignedVariableName": "phoneInput",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
@@ -717,7 +717,8 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": true,
+			"dragging": false
 		}
 	],
 	"edges": [
@@ -1065,8 +1066,8 @@
 		}
 	],
 	"viewport": {
-		"x": -3383.2295852683583,
-		"y": -46.038183033503856,
-		"zoom": 1.1203892141941751
+		"x": -2929.4589077778955,
+		"y": 1.1627396519646709,
+		"zoom": 0.9726549474122848
 	}
 }
