@@ -3,5 +3,11 @@ Flow org.gluu.agama.change.phonenumber
      Timeout 900 seconds
      Configs conf
 Repeat __________ times max
+     RRF "__________" 
+     When 
+          Log "@ " __________
+          Call __________#__________ 
+          Call __________#__________ 
+          When 
 Log "@ " __________
 Finish __________
