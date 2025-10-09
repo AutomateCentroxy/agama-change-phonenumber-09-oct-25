@@ -468,20 +468,27 @@
 				"previousNodeId": "whenNode-6df494d2-9f76-4828-95c1-40d8f561ab41",
 				"branching": "success",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "authCheck.errorMessage",
+							"assignedVariableName": "uiFeedback.errorMessage"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "authErrorResponse",
 					"hasComment": true,
-					"comment": ""
+					"comment": "CHANGED: Instead of Finish, set error message and continue loop"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "logNode-411ee502-7cba-4434-81ff-d917c74ccc80",
@@ -512,8 +519,8 @@
 				}
 			},
 			"measured": {
-				"width": 170,
-				"height": 122
+				"width": 168,
+				"height": 120
 			}
 		},
 		{
