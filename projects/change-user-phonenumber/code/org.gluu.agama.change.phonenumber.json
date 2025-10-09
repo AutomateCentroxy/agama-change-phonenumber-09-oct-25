@@ -367,7 +367,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "callNode-748757df-1bc9-406f-8439-8fac7d191c3b",
@@ -385,25 +385,29 @@
 				},
 				"previousNodeId": "callNode-eadc9130-e8d4-434d-8b34-52b537dd0952",
 				"agamaData": {
-					"javaClassName": "",
-					"javaMethodName": "",
+					"javaClassName": "org.gluu.agama.change.smschange.PhonenumberUpdate",
+					"javaMethodName": "validateBearerToken",
 					"javaVariableName": "",
 					"exceptionVariableField": "",
 					"callType": "Call static method",
-					"arguments": [],
+					"arguments": [
+						"accessToken"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "Call validateBearerToken",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Validate the bearer token",
+					"asssignedVariableName": "authCheck"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "whenNode-6df494d2-9f76-4828-95c1-40d8f561ab41",
