@@ -17,9 +17,10 @@ maxSMS = Repeat 20 times max
           When resendCount is 3
                Log "@ " __________
                Finish __________
-          Call __________#__________ 
-          Log "@ " __________
-          Call __________#__________ 
+          resendCount = Call org.gluu.agama.login.CounterHelper#increment resendCount
+          Log "@info Resend attempt number: " resendCount
+          // Resend otp
+          resendHasSucceed = Call PhonenumberUpdateService sendOTPCode username phone
           When 
                Log "@ " __________
           Log "@ " __________
