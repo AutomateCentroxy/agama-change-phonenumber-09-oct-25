@@ -27,7 +27,8 @@ maxSMS = Repeat 20 times max
                Log "@ " __________
                Iterate over  using item
           Otherwise
-               Call __________#__________ 
+               //  Validate the OTP code provided by the user.
+               otpValidationResult = Call validationAttempts validateOTPCode phone otpCreds.code
                Log "@ " __________
                When 
                     Log "@ " __________
