@@ -642,7 +642,7 @@
 				"width": 110,
 				"height": 59
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "assignmentNode-84ee869e-5c86-4c36-8882-390c8cae9947",
@@ -661,20 +661,27 @@
 				"previousNodeId": "whenNode-6227f7dc-1309-4966-93c9-3bca1ca57357",
 				"branching": "success",
 				"agamaData": {
-					"assignments": [],
+					"assignments": [
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "\"User not registered with this UserName\"",
+							"assignedVariableName": "uiFeedback.errorMessage"
+						}
+					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "ASSIGNMENT",
 					"hasComment": true,
-					"comment": ""
+					"comment": "show error"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "rrfNode-aaf3c2d1-fd93-4e14-a1bc-dd13afa8d9e0",
