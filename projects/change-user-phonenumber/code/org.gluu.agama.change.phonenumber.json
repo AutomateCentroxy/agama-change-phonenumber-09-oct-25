@@ -329,7 +329,7 @@
 				"width": 168,
 				"height": 120
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "callNode-eadc9130-e8d4-434d-8b34-52b537dd0952",
@@ -347,8 +347,8 @@
 				},
 				"previousNodeId": "logNode-73f600f3-3592-4826-ab5f-550e479501e2",
 				"agamaData": {
-					"javaClassName": "",
-					"javaMethodName": "",
+					"javaClassName": "org.gluu.agama.change.users.UserphoneUpdate",
+					"javaMethodName": "getInstance",
 					"javaVariableName": "",
 					"exceptionVariableField": "",
 					"callType": "Call static method",
@@ -357,15 +357,17 @@
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "CALL",
 					"hasComment": true,
-					"comment": ""
+					"comment": "Create an instance of Update service",
+					"asssignedVariableName": "PhonenumberUpdateService"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "callNode-748757df-1bc9-406f-8439-8fac7d191c3b",
@@ -650,8 +652,8 @@
 		}
 	],
 	"viewport": {
-		"x": -561.1168487199136,
-		"y": -38.04920274726419,
+		"x": -687.1168487199136,
+		"y": -80.04920274726419,
 		"zoom": 0.8561882845464566
 	}
 }
