@@ -1685,8 +1685,8 @@
 			"id": "logNode-39067a3e-d84c-4e81-9168-43b54d61b1d4",
 			"type": "logNode",
 			"position": {
-				"x": 6780,
-				"y": 670
+				"x": 6835.021554747546,
+				"y": 672.2925647811477
 			},
 			"data": {
 				"id": "logNode-39067a3e-d84c-4e81-9168-43b54d61b1d4",
@@ -1697,21 +1697,23 @@
 				},
 				"previousNodeId": "callNode-72380a9d-5898-41f4-86a4-f48ed01c9bf4",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"get the user inum from username\" inum",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "LOG",
 					"hasComment": true,
-					"comment": ""
+					"comment": " Show user updation log"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
-			}
+			},
+			"selected": true,
+			"dragging": false
 		},
 		{
 			"id": "logNode-feffdc1e-196a-466a-9386-a002f6546a1c",
@@ -1744,7 +1746,7 @@
 				"width": 168,
 				"height": 120
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		}
 	],
@@ -2606,8 +2608,8 @@
 		}
 	],
 	"viewport": {
-		"x": -8937.33113279542,
-		"y": -595.0200935096266,
+		"x": -8330.33113279542,
+		"y": -573.0200935096266,
 		"zoom": 1.3085780714550097
 	}
 }
