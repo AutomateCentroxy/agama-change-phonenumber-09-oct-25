@@ -498,7 +498,14 @@
 					"variableField": "",
 					"valueField": "",
 					"conditionInputField": "",
-					"conditions": [],
+					"conditions": [
+						{
+							"variable": "resendCount",
+							"operator": "is",
+							"dataValue": "3",
+							"combinator": "none"
+						}
+					],
 					"nodeIcon": "ph:swap",
 					"nodeColor": "",
 					"titleColor": "",
@@ -511,7 +518,8 @@
 			"measured": {
 				"width": 110,
 				"height": 59
-			}
+			},
+			"selected": true
 		},
 		{
 			"id": "whenNode-f9ebdc7e-d721-4918-824f-b38b8038e305",
@@ -2055,8 +2063,8 @@
 		}
 	],
 	"viewport": {
-		"x": -1590.1239116192423,
-		"y": -269.3579528138847,
-		"zoom": 0.7641882603825831
+		"x": -1335.3976619919483,
+		"y": -251.70831522163792,
+		"zoom": 0.764188260382583
 	}
 }
