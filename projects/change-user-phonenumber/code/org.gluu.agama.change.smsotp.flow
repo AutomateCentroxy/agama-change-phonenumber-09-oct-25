@@ -11,7 +11,7 @@ validationAttempts = 0
 maxSMS = Repeat 20 times max
      //  Show UI to collect OTP code from user.
      otpCreds = RRF "smsOtp.ftlh" otpUiFeedback
-     When 
+     When otpCreds.hasRequestedNewCode is "yes"
           Log "@ " __________
           When 
      Otherwise
