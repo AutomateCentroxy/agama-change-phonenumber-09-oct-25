@@ -5,12 +5,16 @@ Flow org.gluu.agama.change.phonenumber
 //  Create  variable for UI feedback
 uiFeedback = {}
 uiFeedback.errorMessage = ""
-Repeat __________ times max
+//  Iterate x times max
+Repeat 6 times max
      RRF "__________" 
      When 
           Log "@ " __________
           Call __________#__________ 
           Call __________#__________ 
           When 
-Log "@ " __________
-Finish __________
+//  Maximum attempt reached
+Log "@info Maximum attempt reached"
+//  User Registration flow failed
+it_ailnv = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_ailnv
