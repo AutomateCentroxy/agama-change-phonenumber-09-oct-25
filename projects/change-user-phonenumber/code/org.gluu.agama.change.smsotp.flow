@@ -36,7 +36,11 @@ maxSMS = Repeat 20 times max
                     Log "@ " __________
                     Finish __________
                Otherwise
-                    Log "@ " __________
+                    // The maximum number of attempt has been reached.
+                    Log "@info Invalid code provided "
+                    // Provide feedback to user.
+                    otpUiFeedback.errorMessage = "Invalid code provided."
+                    otpUiFeedback.infoMessage = ""
 // "OTP verification loop completed"
 Log "@info OTP verification loop completed"
 it_loopmax = { success: false, error: "UnexpectedLoopCompletion" }
