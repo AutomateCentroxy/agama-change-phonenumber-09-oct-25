@@ -319,8 +319,8 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             return result;
         }
 
-            String publicKey = config.get("PUBLIC_KEY");
-            String privateKey = config.get("PRIVATE_KEY");
+            String publicKey = conf.get("PUBLIC_KEY");
+            String privateKey = conf.get("PRIVATE_KEY");
 
             if (publicKey == null || privateKey == null) {
                 result.put("status", "error");
