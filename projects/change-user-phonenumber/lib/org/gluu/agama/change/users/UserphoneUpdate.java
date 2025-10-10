@@ -28,8 +28,7 @@ public abstract class UserphoneUpdate {
 
     public abstract boolean validateOTPCode(String phone, String code);
 
-    public abstract Map<String, Object> syncUserWithExternal(String inum);
-
+    
     public static UserphoneUpdate getInstance(HashMap config){
         return  PhonenumberUpdate.getInstance(config);
     }    
