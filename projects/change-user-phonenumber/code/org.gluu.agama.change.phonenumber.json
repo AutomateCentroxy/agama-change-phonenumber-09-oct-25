@@ -35,7 +35,8 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "assignmentNode-d38bb9d1-c7ff-4150-9080-7db65ba06740",
@@ -1665,11 +1666,11 @@
 				"previousNodeId": "whenNode-fa0b22f5-156a-4ead-aef9-ec1904218524",
 				"branching": "success",
 				"agamaData": {
-					"javaClassName": "",
+					"javaClassName": "org.gluu.agama.change.smschange.PhonenumberUpdate",
 					"javaMethodName": "syncUserWithExternal",
 					"javaVariableName": "PhonenumberUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call method on instance",
+					"callType": "Call static method",
 					"arguments": [
 						"inum"
 					],
@@ -1687,7 +1688,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -2149,7 +2150,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		}
 	],
@@ -3217,8 +3218,8 @@
 		}
 	],
 	"viewport": {
-		"x": -6157.192736003022,
-		"y": -550.8355838607288,
-		"zoom": 0.8681402276010423
+		"x": -4526.6749224176065,
+		"y": -240.48104195112626,
+		"zoom": 0.6542890357275047
 	}
 }
