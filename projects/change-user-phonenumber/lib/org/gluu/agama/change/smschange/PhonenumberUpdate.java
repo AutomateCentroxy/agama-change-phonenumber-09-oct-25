@@ -308,12 +308,23 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return userService.getUserByAttribute(attributeName, value, true);
     }
 
-    @Override
-    public Map<String, Object> syncUserWithExternal(String inum) {
+    public static Map<String, Object> syncUserWithExternal(String inum) {
         Map<String, Object> result = new HashMap<>();
         try {
-            // Load config
-            Map<String, String> config = flowConfig; // use existing flowConfig
+            // Load config using CdiUtil or static ConfigService
+            Map<String, String> config = new HashMap<>();
+            try {
+                // Fetch Agama config from environment or Jans ConfigService
+                // This is the same as what Agama passes in 'conf'
+                config = CdiUtil.bean(org.gluu.service.cdi.util.ConfigurationFactory.class)
+                        .getAgamaAppConfiguration("org.gluu.agama.change.phonenumber");
+            } catch (Exception e) {
+                // fallback if not found
+                result.put("status", "error");
+                result.put("message", "Failed to load Agama config: " + e.getMessage());
+                return result;
+            }
+
             String publicKey = config.get("PUBLIC_KEY");
             String privateKey = config.get("PRIVATE_KEY");
 
@@ -324,7 +335,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             }
 
             // Generate HMAC-SHA256 signature (hex lowercase)
-            String signature = null;
+            String signature;
             try {
                 javax.crypto.Mac mac = javax.crypto.Mac.getInstance("HmacSHA256");
                 javax.crypto.spec.SecretKeySpec secretKey = new javax.crypto.spec.SecretKeySpec(
@@ -341,9 +352,8 @@ public class PhonenumberUpdate extends UserphoneUpdate {
                 }
                 signature = hex.toString().toLowerCase();
             } catch (Exception ex) {
-                logger.error("Error generating signature for {}: {}", inum, ex.getMessage(), ex);
                 result.put("status", "error");
-                result.put("message", "Failed to generate signature");
+                result.put("message", "Failed to generate signature: " + ex.getMessage());
                 return result;
             }
 
@@ -360,7 +370,8 @@ public class PhonenumberUpdate extends UserphoneUpdate {
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            logger.info("Webhook sync response status: {}, body: {}", response.statusCode(), response.body());
+            System.out.println(String.format("Webhook sync response status: %d, body: %s",
+                    response.statusCode(), response.body()));
 
             if (response.statusCode() == 200) {
                 result.put("status", "success");
@@ -372,7 +383,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             return result;
 
         } catch (Exception e) {
-            logger.error("Error syncing user {}: {}", inum, e.getMessage(), e);
+            e.printStackTrace();
             result.put("status", "error");
             result.put("message", e.getMessage());
             return result;
