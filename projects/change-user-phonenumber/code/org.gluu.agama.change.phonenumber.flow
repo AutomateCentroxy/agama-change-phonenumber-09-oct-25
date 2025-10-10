@@ -63,7 +63,7 @@ Repeat 6 times max
                                    //  If user update success
                                    When inum is not null
                                         // UserAPiCall method
-                                        UserServiceAPiCall = Call PhonenumberUpdateService syncUserWithExternal inum
+                                        UserServiceAPiCall = Call org.gluu.agama.change.smschange.PhonenumberUpdate#syncUserWithExternal inum
                                         // "User update api called"
                                         Log "@info User update api called"
                                         When UserServiceAPiCall.status is "success"
@@ -100,5 +100,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_zoeuz = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_zoeuz
+it_exyug = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_exyug
