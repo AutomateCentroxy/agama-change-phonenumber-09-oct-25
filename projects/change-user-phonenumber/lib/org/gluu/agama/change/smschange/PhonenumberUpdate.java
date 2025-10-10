@@ -7,6 +7,7 @@ import io.jans.as.common.service.common.UserService;
 import io.jans.orm.exception.operation.EntryNotFoundException;
 import io.jans.service.cdi.util.CdiUtil;
 import io.jans.util.StringHelper;
+import org.gluu.service.cdi.util.ConfigurationFactory
 
 import org.gluu.agama.change.users.UserphoneUpdate;
 import io.jans.agama.engine.script.LogUtils;
@@ -316,7 +317,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             try {
                 // Fetch Agama config from environment or Jans ConfigService
                 // This is the same as what Agama passes in 'conf'
-                config = CdiUtil.bean(org.gluu.service.cdi.util.ConfigurationFactory.class)
+                config = CdiUtil.bean(ConfigurationFactory.class)
                         .getAgamaAppConfiguration("org.gluu.agama.change.phonenumber");
             } catch (Exception e) {
                 // fallback if not found
