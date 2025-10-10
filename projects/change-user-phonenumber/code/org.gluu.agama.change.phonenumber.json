@@ -1821,15 +1821,15 @@
 					"assignments": [
 						{
 							"variableTypeCheck": true,
-							"assignmentExpression": "\"Unable to update the user via the API.\"",
-							"assignedVariableName": "uiFeedback.errorMessage"
+							"assignmentExpression": "{ success: false, error: \"SyncUserAPiCallError\" }",
+							"assignedVariableName": "it_apiError"
 						}
 					],
 					"nodeIcon": "material-symbols:equal",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "it_apiError",
 					"hasComment": true,
 					"comment": "API Error Message"
 				}
@@ -2177,7 +2177,7 @@
 					"hasComment": true,
 					"comment": "",
 					"flowfilename": "",
-					"returnVariable": "username",
+					"returnVariable": "it_apiError",
 					"finishMode": "withVariable",
 					"nodeIcon": "material-symbols:line-end-square-rounded"
 				}
@@ -3272,8 +3272,8 @@
 		}
 	],
 	"viewport": {
-		"x": -5480.716025277986,
-		"y": -251.36208251681228,
-		"zoom": 0.7432914922155073
+		"x": -11304.10561553668,
+		"y": -949.3650554126737,
+		"zoom": 1.326845140597161
 	}
 }
