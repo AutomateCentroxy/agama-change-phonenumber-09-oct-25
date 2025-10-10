@@ -73,7 +73,7 @@ Repeat 6 times max
                                         Otherwise
                                              Log "@error External user sync failed: %" UserServiceAPiCall.message
                                              // API Error Message
-                                             uiFeedback.errorMessage = UserServiceAPiCall.message
+                                             uiFeedback.errorMessage = "Unable to update the user via the API."
                                    Otherwise
                                         Log "@info User update failed. Error : %" E
                                         uiFeedback.errorMessage = "User update failed"
@@ -100,5 +100,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_zsinu = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_zsinu
+it_ofgkp = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_ofgkp
