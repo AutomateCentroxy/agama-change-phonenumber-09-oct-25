@@ -7,7 +7,6 @@ import io.jans.as.common.service.common.UserService;
 import io.jans.orm.exception.operation.EntryNotFoundException;
 import io.jans.service.cdi.util.CdiUtil;
 import io.jans.util.StringHelper;
-import org.gluu.service.cdi.util.ConfigurationFactory
 
 import org.gluu.agama.change.users.UserphoneUpdate;
 import io.jans.agama.engine.script.LogUtils;
@@ -309,22 +308,16 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return userService.getUserByAttribute(attributeName, value, true);
     }
 
-    public static Map<String, Object> syncUserWithExternal(String inum) {
+    public static Map<String, Object> syncUserWithExternal(String inum, Map<String, String> conf) {
         Map<String, Object> result = new HashMap<>();
         try {
             // Load config using CdiUtil or static ConfigService
             Map<String, String> config = new HashMap<>();
-            try {
-                // Fetch Agama config from environment or Jans ConfigService
-                // This is the same as what Agama passes in 'conf'
-                config = CdiUtil.bean(ConfigurationFactory.class)
-                        .getAgamaAppConfiguration("org.gluu.agama.change.phonenumber");
-            } catch (Exception e) {
-                // fallback if not found
-                result.put("status", "error");
-                result.put("message", "Failed to load Agama config: " + e.getMessage());
-                return result;
-            }
+            if (conf == null) {
+            result.put("status", "error");
+            result.put("message", "Configuration is null");
+            return result;
+        }
 
             String publicKey = config.get("PUBLIC_KEY");
             String privateKey = config.get("PRIVATE_KEY");
