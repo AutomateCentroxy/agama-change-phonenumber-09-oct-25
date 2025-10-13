@@ -2102,8 +2102,8 @@
 				"previousNodeId": "whenNode-64799dd5-8d51-440d-ab04-b165c07b7c85",
 				"branching": "otherwise",
 				"agamaData": {
-					"logMessage": "\"External user sync failed: %\" UserServiceAPiCall.message",
-					"logLevel": "error",
+					"logMessage": "\"External user sync called: %\" UserServiceAPiCall.message",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
@@ -2117,7 +2117,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "logNode-2f05a764-9874-4944-b708-90237c3a43ac",
@@ -2186,7 +2186,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true
+			"selected": false
 		}
 	],
 	"edges": [
@@ -3272,8 +3272,8 @@
 		}
 	],
 	"viewport": {
-		"x": -5935.432757192295,
-		"y": -373.8650920521384,
-		"zoom": 0.7536674547791902
+		"x": -6566.69464259905,
+		"y": -486.8465713608033,
+		"zoom": 0.8681402276010425
 	}
 }
