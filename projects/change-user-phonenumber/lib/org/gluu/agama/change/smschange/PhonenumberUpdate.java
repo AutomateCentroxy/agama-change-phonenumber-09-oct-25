@@ -490,7 +490,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             // Localized message
             Map<String, String> messages = new HashMap<>();
 
-            messages.put("ar", "رمز Phi Wallet الخاص بك هو " + otpCode + ". لا تشاركه مع أي شخص.");
+            messages.put("ar", "رمز التحقق OTP الخاص بك من Phi Wallet هو " + otpCode + ". لا تشاركه مع أي شخص.");
             messages.put("en", "Your Phi Wallet OTP is " + otpCode + ". Do not share it with anyone.");
             messages.put("es", "Tu código de Phi Wallet es " + otpCode + ". No lo compartas con nadie.");
             messages.put("fr", "Votre code Phi Wallet est " + otpCode + ". Ne le partagez avec personne.");
