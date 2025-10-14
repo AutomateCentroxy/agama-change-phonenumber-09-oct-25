@@ -88,6 +88,12 @@ Repeat 6 times max
                               Log "@info This phone is already used by another account. Please enter a different one."
                               uiFeedback.errorMessage = "This phone is already used by another account. Please enter a different one."
                               uiFeedback.infoMessage = "Please enter a new number"
+                              Repeat __________ times max
+                                   RRF "__________" 
+                                   Call __________#__________ 
+                                   When 
+                                   Otherwise
+                              Finish __________
                     // "Phone loop completed"
                     Log "@info Phone loop completed"
                     // { success: false, error: "ExceededTheNumberOfAttemptsAllowed" }
@@ -96,5 +102,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_oeouo = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_oeouo
+it_fdfzl = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_fdfzl
