@@ -2182,7 +2182,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -2204,14 +2204,15 @@
 				"agamaData": {
 					"assignments": [],
 					"nodeIcon": "ph:globe-simple",
-					"templatePath": "",
-					"asssignedVariableName": "",
+					"templatePath": "smsOtp.ftlh",
+					"asssignedVariableName": "otpCred",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "sms OTP page",
 					"hasComment": true,
-					"comment": ""
+					"comment": "",
+					"arguments": "uiFeedback"
 				}
 			},
 			"measured": {
@@ -2238,25 +2239,29 @@
 				"previousNodeId": "rrfNode-4c07208c-3064-4e6a-bcaa-b129018cc18e",
 				"agamaData": {
 					"javaClassName": "",
-					"javaMethodName": "",
-					"javaVariableName": "",
+					"javaMethodName": "validateOTPCode",
+					"javaVariableName": "PhonenumberUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call static method",
-					"arguments": [],
+					"callType": "Call method on instance",
+					"arguments": [
+						"phone",
+						"otpCred.code"
+					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": ""
+					"comment": " Validate the OTP code provided by the user.",
+					"asssignedVariableName": "otpValidationResults"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -3541,8 +3546,8 @@
 		}
 	],
 	"viewport": {
-		"x": -3747.3895423126805,
-		"y": 585.6408530006465,
-		"zoom": 0.7641882603825831
+		"x": -5256.234570548502,
+		"y": 576.75704248765,
+		"zoom": 1.0139594797900289
 	}
 }
