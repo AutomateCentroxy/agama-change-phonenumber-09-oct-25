@@ -883,8 +883,8 @@
 			"id": "logNode-de6ee282-f3d6-43ab-894e-49aa0557142a",
 			"type": "logNode",
 			"position": {
-				"x": 5030,
-				"y": -38
+				"x": 4864,
+				"y": -388
 			},
 			"data": {
 				"id": "logNode-de6ee282-f3d6-43ab-894e-49aa0557142a",
@@ -911,14 +911,15 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "assignmentNode-3aeff8a3-28bd-469e-8e58-7dd969ba2a08",
 			"type": "assignmentNode",
 			"position": {
-				"x": 5280,
-				"y": -38
+				"x": 5130,
+				"y": -414
 			},
 			"data": {
 				"id": "assignmentNode-3aeff8a3-28bd-469e-8e58-7dd969ba2a08",
@@ -954,7 +955,8 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "callNode-434b1955-eeda-4dc9-b996-bcd81c141d76",
@@ -1827,7 +1829,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -2072,6 +2074,286 @@
 				"height": 122
 			},
 			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "repeatNode-936aed1a-4663-444a-91ec-f4ccf4d83c87",
+			"type": "repeatNode",
+			"position": {
+				"x": 5366,
+				"y": -446
+			},
+			"data": {
+				"id": "repeatNode-936aed1a-4663-444a-91ec-f4ccf4d83c87",
+				"type": "repeatNode",
+				"position": {
+					"x": 5530,
+					"y": -38
+				},
+				"previousNodeId": "assignmentNode-3aeff8a3-28bd-469e-8e58-7dd969ba2a08",
+				"agamaData": {
+					"nodeIcon": "material-symbols:event-repeat-outline-rounded",
+					"maxIteration": "",
+					"maxIterationVariableName": "",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "assignmentNode-5196b90e-986f-44d3-9797-9b131234ffaf",
+			"type": "assignmentNode",
+			"position": {
+				"x": 5636,
+				"y": -572
+			},
+			"data": {
+				"id": "assignmentNode-5196b90e-986f-44d3-9797-9b131234ffaf",
+				"type": "assignmentNode",
+				"position": {
+					"x": 5780,
+					"y": -38
+				},
+				"previousNodeId": "repeatNode-936aed1a-4663-444a-91ec-f4ccf4d83c87",
+				"branching": "continue",
+				"agamaData": {
+					"assignments": [],
+					"nodeIcon": "material-symbols:equal",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "finishNode-0095191e-47f4-4271-872e-6f4a8bc754bf",
+			"type": "finishNode",
+			"position": {
+				"x": 5920,
+				"y": -674
+			},
+			"data": {
+				"id": "finishNode-0095191e-47f4-4271-872e-6f4a8bc754bf",
+				"type": "finishNode",
+				"position": {
+					"x": 6030,
+					"y": -38
+				},
+				"previousNodeId": "assignmentNode-5196b90e-986f-44d3-9797-9b131234ffaf",
+				"agamaData": {
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": "",
+					"flowfilename": "",
+					"returnVariable": "",
+					"nodeIcon": "material-symbols:line-end-square-rounded"
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "rrfNode-4c07208c-3064-4e6a-bcaa-b129018cc18e",
+			"type": "rrfNode",
+			"position": {
+				"x": 5344,
+				"y": -141
+			},
+			"data": {
+				"id": "rrfNode-4c07208c-3064-4e6a-bcaa-b129018cc18e",
+				"type": "rrfNode",
+				"position": {
+					"x": 5780,
+					"y": 212
+				},
+				"previousNodeId": "repeatNode-936aed1a-4663-444a-91ec-f4ccf4d83c87",
+				"branching": "repeat",
+				"agamaData": {
+					"assignments": [],
+					"nodeIcon": "ph:globe-simple",
+					"templatePath": "",
+					"asssignedVariableName": "",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "callNode-827d110d-d8e1-4444-a2cb-c5690a81f8ac",
+			"type": "callNode",
+			"position": {
+				"x": 5566,
+				"y": -165
+			},
+			"data": {
+				"id": "callNode-827d110d-d8e1-4444-a2cb-c5690a81f8ac",
+				"type": "callNode",
+				"position": {
+					"x": 5544,
+					"y": 209
+				},
+				"previousNodeId": "rrfNode-4c07208c-3064-4e6a-bcaa-b129018cc18e",
+				"agamaData": {
+					"javaClassName": "",
+					"javaMethodName": "",
+					"javaVariableName": "",
+					"exceptionVariableField": "",
+					"callType": "Call static method",
+					"arguments": [],
+					"nodeIcon": "material-symbols:code",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67",
+			"type": "whenNode",
+			"position": {
+				"x": 5820,
+				"y": -205
+			},
+			"data": {
+				"id": "whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67",
+				"type": "whenNode",
+				"position": {
+					"x": 5794,
+					"y": 267
+				},
+				"previousNodeId": "callNode-827d110d-d8e1-4444-a2cb-c5690a81f8ac",
+				"agamaData": {
+					"variableField": "",
+					"valueField": "",
+					"conditionInputField": "",
+					"conditions": [],
+					"nodeIcon": "ph:swap",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 110,
+				"height": 59
+			},
+			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "assignmentNode-898e4c61-f7e4-4b70-88bc-da94b617bd2b",
+			"type": "assignmentNode",
+			"position": {
+				"x": 6080,
+				"y": -419
+			},
+			"data": {
+				"id": "assignmentNode-898e4c61-f7e4-4b70-88bc-da94b617bd2b",
+				"type": "assignmentNode",
+				"position": {
+					"x": 6044,
+					"y": 17
+				},
+				"previousNodeId": "whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67",
+				"branching": "otherwise",
+				"agamaData": {
+					"assignments": [],
+					"nodeIcon": "material-symbols:equal",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "assignmentNode-5455b49c-5c20-4bc1-b369-81e9f4992306",
+			"type": "assignmentNode",
+			"position": {
+				"x": 6116,
+				"y": -59
+			},
+			"data": {
+				"id": "assignmentNode-5455b49c-5c20-4bc1-b369-81e9f4992306",
+				"type": "assignmentNode",
+				"position": {
+					"x": 6044,
+					"y": 467
+				},
+				"previousNodeId": "whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67",
+				"branching": "success",
+				"agamaData": {
+					"assignments": [],
+					"nodeIcon": "material-symbols:equal",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": ""
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 122
+			},
+			"selected": true,
 			"dragging": false
 		}
 	],
@@ -3097,11 +3379,163 @@
 				"fillOpacity": 0.7
 			},
 			"id": "xy-edge__logNode-c1e3eeeb-cb64-43ef-8d67-5557fa2331a6source_logNode-c1e3eeeb-cb64-43ef-8d67-5557fa2331a6-logNode-2f05a764-9874-4944-b708-90237c3a43actarget_logNode-2f05a764-9874-4944-b708-90237c3a43ac"
+		},
+		{
+			"id": "assignmentNode-3aeff8a3-28bd-469e-8e58-7dd969ba2a08-repeatNode-936aed1a-4663-444a-91ec-f4ccf4d83c87",
+			"type": "default",
+			"source": "assignmentNode-3aeff8a3-28bd-469e-8e58-7dd969ba2a08",
+			"target": "repeatNode-936aed1a-4663-444a-91ec-f4ccf4d83c87",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_assignmentNode-3aeff8a3-28bd-469e-8e58-7dd969ba2a08"
+		},
+		{
+			"id": "repeatNode-936aed1a-4663-444a-91ec-f4ccf4d83c87-assignmentNode-5196b90e-986f-44d3-9797-9b131234ffaf",
+			"type": "default",
+			"source": "repeatNode-936aed1a-4663-444a-91ec-f4ccf4d83c87",
+			"target": "assignmentNode-5196b90e-986f-44d3-9797-9b131234ffaf",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "continue",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_repeatNode-936aed1a-4663-444a-91ec-f4ccf4d83c87_continue"
+		},
+		{
+			"id": "assignmentNode-5196b90e-986f-44d3-9797-9b131234ffaf-finishNode-0095191e-47f4-4271-872e-6f4a8bc754bf",
+			"type": "default",
+			"source": "assignmentNode-5196b90e-986f-44d3-9797-9b131234ffaf",
+			"target": "finishNode-0095191e-47f4-4271-872e-6f4a8bc754bf",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_assignmentNode-5196b90e-986f-44d3-9797-9b131234ffaf"
+		},
+		{
+			"id": "repeatNode-936aed1a-4663-444a-91ec-f4ccf4d83c87-rrfNode-4c07208c-3064-4e6a-bcaa-b129018cc18e",
+			"type": "default",
+			"source": "repeatNode-936aed1a-4663-444a-91ec-f4ccf4d83c87",
+			"target": "rrfNode-4c07208c-3064-4e6a-bcaa-b129018cc18e",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "repeat",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_repeatNode-936aed1a-4663-444a-91ec-f4ccf4d83c87_repeat"
+		},
+		{
+			"id": "rrfNode-4c07208c-3064-4e6a-bcaa-b129018cc18e-callNode-827d110d-d8e1-4444-a2cb-c5690a81f8ac",
+			"type": "default",
+			"source": "rrfNode-4c07208c-3064-4e6a-bcaa-b129018cc18e",
+			"target": "callNode-827d110d-d8e1-4444-a2cb-c5690a81f8ac",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_rrfNode-4c07208c-3064-4e6a-bcaa-b129018cc18e"
+		},
+		{
+			"id": "callNode-827d110d-d8e1-4444-a2cb-c5690a81f8ac-whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67",
+			"type": "default",
+			"source": "callNode-827d110d-d8e1-4444-a2cb-c5690a81f8ac",
+			"target": "whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_callNode-827d110d-d8e1-4444-a2cb-c5690a81f8ac"
+		},
+		{
+			"id": "whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67-assignmentNode-898e4c61-f7e4-4b70-88bc-da94b617bd2b",
+			"type": "default",
+			"source": "whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67",
+			"target": "assignmentNode-898e4c61-f7e4-4b70-88bc-da94b617bd2b",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "otherwise",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67_otherwise"
+		},
+		{
+			"id": "whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67-assignmentNode-5455b49c-5c20-4bc1-b369-81e9f4992306",
+			"type": "default",
+			"source": "whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67",
+			"target": "assignmentNode-5455b49c-5c20-4bc1-b369-81e9f4992306",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "Condition met",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67_success"
 		}
 	],
 	"viewport": {
-		"x": -6566.69464259905,
-		"y": -484.8465713608033,
-		"zoom": 0.8681402276010425
+		"x": -3747.3895423126805,
+		"y": 585.6408530006465,
+		"zoom": 0.7641882603825831
 	}
 }
