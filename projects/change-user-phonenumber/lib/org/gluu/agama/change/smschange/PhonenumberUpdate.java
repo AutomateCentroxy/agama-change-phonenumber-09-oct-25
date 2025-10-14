@@ -308,24 +308,46 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return userService.getUserByAttribute(attributeName, value, true);
     }
 
-    public Map<String, Object> syncUserWithExternal(String inum) {
+    public static Map<String, Object> syncUserWithExternal(String inum, Map<String, String> conf) {
         Map<String, Object> result = new HashMap<>();
         try {
-            // Load config
-            Map<String, String> config = getAgamaConfig();
-            String publicKey = config.get("PUBLIC_KEY");
+            // Load config using CdiUtil or static ConfigService
+            Map<String, String> config = new HashMap<>();
+            if (conf == null) {
+            result.put("status", "error");
+            result.put("message", "Configuration is null");
+            return result;
+        }
 
-            if (publicKey == null) {
+            String publicKey = conf.get("PUBLIC_KEY");
+            String privateKey = conf.get("PRIVATE_KEY");
+
+            if (publicKey == null || privateKey == null) {
                 result.put("status", "error");
-                result.put("message", "PUBLIC_KEY missing in config");
+                result.put("message", "PUBLIC_KEY or PRIVATE_KEY missing in config");
                 return result;
             }
 
-            // Generate signature using PRIVATE_KEY from config
-            String signature = generateSignature(inum);
-            if (signature == null) {
+            // Generate HMAC-SHA256 signature (hex lowercase)
+            String signature;
+            try {
+                javax.crypto.Mac mac = javax.crypto.Mac.getInstance("HmacSHA256");
+                javax.crypto.spec.SecretKeySpec secretKey = new javax.crypto.spec.SecretKeySpec(
+                        privateKey.getBytes(java.nio.charset.StandardCharsets.UTF_8),
+                        "HmacSHA256");
+                mac.init(secretKey);
+                byte[] hashBytes = mac.doFinal(inum.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                StringBuilder hex = new StringBuilder();
+                for (byte b : hashBytes) {
+                    String h = Integer.toHexString(0xff & b);
+                    if (h.length() == 1)
+                        hex.append('0');
+                    hex.append(h);
+                }
+                signature = hex.toString().toLowerCase();
+            } catch (Exception ex) {
                 result.put("status", "error");
-                result.put("message", "Failed to generate signature");
+                result.put("message", "Failed to generate signature: " + ex.getMessage());
                 return result;
             }
 
@@ -342,18 +364,20 @@ public class PhonenumberUpdate extends UserphoneUpdate {
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            logger.info("Webhook sync response status: {}, body: {}", response.statusCode(), response.body());
+            System.out.println(String.format("Webhook sync response status: %d, body: %s",
+                    response.statusCode(), response.body()));
 
             if (response.statusCode() == 200) {
                 result.put("status", "success");
             } else {
                 result.put("status", "error");
+                result.put("message", response.body());
             }
 
             return result;
 
         } catch (Exception e) {
-            logger.error("Error syncing user {}: {}", inum, e.getMessage());
+            e.printStackTrace();
             result.put("status", "error");
             result.put("message", e.getMessage());
             return result;
@@ -362,7 +386,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
     public boolean isPhoneVerified(String username) {
         try {
-             User user = getUserService().getUser(username);
+            User user = getUserService().getUser(username);
             if (user == null)
                 return false;
 
@@ -466,7 +490,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             // Localized message
             Map<String, String> messages = new HashMap<>();
 
-            messages.put("ar", "رمز Phi Wallet الخاص بك هو " + otpCode + ". لا تشاركه مع أي شخص.");
+            messages.put("ar", "رمز التحقق OTP الخاص بك من Phi Wallet هو " + otpCode + ". لا تشاركه مع أي شخص.");
             messages.put("en", "Your Phi Wallet OTP is " + otpCode + ". Do not share it with anyone.");
             messages.put("es", "Tu código de Phi Wallet es " + otpCode + ". No lo compartas con nadie.");
             messages.put("fr", "Votre code Phi Wallet est " + otpCode + ". Ne le partagez avec personne.");
