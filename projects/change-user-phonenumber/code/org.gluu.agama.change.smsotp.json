@@ -33,7 +33,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -66,7 +66,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -114,7 +114,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -147,7 +147,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -181,7 +181,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -219,7 +219,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -253,7 +253,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -289,7 +289,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false,
 			"dragging": false
@@ -333,7 +333,7 @@
 			},
 			"measured": {
 				"width": 110,
-				"height": 59
+				"height": 60
 			},
 			"selected": false,
 			"dragging": false
@@ -368,7 +368,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -402,7 +402,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -422,7 +422,7 @@
 				},
 				"previousNodeId": "logNode-ebb1a63c-79c3-429a-8584-5792c4e85b0d",
 				"agamaData": {
-					"javaClassName": "org.gluu.agama.login.CounterHelper",
+					"javaClassName": "org.gluu.agama.change.CounterHelper",
 					"javaMethodName": "increment",
 					"javaVariableName": "",
 					"exceptionVariableField": "",
@@ -442,7 +442,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false,
 			"dragging": false
@@ -476,7 +476,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -518,7 +518,7 @@
 			},
 			"measured": {
 				"width": 110,
-				"height": 59
+				"height": 60
 			},
 			"selected": false,
 			"dragging": false
@@ -561,7 +561,7 @@
 			},
 			"measured": {
 				"width": 110,
-				"height": 59
+				"height": 60
 			},
 			"selected": false
 		},
@@ -603,7 +603,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -636,7 +636,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -678,7 +678,7 @@
 			},
 			"measured": {
 				"width": 110,
-				"height": 59
+				"height": 60
 			},
 			"selected": false
 		},
@@ -712,7 +712,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -755,7 +755,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -789,7 +789,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -823,7 +823,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -857,7 +857,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false,
 			"dragging": false
@@ -896,7 +896,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -930,7 +930,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -971,7 +971,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -1004,7 +1004,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -1045,7 +1045,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -1079,7 +1079,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -1117,7 +1117,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false,
 			"dragging": false
@@ -1152,7 +1152,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -1194,7 +1194,7 @@
 			},
 			"measured": {
 				"width": 110,
-				"height": 59
+				"height": 60
 			},
 			"selected": false
 		},
@@ -1228,7 +1228,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -1271,7 +1271,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -1309,7 +1309,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -1343,7 +1343,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -1386,7 +1386,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		},
@@ -1424,7 +1424,7 @@
 			},
 			"measured": {
 				"width": 170,
-				"height": 122
+				"height": 124
 			},
 			"selected": false
 		}
@@ -2134,8 +2134,8 @@
 		}
 	],
 	"viewport": {
-		"x": -6.654117641529865,
-		"y": 222.96582191683052,
-		"zoom": 0.5
+		"x": -1649.0667544864937,
+		"y": 233.15634199122076,
+		"zoom": 0.7873750599070404
 	}
 }
