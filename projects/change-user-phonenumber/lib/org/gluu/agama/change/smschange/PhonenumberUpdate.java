@@ -27,7 +27,6 @@ import java.nio.charset.StandardCharsets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import io.jans.agama.engine.script.LogUtils;
 
 import io.jans.as.server.service.token.TokenService;
 import io.jans.as.server.model.common.AuthorizationGrant;
@@ -37,6 +36,9 @@ import io.jans.as.server.model.common.AbstractToken;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+
+import javax.servlet.http.HttpServletRequest;
+
 
 public class PhonenumberUpdate extends UserphoneUpdate {
 
@@ -59,6 +61,10 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     private static final String LANG = "lang";
     private Map<String, String> flowConfig;
     private static final SecureRandom RAND = new SecureRandom();
+    // Track OTP attempts by IP for 24-hour rate limiting
+    private static final Map<String, List<Long>> ipAccessLog = new HashMap<>();
+    private static final int MAX_ATTEMPTS_PER_DAY = 4; // 1 + 3 resends allowed
+    private static final long TIME_WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
 
     private static final Map<String, String> otpStore = new HashMap<>();
 
@@ -127,6 +133,44 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         }
 
         return result;
+    }
+
+        // 🔹 Get client IP (header → remoteAddr → fallback)
+    private String getClientIpAddress() {
+        try {
+            HttpServletRequest request = CdiUtil.bean(HttpServletRequest.class);
+            if (request != null) {
+                String ip = request.getHeader("X-Forwarded-For");
+                if (ip != null && !ip.isEmpty() && !"unknown".equalsIgnoreCase(ip)) {
+                    ip = ip.split(",")[0].trim();
+                    return ip;
+                }
+                ip = request.getRemoteAddr();
+                return ip != null ? ip : "127.0.0.1";
+            }
+        } catch (Exception e) {
+            logger.warn("Could not get client IP address, defaulting to 127.0.0.1", e);
+        }
+        return "127.0.0.1";
+    }
+
+    // 🔹 Record OTP request and enforce 24h limit
+    private void recordOtpAttempt(String ip) {
+        long now = System.currentTimeMillis();
+        ipAccessLog.compute(ip, (key, timestamps) -> {
+            if (timestamps == null) timestamps = new ArrayList<>();
+            timestamps.removeIf(ts -> now - ts > TIME_WINDOW_MS);
+            timestamps.add(now);
+            return timestamps;
+        });
+    }
+
+    private boolean isIpBlocked(String ip) {
+        List<Long> timestamps = ipAccessLog.get(ip);
+        if (timestamps == null) return false;
+        long now = System.currentTimeMillis();
+        timestamps.removeIf(ts -> now - ts > TIME_WINDOW_MS);
+        return timestamps.size() >= MAX_ATTEMPTS_PER_DAY;
     }
 
     // validate token ends here
@@ -467,8 +511,22 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return new String(otp);
     }
 
+
+
     public boolean sendOTPCode(String username, String phone) {
         try {
+
+            // Get IP (from header or fallback)
+            String clientIp = getClientIpAddress();
+            logger.info("Detected IP {} for user {}", clientIp, username);
+
+            // Enforce resend rate limit
+            if (isIpBlocked(clientIp)) {
+                logger.warn("🚫 IP {} is blocked for 24h due to excessive OTP requests", clientIp);
+                return false;
+            }
+            recordOtpAttempt(clientIp);
+
             // Get user preferred language from profile
             User user = getUserService().getUser(username);
             String lang = null;
