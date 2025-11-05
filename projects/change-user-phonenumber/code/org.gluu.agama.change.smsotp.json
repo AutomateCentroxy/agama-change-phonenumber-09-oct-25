@@ -951,7 +951,7 @@
 				"previousNodeId": "whenNode-9d8420e5-ffa7-4dd2-8f27-3540457b3079",
 				"branching": "continue",
 				"agamaData": {
-					"javaClassName": "org.gluu.agama.login.CounterHelper",
+					"javaClassName": "org.gluu.agama.change.CounterHelper",
 					"javaMethodName": "increment",
 					"javaVariableName": "",
 					"exceptionVariableField": "",
@@ -973,7 +973,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "logNode-5262be35-6550-4fb2-9a2e-c830b3c994af",
@@ -2134,8 +2134,8 @@
 		}
 	],
 	"viewport": {
-		"x": -1649.0667544864937,
-		"y": 233.15634199122076,
-		"zoom": 0.7873750599070404
+		"x": -1012.3158404893393,
+		"y": 28.79043913514556,
+		"zoom": 0.6898734830541009
 	}
 }
