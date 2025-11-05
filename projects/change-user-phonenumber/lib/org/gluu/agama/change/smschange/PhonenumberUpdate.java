@@ -37,8 +37,6 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
-import javax.servlet.http.HttpServletRequest;
-
 
 public class PhonenumberUpdate extends UserphoneUpdate {
 
@@ -137,22 +135,27 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
         // 🔹 Get client IP (header → remoteAddr → fallback)
     private String getClientIpAddress() {
-        try {
-            HttpServletRequest request = CdiUtil.bean(HttpServletRequest.class);
-            if (request != null) {
-                String ip = request.getHeader("X-Forwarded-For");
-                if (ip != null && !ip.isEmpty() && !"unknown".equalsIgnoreCase(ip)) {
-                    ip = ip.split(",")[0].trim();
-                    return ip;
-                }
-                ip = request.getRemoteAddr();
-                return ip != null ? ip : "127.0.0.1";
+    try {
+        Object reqObj = CdiUtil.bean("javax.servlet.http.HttpServletRequest");
+        if (reqObj != null) {
+            // Use reflection to avoid explicit import
+            String forwardedFor = (String) reqObj.getClass()
+                    .getMethod("getHeader", String.class)
+                    .invoke(reqObj, "X-Forwarded-For");
+            if (forwardedFor != null && !forwardedFor.isEmpty() && !"unknown".equalsIgnoreCase(forwardedFor)) {
+                return forwardedFor.split(",")[0].trim();
             }
-        } catch (Exception e) {
-            logger.warn("Could not get client IP address, defaulting to 127.0.0.1", e);
+
+            String remoteAddr = (String) reqObj.getClass()
+                    .getMethod("getRemoteAddr")
+                    .invoke(reqObj);
+            return remoteAddr != null ? remoteAddr : "127.0.0.1";
         }
-        return "127.0.0.1";
+    } catch (Exception e) {
+        LogUtils.log("Could not extract IP (no servlet request available). Defaulting to 127.0.0.1: {}", e.getMessage());
     }
+    return "127.0.0.1";
+}
 
     // 🔹 Record OTP request and enforce 24h limit
     private void recordOtpAttempt(String ip) {
