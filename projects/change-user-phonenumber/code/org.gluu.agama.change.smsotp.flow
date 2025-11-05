@@ -20,7 +20,7 @@ maxSMS = Repeat 20 times max
                // ExceededResendAttempts
                it_resend = {success: false, error: "ExceededResendAttempts"}
                Finish it_resend
-          resendCount = Call org.gluu.agama.login.CounterHelper#increment resendCount
+          resendCount = Call org.gluu.agama.change.CounterHelper#increment resendCount
           Log "@info Resend attempt number: " resendCount
           // Resend otp
           resendHasSucceed = Call PhonenumberUpdateService sendOTPCode username phone
