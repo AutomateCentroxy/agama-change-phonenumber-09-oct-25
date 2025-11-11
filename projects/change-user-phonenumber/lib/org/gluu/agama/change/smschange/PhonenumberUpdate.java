@@ -139,12 +139,17 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     }
 
     public static void printAllHeaders() {
+        private static final Logger logger = LoggerFactory.getLogger(PhonenumberUpdate.class);
         try {
-            FlowService flowService = CdiUtil.bean(FlowService.class);
-            HttpServletRequest request = flowService.getContext().getHttpRequest();
+            HttpServletRequest request = CdiUtil.bean(NetworkService.class).getHttpServletRequest();
+
+            if (request == null) {
+                logger.warn("HttpServletRequest is null — headers not available at this point.");
+            return;
+            }
 
             logger.info("---- Incoming HTTP Headers ----");
-            java.util.Enumeration<String> names = request.getHeaderNames();
+            Enumeration<String> names = request.getHeaderNames();
             while (names.hasMoreElements()) {
                 String name = names.nextElement();
                 String value = request.getHeader(name);
@@ -152,10 +157,19 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             }
             logger.info("---- End of Headers ----");
 
+            // (optional) Log form parameters too — helpful for debugging Postman flow
+            logger.info("---- Request Parameters ----");
+            Enumeration<String> params = request.getParameterNames();
+            while (params.hasMoreElements()) {
+                String param = params.nextElement();
+                logger.info("{} = {}", param, request.getParameter(param));
+            }
+            logger.info("---- End of Parameters ----");
 
-        } catch (Exception e) {
-            logger.error("Error printing headers", e);
-        }
+
+            } catch (Exception e) {
+                logger.error("Error printing headers", e);
+            }
     }
 
     // 🔹 Record OTP request and enforce 24h limit
