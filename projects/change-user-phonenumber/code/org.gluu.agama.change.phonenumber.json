@@ -190,8 +190,8 @@
 			"id": "rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e",
 			"type": "rrfNode",
 			"position": {
-				"x": 187.7357753916824,
-				"y": 319.6508974656603
+				"x": 129.66033879539629,
+				"y": 318.4893887337346
 			},
 			"data": {
 				"id": "rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e",
@@ -227,7 +227,7 @@
 			"id": "whenNode-d12d2612-54d0-480e-aeb0-65555cc8d788",
 			"type": "whenNode",
 			"position": {
-				"x": 973.2049969717583,
+				"x": 1223.2049969717582,
 				"y": 393.88823938096067
 			},
 			"data": {
@@ -2356,7 +2356,7 @@
 			"id": "logNode-02b81e72-88b4-4ffe-b41a-043ac2487d46",
 			"type": "logNode",
 			"position": {
-				"x": 692.7910940387756,
+				"x": 942.7910940387756,
 				"y": 323.7455126716985
 			},
 			"data": {
@@ -2366,9 +2366,9 @@
 					"x": 983,
 					"y": 317
 				},
-				"previousNodeId": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
+				"previousNodeId": "callNode-1c62bd9a-160d-4b41-87f9-56125ddc446e",
 				"agamaData": {
-					"logMessage": "\"Client IP captured+++++++\" clientIp",
+					"logMessage": "\"Client IP captured+++++++\" clientIp printAllHeaderss",
 					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
@@ -2427,11 +2427,49 @@
 			"dragging": false
 		},
 		{
+			"id": "callNode-1c62bd9a-160d-4b41-87f9-56125ddc446e",
+			"type": "callNode",
+			"position": {
+				"x": 640.1139173827278,
+				"y": 321.97391492951175
+			},
+			"data": {
+				"id": "callNode-1c62bd9a-160d-4b41-87f9-56125ddc446e",
+				"type": "callNode",
+				"position": {
+					"x": 640.1139173827278,
+					"y": 321.97391492951175
+				},
+				"previousNodeId": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
+				"agamaData": {
+					"javaClassName": "org.gluu.agama.change.smschange.PhonenumberUpdate",
+					"javaMethodName": "printAllHeaders",
+					"javaVariableName": "",
+					"exceptionVariableField": "",
+					"callType": "Call static method",
+					"arguments": [],
+					"nodeIcon": "material-symbols:code",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": "",
+					"asssignedVariableName": "printAllHeaderss"
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 124
+			},
+			"selected": false
+		},
+		{
 			"id": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
 			"type": "callNode",
 			"position": {
-				"x": 437.7357753916824,
-				"y": 319.6508974656603
+				"x": 390.11391738272783,
+				"y": 321.97391492951175
 			},
 			"data": {
 				"id": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
@@ -2462,7 +2500,8 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		}
 	],
 	"edges": [
@@ -3676,11 +3715,49 @@
 				"fillOpacity": 0.7
 			},
 			"id": "xy-edge__callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7source_callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7-logNode-02b81e72-88b4-4ffe-b41a-043ac2487d46target_logNode-02b81e72-88b4-4ffe-b41a-043ac2487d46"
+		},
+		{
+			"id": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7-callNode-1c62bd9a-160d-4b41-87f9-56125ddc446e",
+			"type": "default",
+			"source": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
+			"target": "callNode-1c62bd9a-160d-4b41-87f9-56125ddc446e",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7"
+		},
+		{
+			"id": "callNode-1c62bd9a-160d-4b41-87f9-56125ddc446e-logNode-02b81e72-88b4-4ffe-b41a-043ac2487d46",
+			"type": "default",
+			"source": "callNode-1c62bd9a-160d-4b41-87f9-56125ddc446e",
+			"target": "logNode-02b81e72-88b4-4ffe-b41a-043ac2487d46",
+			"label": "",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"sourceHandle": "source_callNode-1c62bd9a-160d-4b41-87f9-56125ddc446e",
+			"targetHandle": "target_logNode-02b81e72-88b4-4ffe-b41a-043ac2487d46"
 		}
 	],
 	"viewport": {
-		"x": 109.25015986284393,
-		"y": 155.32980688722657,
-		"zoom": 0.5494271087884399
+		"x": -385.7388218893883,
+		"y": 40.378024018462554,
+		"zoom": 0.860949188338904
 	}
 }
