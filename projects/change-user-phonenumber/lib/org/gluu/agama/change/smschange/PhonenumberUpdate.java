@@ -1,3 +1,4 @@
+//working copy
 package org.gluu.agama.change.smschange;
 
 import io.jans.agama.engine.service.FlowService;
@@ -36,6 +37,8 @@ import io.jans.as.server.model.common.AbstractToken;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import io.jans.as.server.service.net.NetworkService;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 public class PhonenumberUpdate extends UserphoneUpdate {
@@ -132,30 +135,6 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
         return result;
     }
-
-        // 🔹 Get client IP (header → remoteAddr → fallback)
-    private String getClientIpAddress() {
-    try {
-        Object reqObj = CdiUtil.bean("javax.servlet.http.HttpServletRequest");
-        if (reqObj != null) {
-            // Use reflection to avoid explicit import
-            String forwardedFor = (String) reqObj.getClass()
-                    .getMethod("getHeader", String.class)
-                    .invoke(reqObj, "X-Forwarded-For");
-            if (forwardedFor != null && !forwardedFor.isEmpty() && !"unknown".equalsIgnoreCase(forwardedFor)) {
-                return forwardedFor.split(",")[0].trim();
-            }
-
-            String remoteAddr = (String) reqObj.getClass()
-                    .getMethod("getRemoteAddr")
-                    .invoke(reqObj);
-            return remoteAddr != null ? remoteAddr : "127.0.0.1";
-        }
-    } catch (Exception e) {
-        LogUtils.log("Could not extract IP (no servlet request available). Defaulting to 127.0.0.1: {}", e.getMessage());
-    }
-    return "127.0.0.1";
-}
 
     // 🔹 Record OTP request and enforce 24h limit
     private void recordOtpAttempt(String ip) {
@@ -520,7 +499,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         try {
 
             // Get IP (from header or fallback)
-            String clientIp = getClientIpAddress();
+            String clientIp = getClientIp();
             logger.info("Detected IP {} for user {}", clientIp, username);
 
             // Enforce resend rate limit
@@ -601,6 +580,28 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         }
 
         return null; // or return "" if you prefer
+    }
+
+    public static String getClientIp() {
+        try {
+            // Get current HTTP request from Jans context
+            HttpServletRequest req = CdiUtil.bean(NetworkService.class).getHttpServletRequest();
+            if (req == null) {
+                return "127.0.0.1";
+            }
+
+            // Check standard forwarded header
+            String headerIp = req.getHeader("X-Forwarded-For");
+            if (headerIp != null && !headerIp.isEmpty()) {
+                // May contain multiple IPs, take the first one
+                return headerIp.split(",")[0].trim();
+            }
+
+            // Fallback to remote address
+            return req.getRemoteAddr();
+        } catch (Exception e) {
+            return "127.0.0.1";
+        }
     }
 
 }
