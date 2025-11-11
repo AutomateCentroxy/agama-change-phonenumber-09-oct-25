@@ -143,17 +143,18 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             FlowService flowService = CdiUtil.bean(FlowService.class);
             HttpServletRequest request = flowService.getContext().getHttpRequest();
 
-            System.out.println("---- Incoming HTTP Headers ----");
+            logger.info("---- Incoming HTTP Headers ----");
             java.util.Enumeration<String> names = request.getHeaderNames();
             while (names.hasMoreElements()) {
                 String name = names.nextElement();
                 String value = request.getHeader(name);
-                System.out.println(name + " : " + value);
+                logger.info("{} : {}", name, value);
             }
-            System.out.println("---- End of Headers ----");
+            logger.info("---- End of Headers ----");
+
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error printing headers", e);
         }
     }
 
@@ -624,9 +625,5 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             return "127.0.0.1";
         }
     }
-
-
-    
-   
 
 }
