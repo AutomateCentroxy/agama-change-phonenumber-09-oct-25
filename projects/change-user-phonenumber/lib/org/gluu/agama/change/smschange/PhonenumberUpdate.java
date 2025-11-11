@@ -138,61 +138,6 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return result;
     }
 
-    public static Map<String, String> printAllHeaders() {
-    Map<String, String> headersMap = new LinkedHashMap<>();
-    try {
-        HttpServletRequest request = CdiUtil.getContextBean(HttpServletRequest.class);
-        if (request == null) {
-            logger.warn("HttpServletRequest is null — cannot print headers at this stage.");
-            return headersMap;
-        }
-
-        logger.info("---- Incoming HTTP Headers ----");
-        Enumeration<String> headerNames = request.getHeaderNames();
-        while (headerNames != null && headerNames.hasMoreElements()) {
-            String headerName = headerNames.nextElement();
-            String headerValue = request.getHeader(headerName);
-            headersMap.put(headerName, headerValue);
-            logger.info("{}: {}", headerName, headerValue);
-        }
-        logger.info("---- End of Headers ----");
-
-        logger.info("---- Request Parameters ----");
-        Enumeration<String> paramNames = request.getParameterNames();
-        while (paramNames != null && paramNames.hasMoreElements()) {
-            String paramName = paramNames.nextElement();
-            String paramValue = request.getParameter(paramName);
-            headersMap.put(paramName, paramValue);
-            logger.info("{} = {}", paramName, paramValue);
-        }
-        logger.info("---- End of Parameters ----");
-
-    } catch (Exception e) {
-        logger.error("Error dumping HTTP headers", e);
-    }
-
-    return headersMap;
-}
-
-    // 🔹 Record OTP request and enforce 24h limit
-    private void recordOtpAttempt(String ip) {
-        long now = System.currentTimeMillis();
-        ipAccessLog.compute(ip, (key, timestamps) -> {
-            if (timestamps == null) timestamps = new ArrayList<>();
-            timestamps.removeIf(ts -> now - ts > TIME_WINDOW_MS);
-            timestamps.add(now);
-            return timestamps;
-        });
-    }
-
-    private boolean isIpBlocked(String ip) {
-        List<Long> timestamps = ipAccessLog.get(ip);
-        if (timestamps == null) return false;
-        long now = System.currentTimeMillis();
-        timestamps.removeIf(ts -> now - ts > TIME_WINDOW_MS);
-        return timestamps.size() >= MAX_ATTEMPTS_PER_DAY;
-    }
-
     // validate token ends here
 
     public boolean passwordPolicyMatch(String userPassword) {
@@ -542,7 +487,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
             // Enforce resend rate limit
             if (isIpBlocked(clientIp)) {
-                logger.warn("🚫 IP {} is blocked for 24h due to excessive OTP requests", clientIp);
+                logger.warn(" IP {} is blocked for 24h due to excessive OTP requests", clientIp);
                 return false;
             }
             recordOtpAttempt(clientIp);
@@ -620,7 +565,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return null; // or return "" if you prefer
     }
 
-    public static String getClientIp() {
+    public static String ClientIp() {
         try {
             // Get current HTTP request from Jans context
             HttpServletRequest req = CdiUtil.bean(NetworkService.class).getHttpServletRequest();
@@ -640,6 +585,25 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         } catch (Exception e) {
             return "127.0.0.1";
         }
+    }
+
+    // 🔹 Record OTP request and enforce 24h limit
+    private void recordOtpAttempt(String ip) {
+        long now = System.currentTimeMillis();
+        ipAccessLog.compute(ip, (key, timestamps) -> {
+            if (timestamps == null) timestamps = new ArrayList<>();
+            timestamps.removeIf(ts -> now - ts > TIME_WINDOW_MS);
+            timestamps.add(now);
+            return timestamps;
+        });
+    }
+
+    private boolean isIpBlocked(String ip) {
+        List<Long> timestamps = ipAccessLog.get(ip);
+        if (timestamps == null) return false;
+        long now = System.currentTimeMillis();
+        timestamps.removeIf(ts -> now - ts > TIME_WINDOW_MS);
+        return timestamps.size() >= MAX_ATTEMPTS_PER_DAY;
     }
 
 }
