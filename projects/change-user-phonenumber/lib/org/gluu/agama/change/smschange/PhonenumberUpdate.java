@@ -137,24 +137,25 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
         return result;
     }
-    // public void printAllHeaders() {
-    //     try {
-    //         FlowService flowService = CdiUtil.bean(FlowService.class);
-    //         HttpServletRequest request = flowService.getContext().getHttpRequest();
 
-    //         System.out.println("---- Incoming HTTP Headers ----");
-    //         java.util.Enumeration<String> names = request.getHeaderNames();
-    //         while (names.hasMoreElements()) {
-    //             String name = names.nextElement();
-    //             String value = request.getHeader(name);
-    //             System.out.println(name + " : " + value);
-    //         }
-    //         System.out.println("---- End of Headers ----");
+    public void printAllHeaders() {
+        try {
+            FlowService flowService = CdiUtil.bean(FlowService.class);
+            HttpServletRequest request = flowService.getContext().getHttpRequest();
 
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     }
-    // }
+            System.out.println("---- Incoming HTTP Headers ----");
+            java.util.Enumeration<String> names = request.getHeaderNames();
+            while (names.hasMoreElements()) {
+                String name = names.nextElement();
+                String value = request.getHeader(name);
+                System.out.println(name + " : " + value);
+            }
+            System.out.println("---- End of Headers ----");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     // 🔹 Record OTP request and enforce 24h limit
     private void recordOtpAttempt(String ip) {
@@ -602,60 +603,30 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return null; // or return "" if you prefer
     }
 
-    // public static String getClientIp() {
-    //     try {
-    //         // Get current HTTP request from Jans context
-    //         HttpServletRequest req = CdiUtil.bean(NetworkService.class).getHttpServletRequest();
-    //         if (req == null) {
-    //             return "127.0.0.1";
-    //         }
-
-    //         // Check standard forwarded header
-    //         String headerIp = req.getHeader("X-Forwarded-For");
-    //         if (headerIp != null && !headerIp.isEmpty()) {
-    //             // May contain multiple IPs, take the first one
-    //             return headerIp.split(",")[0].trim();
-    //         }
-
-    //         // Fallback to remote address
-    //         return req.getRemoteAddr();
-    //     } catch (Exception e) {
-    //         return "127.0.0.1";
-    //     }
-    // }
-
-
-    public String getClientIp() {
+    public static String getClientIp() {
         try {
-            FlowService flowService = CdiUtil.bean(FlowService.class);
-            HttpServletRequest request = flowService.getContext().getHttpRequest();
-
-            // 🔹 Dump all headers (for debugging)
-            System.out.println("---- Incoming HTTP Headers ----");
-            Enumeration<String> headerNames = request.getHeaderNames();
-            while (headerNames.hasMoreElements()) {
-                String name = headerNames.nextElement();
-                String value = request.getHeader(name);
-                System.out.println(name + " : " + value);
-            }
-            System.out.println("---- End of Headers ----");
-
-            // 🔹 Extract IP from common headers
-            String ip = request.getHeader("X-Forwarded-For");
-            if (ip == null || ip.isEmpty()) {
-                ip = request.getHeader("X-Real-IP");
-            }
-            if (ip == null || ip.isEmpty()) {
-                ip = request.getRemoteAddr();
+            // Get current HTTP request from Jans context
+            HttpServletRequest req = CdiUtil.bean(NetworkService.class).getHttpServletRequest();
+            if (req == null) {
+                return "127.0.0.1";
             }
 
-            System.out.println("📍 Extracted Client IP: " + ip);
-            return ip;
+            // Check standard forwarded header
+            String headerIp = req.getHeader("X-Forwarded-For");
+            if (headerIp != null && !headerIp.isEmpty()) {
+                // May contain multiple IPs, take the first one
+                return headerIp.split(",")[0].trim();
+            }
+
+            // Fallback to remote address
+            return req.getRemoteAddr();
         } catch (Exception e) {
-            System.out.println("Error getting client IP: " + e.getMessage());
-            e.printStackTrace();
             return "127.0.0.1";
         }
     }
+
+
+    
+   
 
 }
