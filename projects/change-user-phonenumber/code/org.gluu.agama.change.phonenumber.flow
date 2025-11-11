@@ -9,6 +9,7 @@ uiFeedback.errorMessage = ""
 Repeat 6 times max
      //  Retrieve user profile  from UI
      searchUserInput = RRF "searchUser.ftlh" uiFeedback
+     Log "@ " __________
      // When searchUserForm is submitted
      When searchUserInput.formType is "searchUserForm"
           // Validate access token first
@@ -106,5 +107,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_zxfhb = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_zxfhb
+it_ribvs = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_ribvs
