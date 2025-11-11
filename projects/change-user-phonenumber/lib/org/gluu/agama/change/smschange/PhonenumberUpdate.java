@@ -138,7 +138,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return result;
     }
 
-    public void printAllHeaders() {
+    public static void printAllHeaders() {
         try {
             FlowService flowService = CdiUtil.bean(FlowService.class);
             HttpServletRequest request = flowService.getContext().getHttpRequest();
