@@ -139,7 +139,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     }
 
     public static void printAllHeaders() {
-        private static final Logger logger = LoggerFactory.getLogger(PhonenumberUpdate.class);
+        
         try {
             HttpServletRequest request = CdiUtil.bean(NetworkService.class).getHttpServletRequest();
 
