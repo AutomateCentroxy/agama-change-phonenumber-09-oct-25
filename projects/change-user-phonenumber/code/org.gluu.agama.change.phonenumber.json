@@ -2368,7 +2368,7 @@
 				},
 				"previousNodeId": "callNode-1c62bd9a-160d-4b41-87f9-56125ddc446e",
 				"agamaData": {
-					"logMessage": "\"Client IP captured+++++++\" clientIp printAllHeaderss",
+					"logMessage": "\"Client IP captured+++++++\" getclientIp",
 					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
@@ -2383,7 +2383,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -2462,7 +2462,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
@@ -2481,7 +2481,7 @@
 				"previousNodeId": "rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e",
 				"agamaData": {
 					"javaClassName": "org.gluu.agama.change.smschange.PhonenumberUpdate",
-					"javaMethodName": "getClientIp",
+					"javaMethodName": "ClientIp",
 					"javaVariableName": "",
 					"exceptionVariableField": "",
 					"callType": "Call static method",
@@ -2493,7 +2493,7 @@
 					"displayName": "Client IP",
 					"hasComment": true,
 					"comment": "",
-					"asssignedVariableName": "clientIp"
+					"asssignedVariableName": "getclientIp"
 				}
 			},
 			"measured": {
@@ -3756,8 +3756,8 @@
 		}
 	],
 	"viewport": {
-		"x": 372.33769057718,
-		"y": -3.7557772547629042,
+		"x": 157.33769057717996,
+		"y": -4.755777254762904,
 		"zoom": 0.7412335049014176
 	}
 }
