@@ -2366,7 +2366,7 @@
 					"x": 983,
 					"y": 317
 				},
-				"previousNodeId": "assignmentNode-e5cf20b8-8ca0-4430-841b-6cf40f8c3bb8",
+				"previousNodeId": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
 				"agamaData": {
 					"logMessage": "\"Client IP captured+++++++\" clientIp",
 					"logLevel": "info",
@@ -2380,8 +2380,8 @@
 				}
 			},
 			"measured": {
-				"width": 168,
-				"height": 120
+				"width": 170,
+				"height": 124
 			},
 			"selected": true,
 			"dragging": false
@@ -3658,11 +3658,29 @@
 			},
 			"labelShowBg": true,
 			"sourceHandle": "source_rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e"
+		},
+		{
+			"source": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
+			"sourceHandle": "source_callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
+			"target": "logNode-02b81e72-88b4-4ffe-b41a-043ac2487d46",
+			"targetHandle": "target_logNode-02b81e72-88b4-4ffe-b41a-043ac2487d46",
+			"label": "",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"id": "xy-edge__callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7source_callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7-logNode-02b81e72-88b4-4ffe-b41a-043ac2487d46target_logNode-02b81e72-88b4-4ffe-b41a-043ac2487d46"
 		}
 	],
 	"viewport": {
-		"x": 102.2300728459436,
-		"y": 3.271112175921303,
-		"zoom": 0.6381643844144765
+		"x": 109.25015986284393,
+		"y": 155.32980688722657,
+		"zoom": 0.5494271087884399
 	}
 }
