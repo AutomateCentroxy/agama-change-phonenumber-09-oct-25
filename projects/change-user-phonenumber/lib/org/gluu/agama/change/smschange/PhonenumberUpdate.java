@@ -37,7 +37,7 @@ import io.jans.as.server.model.common.AbstractToken;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
-import io.jans.as.server.service.net.NetworkService;
+import io.jans.service.net.NetworkService;
 import jakarta.servlet.http.HttpServletRequest;
 
 
