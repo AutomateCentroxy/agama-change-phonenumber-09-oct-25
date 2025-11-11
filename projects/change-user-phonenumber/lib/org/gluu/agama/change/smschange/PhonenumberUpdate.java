@@ -1,4 +1,4 @@
-//working copy
+
 package org.gluu.agama.change.smschange;
 
 import io.jans.agama.engine.service.FlowService;
