@@ -2447,8 +2447,8 @@
 				},
 				"previousNodeId": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
 				"agamaData": {
-					"logMessage": "",
-					"logLevel": "",
+					"logMessage": "\"IP+++++++++++++++++\" getclientIp",
+					"logLevel": "info",
 					"nodeIcon": "octicon:log-16",
 					"nodeColor": "",
 					"titleColor": "",
