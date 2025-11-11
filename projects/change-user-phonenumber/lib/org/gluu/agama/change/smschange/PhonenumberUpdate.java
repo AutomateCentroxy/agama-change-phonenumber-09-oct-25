@@ -138,39 +138,41 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return result;
     }
 
-    public static void printAllHeaders() {
-        
-        try {
-            HttpServletRequest request = CdiUtil.bean(NetworkService.class).getHttpServletRequest();
+    public static Map<String, String> printAllHeaders() {
+    Map<String, String> headersMap = new LinkedHashMap<>();
+    try {
+        HttpServletRequest request = CdiUtil.getContextBean(HttpServletRequest.class);
+        if (request == null) {
+            logger.warn("HttpServletRequest is null — cannot print headers at this stage.");
+            return headersMap;
+        }
 
-            if (request == null) {
-                logger.warn("HttpServletRequest is null — headers not available at this point.");
-            return;
-            }
+        logger.info("---- Incoming HTTP Headers ----");
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames != null && headerNames.hasMoreElements()) {
+            String headerName = headerNames.nextElement();
+            String headerValue = request.getHeader(headerName);
+            headersMap.put(headerName, headerValue);
+            logger.info("{}: {}", headerName, headerValue);
+        }
+        logger.info("---- End of Headers ----");
 
-            logger.info("---- Incoming HTTP Headers ----");
-            Enumeration<String> names = request.getHeaderNames();
-            while (names.hasMoreElements()) {
-                String name = names.nextElement();
-                String value = request.getHeader(name);
-                logger.info("{} : {}", name, value);
-            }
-            logger.info("---- End of Headers ----");
+        logger.info("---- Request Parameters ----");
+        Enumeration<String> paramNames = request.getParameterNames();
+        while (paramNames != null && paramNames.hasMoreElements()) {
+            String paramName = paramNames.nextElement();
+            String paramValue = request.getParameter(paramName);
+            headersMap.put(paramName, paramValue);
+            logger.info("{} = {}", paramName, paramValue);
+        }
+        logger.info("---- End of Parameters ----");
 
-            // (optional) Log form parameters too — helpful for debugging Postman flow
-            logger.info("---- Request Parameters ----");
-            Enumeration<String> params = request.getParameterNames();
-            while (params.hasMoreElements()) {
-                String param = params.nextElement();
-                logger.info("{} = {}", param, request.getParameter(param));
-            }
-            logger.info("---- End of Parameters ----");
-
-
-            } catch (Exception e) {
-                logger.error("Error printing headers", e);
-            }
+    } catch (Exception e) {
+        logger.error("Error dumping HTTP headers", e);
     }
+
+    return headersMap;
+}
 
     // 🔹 Record OTP request and enforce 24h limit
     private void recordOtpAttempt(String ip) {
