@@ -227,8 +227,8 @@
 			"id": "whenNode-d12d2612-54d0-480e-aeb0-65555cc8d788",
 			"type": "whenNode",
 			"position": {
-				"x": 1000.6917958781457,
-				"y": 375.0843068941765
+				"x": 714.6820585981295,
+				"y": 366.98969168813835
 			},
 			"data": {
 				"id": "whenNode-d12d2612-54d0-480e-aeb0-65555cc8d788",
@@ -270,8 +270,8 @@
 			"id": "assignmentNode-ea871a61-db49-457d-bc37-c8c586d36320",
 			"type": "assignmentNode",
 			"position": {
-				"x": 1280,
-				"y": 538
+				"x": 1080.3328249177246,
+				"y": 547.4437177403779
 			},
 			"data": {
 				"id": "assignmentNode-ea871a61-db49-457d-bc37-c8c586d36320",
@@ -288,6 +288,11 @@
 							"variableTypeCheck": true,
 							"assignmentExpression": "searchUserInput.access_token",
 							"assignedVariableName": "accessToken"
+						},
+						{
+							"variableTypeCheck": true,
+							"assignmentExpression": "searchUserInput.client_ip",
+							"assignedVariableName": "clientIp"
 						}
 					],
 					"nodeIcon": "material-symbols:equal",
@@ -296,21 +301,22 @@
 					"descColor": "",
 					"displayName": "",
 					"hasComment": true,
-					"comment": "Validate access token first"
+					"comment": "Fetched the client IP and Validate access token first"
 				}
 			},
 			"measured": {
 				"width": 170,
 				"height": 124
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "logNode-73f600f3-3592-4826-ab5f-550e479501e2",
 			"type": "logNode",
 			"position": {
-				"x": 1530,
-				"y": 538
+				"x": 1378.9005161539537,
+				"y": 550.1419228090572
 			},
 			"data": {
 				"id": "logNode-73f600f3-3592-4826-ab5f-550e479501e2",
@@ -336,14 +342,15 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "callNode-eadc9130-e8d4-434d-8b34-52b537dd0952",
 			"type": "callNode",
 			"position": {
-				"x": 1780,
-				"y": 538
+				"x": 1674.7700023215034,
+				"y": 546.0946152060382
 			},
 			"data": {
 				"id": "callNode-eadc9130-e8d4-434d-8b34-52b537dd0952",
@@ -376,14 +383,15 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": false
+			"selected": false,
+			"dragging": false
 		},
 		{
 			"id": "callNode-748757df-1bc9-406f-8439-8fac7d191c3b",
 			"type": "callNode",
 			"position": {
-				"x": 2030,
-				"y": 538
+				"x": 1953.1011555426373,
+				"y": 544.7455126716984
 			},
 			"data": {
 				"id": "callNode-748757df-1bc9-406f-8439-8fac7d191c3b",
@@ -416,7 +424,8 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": false
+			"selected": true,
+			"dragging": false
 		},
 		{
 			"id": "whenNode-6df494d2-9f76-4828-95c1-40d8f561ab41",
@@ -2396,8 +2405,8 @@
 			"id": "logNode-d925dc46-9cab-47fd-b578-3a88b4472957",
 			"type": "logNode",
 			"position": {
-				"x": 553.9292268183003,
-				"y": 320.40692055561306
+				"x": 439.25551139942587,
+				"y": 316.359612952594
 			},
 			"data": {
 				"id": "logNode-d925dc46-9cab-47fd-b578-3a88b4472957",
@@ -2423,7 +2432,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		}
 	],
@@ -3621,8 +3630,8 @@
 		}
 	],
 	"viewport": {
-		"x": 259.19490526953217,
-		"y": 162.82602701348554,
-		"zoom": 0.6381643844144765
+		"x": -407.69056171039256,
+		"y": -96.80926885923327,
+		"zoom": 0.7412335049014176
 	}
 }
