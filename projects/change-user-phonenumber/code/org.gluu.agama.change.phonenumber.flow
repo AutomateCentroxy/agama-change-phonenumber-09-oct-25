@@ -44,7 +44,7 @@ Repeat 6 times max
                          phone = phoneInput.phoneNumber
                          // "Check phone number for user +++++++:" phone
                          Log "@info Check phone number for user +++++++:" phone
-                         UniqueNumber = Call PhonenumberUpdateService isPhoneUnique username phone
+                         UniqueNumber = Call PhonenumberUpdateService isPhoneUnique username phone clientIp
                          When UniqueNumber is true
                               // sent sms otp
                               smsOtpSend = Call PhonenumberUpdateService sendOTPCode username phone
@@ -108,5 +108,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_qqezx = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_qqezx
+it_vqiec = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_vqiec
