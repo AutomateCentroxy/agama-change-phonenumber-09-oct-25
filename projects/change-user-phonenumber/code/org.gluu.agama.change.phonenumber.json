@@ -897,8 +897,8 @@
 			"id": "logNode-de6ee282-f3d6-43ab-894e-49aa0557142a",
 			"type": "logNode",
 			"position": {
-				"x": 4864,
-				"y": -388
+				"x": 4977.645292860736,
+				"y": -138.3247353817178
 			},
 			"data": {
 				"id": "logNode-de6ee282-f3d6-43ab-894e-49aa0557142a",
@@ -925,7 +925,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -1013,7 +1013,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-ea2bb0c5-5e4f-41cd-95f8-27a2404677ac",
@@ -3631,8 +3631,8 @@
 		}
 	],
 	"viewport": {
-		"x": -3572.163291895992,
-		"y": -20.184284523935048,
-		"zoom": 0.7834971869493407
+		"x": -2179.3274768617903,
+		"y": 175.15059559910776,
+		"zoom": 0.5
 	}
 }
