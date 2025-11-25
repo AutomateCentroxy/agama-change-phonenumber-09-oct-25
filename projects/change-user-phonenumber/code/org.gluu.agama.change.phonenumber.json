@@ -2393,50 +2393,11 @@
 			"dragging": false
 		},
 		{
-			"id": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
-			"type": "callNode",
-			"position": {
-				"x": 390.11391738272783,
-				"y": 321.97391492951175
-			},
-			"data": {
-				"id": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
-				"type": "callNode",
-				"position": {
-					"x": 437.7357753916824,
-					"y": 319.6508974656603
-				},
-				"previousNodeId": "rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e",
-				"agamaData": {
-					"javaClassName": "org.gluu.agama.change.smschange.PhonenumberUpdate",
-					"javaMethodName": "ClientIp",
-					"javaVariableName": "",
-					"exceptionVariableField": "",
-					"callType": "Call static method",
-					"arguments": [],
-					"nodeIcon": "material-symbols:code",
-					"nodeColor": "",
-					"titleColor": "",
-					"descColor": "",
-					"displayName": "Client IP",
-					"hasComment": true,
-					"comment": "",
-					"asssignedVariableName": "getclientIp"
-				}
-			},
-			"measured": {
-				"width": 170,
-				"height": 124
-			},
-			"selected": false,
-			"dragging": false
-		},
-		{
 			"id": "logNode-d925dc46-9cab-47fd-b578-3a88b4472957",
 			"type": "logNode",
 			"position": {
-				"x": 640.1139173827278,
-				"y": 321.97391492951175
+				"x": 553.9292268183003,
+				"y": 320.40692055561306
 			},
 			"data": {
 				"id": "logNode-d925dc46-9cab-47fd-b578-3a88b4472957",
@@ -2445,7 +2406,7 @@
 					"x": 640.1139173827278,
 					"y": 321.97391492951175
 				},
-				"previousNodeId": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
+				"previousNodeId": "rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e",
 				"agamaData": {
 					"logMessage": "\"IP+++++++++++++++++\" getclientIp",
 					"logLevel": "info",
@@ -2462,7 +2423,8 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": true
+			"selected": true,
+			"dragging": false
 		}
 	],
 	"edges": [
@@ -3622,44 +3584,6 @@
 			"sourceHandle": "source_whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67_success"
 		},
 		{
-			"id": "rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e-callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
-			"type": "default",
-			"source": "rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e",
-			"target": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
-			"labelBgPadding": [
-				8,
-				4
-			],
-			"labelBgBorderRadius": 4,
-			"label": "",
-			"labelBgStyle": {
-				"fill": "#009688",
-				"color": "#ffffff",
-				"fillOpacity": 0.7
-			},
-			"labelShowBg": true,
-			"sourceHandle": "source_rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e"
-		},
-		{
-			"id": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7-logNode-d925dc46-9cab-47fd-b578-3a88b4472957",
-			"type": "default",
-			"source": "callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7",
-			"target": "logNode-d925dc46-9cab-47fd-b578-3a88b4472957",
-			"labelBgPadding": [
-				8,
-				4
-			],
-			"labelBgBorderRadius": 4,
-			"label": "",
-			"labelBgStyle": {
-				"fill": "#009688",
-				"color": "#ffffff",
-				"fillOpacity": 0.7
-			},
-			"labelShowBg": true,
-			"sourceHandle": "source_callNode-8b1a1e76-6e87-40db-8707-9c3dcd86c6f7"
-		},
-		{
 			"source": "logNode-d925dc46-9cab-47fd-b578-3a88b4472957",
 			"sourceHandle": "source_logNode-d925dc46-9cab-47fd-b578-3a88b4472957",
 			"target": "whenNode-d12d2612-54d0-480e-aeb0-65555cc8d788",
@@ -3676,11 +3600,29 @@
 				"fillOpacity": 0.7
 			},
 			"id": "xy-edge__logNode-d925dc46-9cab-47fd-b578-3a88b4472957source_logNode-d925dc46-9cab-47fd-b578-3a88b4472957-whenNode-d12d2612-54d0-480e-aeb0-65555cc8d788target_whenNode-d12d2612-54d0-480e-aeb0-65555cc8d788"
+		},
+		{
+			"source": "rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e",
+			"sourceHandle": "source_rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e",
+			"target": "logNode-d925dc46-9cab-47fd-b578-3a88b4472957",
+			"targetHandle": "target_logNode-d925dc46-9cab-47fd-b578-3a88b4472957",
+			"label": "",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"id": "xy-edge__rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5esource_rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e-logNode-d925dc46-9cab-47fd-b578-3a88b4472957target_logNode-d925dc46-9cab-47fd-b578-3a88b4472957"
 		}
 	],
 	"viewport": {
-		"x": 112.9695922495822,
-		"y": 31.109606977465774,
+		"x": 259.19490526953217,
+		"y": 162.82602701348554,
 		"zoom": 0.6381643844144765
 	}
 }
