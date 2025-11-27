@@ -2421,7 +2421,7 @@
 					"javaMethodName": "setClientIp",
 					"javaVariableName": "PhonenumberUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call static method",
+					"callType": "Call method on instance",
 					"arguments": [
 						"clientIp"
 					],
@@ -3638,8 +3638,8 @@
 		}
 	],
 	"viewport": {
-		"x": -10656.29620663563,
-		"y": -573.0566441346888,
-		"zoom": 2
+		"x": -4037.1883885628067,
+		"y": -23.966797260763087,
+		"zoom": 0.860949188338904
 	}
 }
