@@ -1,4 +1,3 @@
-//working copy
 package org.gluu.agama.change.smschange;
 
 import io.jans.agama.engine.service.FlowService;
@@ -598,7 +597,8 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             timestamps.add(now);
             return timestamps;
         });
-        logger.info("OTP attempt recorded for IP {} → count: {}", clientIp, ipAccessLog.get(ip).size());
+        logger.info("OTP attempt recorded for IP {} → count: {}", clientIp, ipAccessLog.get(clientIp).size());
+        return clientIp;
     }
     
     private boolean isIpBlocked(String clientIp) {
