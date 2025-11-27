@@ -24,6 +24,8 @@ public abstract class UserphoneUpdate {
 
     public abstract String getUserInumByUsername(String username);
 
+    public abstract String setClientIp(String clientIp);
+
     public abstract boolean sendOTPCode(String username, String phone);
 
 
