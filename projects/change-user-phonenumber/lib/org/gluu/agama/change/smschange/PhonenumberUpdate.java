@@ -577,6 +577,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     // ============================
 
     // Store the latest client IP used for OTP request (default 127.0.0.1)
+    
     private static String currentClientIp = "127.0.0.1";
 
     public String setClientIp(String clientIp) {
