@@ -51,7 +51,7 @@ Repeat 6 times max
                               // The OTP Code has been send to user.
                               Log "@info OTP generated and send to: " phone
                               // Trigger OTP subflow
-                              otpFeedBack = Trigger org.gluu.agama.change.smsotp PhonenumberUpdateService username phone clientIp
+                              otpFeedBack = Trigger org.gluu.agama.change.smsotp PhonenumberUpdateService username phone
                               // OTP Code validation is completed.
                               Log "@info OTP Code validation completed with status: " otpFeedBack
                               // Check if OTP validation vas okay
@@ -108,5 +108,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_wyoqx = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_wyoqx
+it_vruys = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_vruys
