@@ -342,7 +342,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -2417,11 +2417,11 @@
 				"previousNodeId": "whenNode-d4dfb8e2-af03-4ebf-a597-57eef39b387e",
 				"branching": "success",
 				"agamaData": {
-					"javaClassName": "",
+					"javaClassName": "org.gluu.agama.change.smschange.PhonenumberUpdate",
 					"javaMethodName": "setClientIp",
 					"javaVariableName": "PhonenumberUpdateService",
 					"exceptionVariableField": "",
-					"callType": "Call method on instance",
+					"callType": "Call static method",
 					"arguments": [
 						"clientIp"
 					],
@@ -2439,7 +2439,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		}
 	],
@@ -3638,8 +3638,8 @@
 		}
 	],
 	"viewport": {
-		"x": -694.4170354420801,
-		"y": -118.37182404131738,
-		"zoom": 1.0570180405613803
+		"x": -10656.29620663563,
+		"y": -573.0566441346888,
+		"zoom": 2
 	}
 }
