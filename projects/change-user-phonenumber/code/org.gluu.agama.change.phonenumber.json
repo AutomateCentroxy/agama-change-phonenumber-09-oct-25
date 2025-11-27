@@ -996,8 +996,7 @@
 					"callType": "Call method on instance",
 					"arguments": [
 						"username",
-						"phone",
-						"clientIp"
+						"phone"
 					],
 					"nodeIcon": "material-symbols:code",
 					"nodeColor": "",
@@ -1013,7 +1012,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": false
+			"selected": true
 		},
 		{
 			"id": "logNode-ea2bb0c5-5e4f-41cd-95f8-27a2404677ac",
@@ -1086,7 +1085,7 @@
 				"width": 170,
 				"height": 123
 			},
-			"selected": true
+			"selected": false
 		},
 		{
 			"id": "logNode-975b0d35-6992-4960-ab83-ec85fcd4ceb1",
@@ -3631,8 +3630,8 @@
 		}
 	],
 	"viewport": {
-		"x": -2986.6085517918423,
-		"y": 579.3741771062091,
-		"zoom": 0.6542890357275045
+		"x": -4248.183611670987,
+		"y": 118.6003346270885,
+		"zoom": 0.9862327044933579
 	}
 }
