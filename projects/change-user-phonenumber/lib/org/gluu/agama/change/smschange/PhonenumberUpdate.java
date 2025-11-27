@@ -489,15 +489,16 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     public boolean sendOTPCode(String username, String phone) {
 
         String clientIp = currentClientIp; // ✅ Read stored IP instead of parameter
-            logger.info("Using IP {} for OTP request of user {}", clientIp, username);
+        logger.info("Using IP {} for OTP request of user {}", clientIp, username);
 
-            // ✅ Enforce resend rate limit
-            if (isIpBlocked(clientIp)) {
-                logger.info("IP {} is blocked for 24h due to excessive OTP requests", clientIp);
-                return false;
+        // ✅ Enforce resend rate limit
+        if (isIpBlocked(clientIp)) {
+            logger.info("IP {} is blocked for 24h due to excessive OTP requests", clientIp);
+            return false;
             }
 
             recordOtpAttempt(clientIp); // ✅ Record attempt with stored IP
+            logger.info("✅ OTP attempt recorded for IP {} (Total: {})", clientIp, ipAccessLog.get(clientIp).size());
         try {
 
             // Get user preferred language from profile
@@ -590,7 +591,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return currentClientIp;
     }
 
-    private String recordOtpAttempt(String clientIp) {
+    private void recordOtpAttempt(String clientIp) {
         long now = System.currentTimeMillis();
         ipAccessLog.compute(clientIp, (key, timestamps) -> {
             if (timestamps == null) timestamps = new ArrayList<>();
@@ -598,8 +599,8 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             timestamps.add(now);
             return timestamps;
         });
-        logger.info("OTP attempt recorded for IP {} → count: {}", clientIp, ipAccessLog.get(clientIp).size());
-        return clientIp;
+        // ✅ FIXED: Was using 'ip' instead of 'clientIp'
+        logger.info("📊 OTP attempt recorded for IP {} → count: {}", clientIp, ipAccessLog.get(clientIp).size());
     }
     
     private boolean isIpBlocked(String clientIp) {
@@ -611,7 +612,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
         boolean blocked = timestamps.size() >= MAX_ATTEMPTS_PER_DAY;
         if (blocked) {
-            logger.warn("IP {} BLOCKED for 24h — Attempts: {}", clientIp, timestamps.size());
+            logger.warn(" IP {} BLOCKED for 24h — Attempts: {}/{}", clientIp, timestamps.size());
         }
         return blocked;
     }
