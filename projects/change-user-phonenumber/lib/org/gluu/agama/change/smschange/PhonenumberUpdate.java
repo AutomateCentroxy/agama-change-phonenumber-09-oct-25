@@ -1,3 +1,4 @@
+//working copy
 package org.gluu.agama.change.smschange;
 
 import io.jans.agama.engine.service.FlowService;
@@ -486,9 +487,8 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
 
     public boolean sendOTPCode(String username, String phone) {
-        try {
 
-            String clientIp = currentClientIp; // ✅ Read stored IP instead of parameter
+        String clientIp = currentClientIp; // ✅ Read stored IP instead of parameter
             logger.info("Using IP {} for OTP request of user {}", clientIp, username);
 
             // ✅ Enforce resend rate limit
@@ -498,6 +498,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             }
 
             recordOtpAttempt(clientIp); // ✅ Record attempt with stored IP
+        try {
 
             // Get user preferred language from profile
             User user = getUserService().getUser(username);
