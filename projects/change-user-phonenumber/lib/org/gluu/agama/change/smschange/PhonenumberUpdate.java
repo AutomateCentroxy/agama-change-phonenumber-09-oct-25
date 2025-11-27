@@ -578,7 +578,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
     // Store the latest client IP used for OTP request (default 127.0.0.1)
 
-    public String setClientIp(String clientIp) {
+    public static String setClientIp(String clientIp) {
         if (clientIp == null || clientIp.trim().isEmpty()) {
             currentClientIp = "127.0.0.1";
             logger.warn("No Client IP received — defaulting to {}", currentClientIp);
@@ -589,7 +589,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return currentClientIp;
     }
 
-    private void recordOtpAttempt(String ip) {
+    private String recordOtpAttempt(String ip) {
         long now = System.currentTimeMillis();
         ipAccessLog.compute(ip, (key, timestamps) -> {
             if (timestamps == null) timestamps = new ArrayList<>();
@@ -598,7 +598,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             return timestamps;
         });
     }
-
+    
     private boolean isIpBlocked(String ip) {
         List<Long> timestamps = ipAccessLog.get(ip);
         if (timestamps == null) return false;
