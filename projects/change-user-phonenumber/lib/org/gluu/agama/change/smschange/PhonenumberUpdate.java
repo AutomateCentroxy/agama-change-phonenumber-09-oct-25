@@ -1,3 +1,4 @@
+//working copy
 package org.gluu.agama.change.smschange;
 
 import io.jans.agama.engine.service.FlowService;
@@ -493,7 +494,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
             // ✅ Enforce resend rate limit
             if (isIpBlocked(clientIp)) {
-                logger.warn("IP {} is blocked for 24h due to excessive OTP requests", clientIp);
+                logger.info("IP {} is blocked for 24h due to excessive OTP requests", clientIp);
                 return false;
             }
 
@@ -589,18 +590,19 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return currentClientIp;
     }
 
-    private String recordOtpAttempt(String ip) {
+    private String recordOtpAttempt(String clientIp) {
         long now = System.currentTimeMillis();
-        ipAccessLog.compute(ip, (key, timestamps) -> {
+        ipAccessLog.compute(clientIp, (key, timestamps) -> {
             if (timestamps == null) timestamps = new ArrayList<>();
             timestamps.removeIf(ts -> now - ts > TIME_WINDOW_MS);
             timestamps.add(now);
             return timestamps;
         });
+        logger.info("OTP attempt recorded for IP {} → count: {}", clientIp, ipAccessLog.get(ip).size());
     }
     
-    private boolean isIpBlocked(String ip) {
-        List<Long> timestamps = ipAccessLog.get(ip);
+    private boolean isIpBlocked(String clientIp) {
+        List<Long> timestamps = ipAccessLog.get(clientIp);
         if (timestamps == null) return false;
 
         long now = System.currentTimeMillis();
@@ -608,7 +610,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
         boolean blocked = timestamps.size() >= MAX_ATTEMPTS_PER_DAY;
         if (blocked) {
-            logger.warn("IP {} BLOCKED for 24h - Attempts: {}", ip, timestamps.size());
+            logger.warn("IP {} BLOCKED for 24h — Attempts: {}", clientIp, timestamps.size());
         }
         return blocked;
     }
