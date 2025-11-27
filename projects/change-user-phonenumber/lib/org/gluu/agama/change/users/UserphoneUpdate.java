@@ -26,7 +26,6 @@ public abstract class UserphoneUpdate {
 
     public abstract boolean sendOTPCode(String username, String phone);
 
-    public abstract String setClientIp(String clientIp);
 
     public abstract boolean validateOTPCode(String phone, String code);
 
