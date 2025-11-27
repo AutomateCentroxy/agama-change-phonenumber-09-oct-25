@@ -62,8 +62,10 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     private static final String USER_STATUS = "jansStatus";
     private static final String EXT_UID_PREFIX = "github:";
     private static final String LANG = "lang";
+
     private Map<String, String> flowConfig;
     private static final SecureRandom RAND = new SecureRandom();
+
     // Track OTP attempts by IP for 24-hour rate limiting
     private static final Map<String, List<Long>> ipAccessLog = new HashMap<>();
     private static final int MAX_ATTEMPTS_PER_DAY = 4; // 1 + 3 resends allowed
@@ -88,7 +90,9 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return CdiUtil.bean(UserService.class);
     }
 
-    // validate token starts here
+    // ============================
+    // TOKEN VALIDATION
+    // ============================
     public static Map<String, Object> validateBearerToken(String access_token) {
         Map<String, Object> result = new HashMap<>();
 
@@ -466,6 +470,10 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         }
     }
 
+    // ============================
+    // OTP GENERATOR
+    // ============================
+
     private String generateSMSOtpCode(int codeLength) {
         String numbers = "0123456789";
         SecureRandom random = new SecureRandom();
@@ -477,20 +485,19 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     }
 
 
-
     public boolean sendOTPCode(String username, String phone) {
         try {
 
-            // Get IP (from header or fallback)
-            String clientIp = getClientIp();
-            logger.info("Detected IP {} for user {}", clientIp, username);
+            String clientIp = currentClientIp; // ✅ Read stored IP instead of parameter
+            logger.info("Using IP {} for OTP request of user {}", clientIp, username);
 
-            // Enforce resend rate limit
+            // ✅ Enforce resend rate limit
             if (isIpBlocked(clientIp)) {
-                logger.warn(" IP {} is blocked for 24h due to excessive OTP requests", clientIp);
+                logger.warn("IP {} is blocked for 24h due to excessive OTP requests", clientIp);
                 return false;
             }
-            recordOtpAttempt(clientIp);
+
+            recordOtpAttempt(clientIp); // ✅ Record attempt with stored IP
 
             // Get user preferred language from profile
             User user = getUserService().getUser(username);
@@ -565,29 +572,24 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return null; // or return "" if you prefer
     }
 
-    public static String ClientIp() {
-        try {
-            // Get current HTTP request from Jans context
-            HttpServletRequest req = CdiUtil.bean(NetworkService.class).getHttpServletRequest();
-            if (req == null) {
-                return "127.0.0.1";
-            }
+    // ============================
+    // IP RATE LIMITING
+    // ============================
 
-            // Check standard forwarded header
-            String headerIp = req.getHeader("X-Forwarded-For");
-            if (headerIp != null && !headerIp.isEmpty()) {
-                // May contain multiple IPs, take the first one
-                return headerIp.split(",")[0].trim();
-            }
+    // Store the latest client IP used for OTP request (default 127.0.0.1)
+    private static String currentClientIp = "127.0.0.1";
 
-            // Fallback to remote address
-            return req.getRemoteAddr();
-        } catch (Exception e) {
-            return "127.0.0.1";
+    public String setClientIp(String clientIp) {
+        if (clientIp == null || clientIp.trim().isEmpty()) {
+            currentClientIp = "127.0.0.1";
+            logger.warn("No Client IP received — defaulting to {}", currentClientIp);
+        } else {
+            currentClientIp = clientIp.trim();
+            logger.info("Client IP set to {}", currentClientIp);
         }
+        return currentClientIp;
     }
 
-    // 🔹 Record OTP request and enforce 24h limit
     private void recordOtpAttempt(String ip) {
         long now = System.currentTimeMillis();
         ipAccessLog.compute(ip, (key, timestamps) -> {
@@ -601,9 +603,15 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     private boolean isIpBlocked(String ip) {
         List<Long> timestamps = ipAccessLog.get(ip);
         if (timestamps == null) return false;
+
         long now = System.currentTimeMillis();
         timestamps.removeIf(ts -> now - ts > TIME_WINDOW_MS);
-        return timestamps.size() >= MAX_ATTEMPTS_PER_DAY;
+
+        boolean blocked = timestamps.size() >= MAX_ATTEMPTS_PER_DAY;
+        if (blocked) {
+            logger.warn("IP {} BLOCKED for 24h - Attempts: {}", ip, timestamps.size());
+        }
+        return blocked;
     }
 
 }
