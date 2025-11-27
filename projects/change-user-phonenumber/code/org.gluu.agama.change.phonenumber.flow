@@ -9,14 +9,13 @@ uiFeedback.errorMessage = ""
 Repeat 6 times max
      //  Retrieve user profile  from UI
      searchUserInput = RRF "searchUser.ftlh" uiFeedback
-     Log "@info IP+++++++++++++++++" getclientIp
      // When searchUserForm is submitted
      When searchUserInput.formType is "searchUserForm"
           // Fetched the client IP and Validate access token first
           accessToken = searchUserInput.access_token
           clientIp = searchUserInput.client_ip
           // accessToken
-          Log "@info Validating access token: %" accessToken
+          Log "@info Validating access token: %" accessToken clientIp
           // Create an instance of Update service
           PhonenumberUpdateService = Call org.gluu.agama.change.users.UserphoneUpdate#getInstance conf
           // Validate the bearer token
@@ -109,5 +108,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_jamry = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_jamry
+it_fkjcg = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_fkjcg
