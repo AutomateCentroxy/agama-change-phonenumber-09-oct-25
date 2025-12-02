@@ -1,3 +1,4 @@
+//working copy
 package org.gluu.agama.change.smschange;
 
 import io.jans.agama.engine.service.FlowService;
@@ -27,7 +28,6 @@ import java.nio.charset.StandardCharsets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import io.jans.agama.engine.script.LogUtils;
 
 import io.jans.as.server.service.token.TokenService;
 import io.jans.as.server.model.common.AuthorizationGrant;
@@ -37,6 +37,11 @@ import io.jans.as.server.model.common.AbstractToken;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import io.jans.service.net.NetworkService;
+import jakarta.servlet.http.HttpServletRequest;
+
+
+
 
 public class PhonenumberUpdate extends UserphoneUpdate {
 
@@ -57,8 +62,15 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     private static final String USER_STATUS = "jansStatus";
     private static final String EXT_UID_PREFIX = "github:";
     private static final String LANG = "lang";
+
     private Map<String, String> flowConfig;
     private static final SecureRandom RAND = new SecureRandom();
+
+    // Track OTP attempts by IP for 24-hour rate limiting
+    private static final Map<String, List<Long>> ipAccessLog = new HashMap<>();
+    private static final int MAX_ATTEMPTS_PER_DAY = 4; // 1 + 3 resends allowed
+    private static final long TIME_WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
+    private static String currentClientIp = "127.0.0.1";
 
     private static final Map<String, String> otpStore = new HashMap<>();
 
@@ -79,7 +91,9 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return CdiUtil.bean(UserService.class);
     }
 
-    // validate token starts here
+    // ============================
+    // TOKEN VALIDATION
+    // ============================
     public static Map<String, Object> validateBearerToken(String access_token) {
         Map<String, Object> result = new HashMap<>();
 
@@ -457,6 +471,10 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         }
     }
 
+    // ============================
+    // OTP GENERATOR
+    // ============================
+
     private String generateSMSOtpCode(int codeLength) {
         String numbers = "0123456789";
         SecureRandom random = new SecureRandom();
@@ -467,8 +485,22 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return new String(otp);
     }
 
+
     public boolean sendOTPCode(String username, String phone) {
+
+        String clientIp = currentClientIp; // ✅ Read stored IP instead of parameter
+        logger.info("Using IP {} for OTP request of user {}", clientIp, username);
+
+        // ✅ Enforce resend rate limit
+        if (isIpBlocked(clientIp)) {
+            logger.info("IP {} is blocked for 24h due to excessive OTP requests", clientIp);
+            return false;
+            }
+
+            recordOtpAttempt(clientIp); // ✅ Record attempt with stored IP
+            logger.info("✅ OTP attempt recorded for IP {} (Total: {})", clientIp, ipAccessLog.get(clientIp).size());
         try {
+
             // Get user preferred language from profile
             User user = getUserService().getUser(username);
             String lang = null;
@@ -540,6 +572,49 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         }
 
         return null; // or return "" if you prefer
+    }
+
+    // ============================
+    // IP RATE LIMITING
+    // ============================
+
+    // Store the latest client IP used for OTP request (default 127.0.0.1)
+
+    public static String setClientIp(String clientIp) {
+        if (clientIp == null || clientIp.trim().isEmpty()) {
+            currentClientIp = "127.0.0.1";
+            logger.warn("No Client IP received — defaulting to {}", currentClientIp);
+        } else {
+            currentClientIp = clientIp.trim();
+            logger.info("Client IP set to {}", currentClientIp);
+        }
+        return currentClientIp;
+    }
+
+    private void recordOtpAttempt(String clientIp) {
+        long now = System.currentTimeMillis();
+        ipAccessLog.compute(clientIp, (key, timestamps) -> {
+            if (timestamps == null) timestamps = new ArrayList<>();
+            timestamps.removeIf(ts -> now - ts > TIME_WINDOW_MS);
+            timestamps.add(now);
+            return timestamps;
+        });
+        // ✅ FIXED: Was using 'ip' instead of 'clientIp'
+        logger.info("📊 OTP attempt recorded for IP {} → count: {}", clientIp, ipAccessLog.get(clientIp).size());
+    }
+    
+    private boolean isIpBlocked(String clientIp) {
+        List<Long> timestamps = ipAccessLog.get(clientIp);
+        if (timestamps == null) return false;
+
+        long now = System.currentTimeMillis();
+        timestamps.removeIf(ts -> now - ts > TIME_WINDOW_MS);
+
+        boolean blocked = timestamps.size() >= MAX_ATTEMPTS_PER_DAY;
+        if (blocked) {
+            logger.warn(" IP {} BLOCKED for 24h — Attempts: {}/{}", clientIp, timestamps.size());
+        }
+        return blocked;
     }
 
 }

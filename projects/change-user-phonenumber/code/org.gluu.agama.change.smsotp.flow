@@ -20,7 +20,7 @@ maxSMS = Repeat 20 times max
                // ExceededResendAttempts
                it_resend = {success: false, error: "ExceededResendAttempts"}
                Finish it_resend
-          resendCount = Call org.gluu.agama.login.CounterHelper#increment resendCount
+          resendCount = Call org.gluu.agama.change.CounterHelper#increment resendCount
           Log "@info Resend attempt number: " resendCount
           // Resend otp
           resendHasSucceed = Call PhonenumberUpdateService sendOTPCode username phone
@@ -41,7 +41,7 @@ maxSMS = Repeat 20 times max
           //  Add log entry with collected code in log file.
           Log "@info Information provided by the user is : " otpCreds.code phone
           // validationAttempts
-          validationAttempts = Call org.gluu.agama.login.CounterHelper#increment validationAttempts
+          validationAttempts = Call org.gluu.agama.change.CounterHelper#increment validationAttempts
           // Add log entry withvalidation result in log file.
           Log "@info Validation attempt number: " validationAttempts
           // Check validation

@@ -11,10 +11,11 @@ Repeat 6 times max
      searchUserInput = RRF "searchUser.ftlh" uiFeedback
      // When searchUserForm is submitted
      When searchUserInput.formType is "searchUserForm"
-          // Validate access token first
+          // Fetched the client IP and Validate access token first
           accessToken = searchUserInput.access_token
+          clientIp = searchUserInput.client_ip
           // accessToken
-          Log "@info Validating access token: %" accessToken
+          Log "@info Validating access token: %" accessToken clientIp
           // Create an instance of Update service
           PhonenumberUpdateService = Call org.gluu.agama.change.users.UserphoneUpdate#getInstance conf
           // Validate the bearer token
@@ -44,6 +45,7 @@ Repeat 6 times max
                          Log "@info Check phone number for user +++++++:" phone
                          UniqueNumber = Call PhonenumberUpdateService isPhoneUnique username phone
                          When UniqueNumber is true
+                              storedIp = Call org.gluu.agama.change.smschange.PhonenumberUpdate#setClientIp clientIp
                               // sent sms otp
                               smsOtpSend = Call PhonenumberUpdateService sendOTPCode username phone
                               // The OTP Code has been send to user.
@@ -88,6 +90,16 @@ Repeat 6 times max
                               Log "@info This phone is already used by another account. Please enter a different one."
                               uiFeedback.errorMessage = "This phone is already used by another account. Please enter a different one."
                               uiFeedback.infoMessage = "Please enter a new number"
+                              max = Repeat 4 times max
+                                   otpCred = RRF "smsOtp.ftlh" uiFeedback
+                                   //  Validate the OTP code provided by the user.
+                                   otpValidationResults = Call PhonenumberUpdateService validateOTPCode phone otpCred.code
+                                   When otpValidationResults is true
+                                        uiFeedback.infoMessage = "Invalid code provided."
+                                   Otherwise
+                                        uiFeedback.errorMessage = "Invalid code provided."
+                              it_ootpmax = { success: false, error: "ExceededTheNumberOfAttemptsAllowed" }
+                              Finish it_ootpmax
                     // "Phone loop completed"
                     Log "@info Phone loop completed"
                     // { success: false, error: "ExceededTheNumberOfAttemptsAllowed" }
@@ -96,5 +108,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_oeouo = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_oeouo
+it_zjlhy = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_zjlhy
