@@ -650,6 +650,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         });
         // ✅ FIXED: Was using 'ip' instead of 'clientIp'
         logger.info("📊 OTP attempt recorded for IP {} → count: {}", clientIp, ipAccessLog.get(clientIp).size());
+        LogUtils.log("|otp| OTP attempt recorded for IP {} → count: {}", clientIp, ipAccessLog.get(clientIp).size());
     }
     
     private boolean isIpBlocked(String clientIp) {
@@ -662,6 +663,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         boolean blocked = timestamps.size() >= MAX_ATTEMPTS_PER_DAY;
         if (blocked) {
             logger.warn(" IP {} BLOCKED for 24h — Attempts: {}/{}", clientIp, timestamps.size());
+            LogUtils.log("|otp| IP {} BLOCKED for 24h — Attempts: {}", clientIp, timestamps.size());
         }
         return blocked;
     }
