@@ -13,9 +13,8 @@ Repeat 6 times max
      When searchUserInput.formType is "searchUserForm"
           // Fetched the client IP and Validate access token first
           accessToken = searchUserInput.access_token
-          clientIp = searchUserInput.client_ip
           // accessToken
-          Log "@info Validating access token: %" accessToken clientIp
+          Log "@info Validating access token: %" accessToken
           // Create an instance of Update service
           PhonenumberUpdateService = Call org.gluu.agama.change.users.UserphoneUpdate#getInstance conf
           // Validate the bearer token
@@ -45,7 +44,6 @@ Repeat 6 times max
                          Log "@info Check phone number for user +++++++:" phone
                          UniqueNumber = Call PhonenumberUpdateService isPhoneUnique username phone
                          When UniqueNumber is true
-                              storedIp = Call org.gluu.agama.change.smschange.PhonenumberUpdate#setClientIp clientIp
                               // sent sms otp
                               smsOtpSend = Call PhonenumberUpdateService sendOTPCode username phone
                               // The OTP Code has been send to user.
@@ -108,5 +106,5 @@ Repeat 6 times max
 //  Maximum attempt reached
 Log "@info Maximum attempt reached"
 //  User Registration flow failed
-it_qeden = {success:false, error: "User update flow reached max attempts try later"}
-Finish it_qeden
+it_bkeku = {success:false, error: "User update flow reached max attempts try later"}
+Finish it_bkeku
