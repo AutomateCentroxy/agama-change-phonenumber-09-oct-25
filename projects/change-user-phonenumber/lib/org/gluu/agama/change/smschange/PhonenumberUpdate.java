@@ -11,7 +11,7 @@ import io.jans.util.StringHelper;
 import org.gluu.agama.change.users.UserphoneUpdate;
 import io.jans.agama.engine.script.LogUtils;
 import java.io.IOException;
-import io.jans.as.common.service.common.ConfigurationService;
+import io.jans.as.common.service.common.ConfigurationService; 
 import java.security.SecureRandom;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -22,10 +22,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.URI;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
+import java.net.URLEncoder;
+import com.fasterxml.jackson.databind.ObjectMapper; 
 import org.slf4j.LoggerFactory;
 
 import io.jans.as.server.service.token.TokenService;
@@ -37,10 +37,7 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import io.jans.service.net.NetworkService;
-import jakarta.servlet.http.HttpServletRequest;
-
-
-
+import jakarta.servlet.http.HttpServletRequest; 
 
 public class PhonenumberUpdate extends UserphoneUpdate {
 
@@ -61,15 +58,15 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     private static final String USER_STATUS = "jansStatus";
     private static final String EXT_UID_PREFIX = "github:";
     private static final String LANG = "lang";
-
     private Map<String, String> flowConfig;
     private static final SecureRandom RAND = new SecureRandom();
 
     // Track OTP attempts by IP for 24-hour rate limiting
+
     private static final Map<String, List<Long>> ipAccessLog = new HashMap<>();
     private static final int MAX_ATTEMPTS_PER_DAY = 4; // 1 + 3 resends allowed
     private static final long TIME_WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
-    // private static String currentClientIp = "127.0.0.1";
+    // private static String currentClientIp = "127.0.0.1"; 
 
     private static final Map<String, String> otpStore = new HashMap<>();
 
@@ -81,14 +78,16 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     public static synchronized PhonenumberUpdate getInstance(Map<String, String> config) {
         if (INSTANCE == null) {
             INSTANCE = new PhonenumberUpdate();
-            INSTANCE.flowConfig = config; // if you want to use it in sendOTPCode
+            INSTANCE.flowConfig = config;
         }
+        // Always update flowConfig to ensure latest config is used
         return INSTANCE;
     }
 
     private UserService getUserService() {
         return CdiUtil.bean(UserService.class);
     }
+
 
     private void logIncomingHeaders() {
         try {
@@ -136,9 +135,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
 
 
-    // ============================
-    // TOKEN VALIDATION
-    // ============================
+    // validate token starts here
     public static Map<String, Object> validateBearerToken(String access_token) {
         Map<String, Object> result = new HashMap<>();
 
@@ -191,7 +188,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     // validate token ends here
 
     public boolean passwordPolicyMatch(String userPassword) {
-        String regex = '''^(?=.*[!@#$^&*])[A-Za-z0-9!@#$^&*]{6,}$'''
+        String regex = '''^(?=.*[!@#$^&*])[A-Za-z0-9!@#$^&*]{6,}$''';
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(userPassword).matches();
     }
@@ -234,7 +231,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     }
 
     public Map<String, String> getUserEntityByUsername(String username) {
-        logIncomingHeaders(); // Log headers for debugging
+        logIncomingHeaders();
         User user = getUser(UID, username);
         boolean local = user != null;
         LogUtils.log("There is % local account for %", local ? "a" : "no", username);
@@ -381,11 +378,17 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
             String publicKey = conf.get("PUBLIC_KEY");
             String privateKey = conf.get("PRIVATE_KEY");
+            String apiBaseUrl = conf.get("API_BASE_URL");
 
             if (publicKey == null || privateKey == null) {
                 result.put("status", "error");
                 result.put("message", "PUBLIC_KEY or PRIVATE_KEY missing in config");
                 return result;
+            }
+            
+            // Use default API URL if not configured
+            if (apiBaseUrl == null || apiBaseUrl.trim().isEmpty()) {
+                apiBaseUrl = "https://api.phiwallet.dev";
             }
 
             // Generate HMAC-SHA256 signature (hex lowercase)
@@ -412,7 +415,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             }
 
             // Build webhook URL
-            String url = String.format("https://api.phiwallet.dev/v1/webhooks/users/%s/sync", inum);
+            String url = String.format("%s/v1/webhooks/users/%s/sync", apiBaseUrl, inum);
 
             // HTTP request
             HttpClient client = HttpClient.newHttpClient();
@@ -517,10 +520,6 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         }
     }
 
-    // ============================
-    // OTP GENERATOR
-    // ============================
-
     private String generateSMSOtpCode(int codeLength) {
         String numbers = "0123456789";
         SecureRandom random = new SecureRandom();
@@ -531,11 +530,9 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return new String(otp);
     }
 
-
     public boolean sendOTPCode(String username, String phone) {
 
         logIncomingHeaders(); // Log headers for debugging
-
 
         String clientIp = extractClientIp(); // ✅ Read stored IP instead of parameter
         logger.info("Using IP {} for OTP request of user {}", clientIp, username);
@@ -548,8 +545,8 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
             recordOtpAttempt(clientIp); // ✅ Record attempt with stored IP
             logger.info("✅ OTP attempt recorded for IP {} (Total: {})", clientIp, ipAccessLog.get(clientIp).size());
-        try {
 
+        try {
             // Get user preferred language from profile
             User user = getUserService().getUser(username);
             String lang = null;
@@ -580,19 +577,150 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
             String message = messages.getOrDefault(lang, messages.get("en"));
 
+            // Determine which FROM_NUMBER to use based on country code
+            String fromNumber = getFromNumberForPhone(phone);
+            
+            if (fromNumber == null || fromNumber.trim().isEmpty()) {
+                logger.error("FROM_NUMBER is null or empty, cannot send OTP to {}", phone);
+                return false;
+            }
+
             // Send SMS
-            PhoneNumber FROM_NUMBER = new PhoneNumber(flowConfig.get("FROM_NUMBER"));
+            PhoneNumber FROM_NUMBER = new PhoneNumber(fromNumber);
             PhoneNumber TO_NUMBER = new PhoneNumber(phone);
 
             Twilio.init(flowConfig.get("ACCOUNT_SID"), flowConfig.get("AUTH_TOKEN"));
             Message.creator(TO_NUMBER, FROM_NUMBER, message).create();
 
-            logger.info("OTP {} sent successfully to {}", otpCode, phone);
+            logger.info("OTP sent to {} using sender {}", phone, fromNumber);
             return true;
         } catch (Exception ex) {
             logger.error("Failed to send OTP to {}. Error: {}", phone, ex.getMessage(), ex);
             return false;
         }
+    }
+
+    /**
+     * Determines which FROM_NUMBER to use based on the phone number's country code.
+     * Priority: 1) Countries in US_COUNTRY_CODES use FROM_NUMBER_US, 
+     *          2) Countries in RESTRICTED_COUNTRY_CODES use FROM_NUMBER_RESTRICTED_COUNTRIES,
+     *          3) All others use default FROM_NUMBER.
+     */
+    private String getFromNumberForPhone(String phone) {
+        try {
+            logger.info("=== getFromNumberForPhone START: phone='{}' ===", phone);
+            String defaultFromNumber = flowConfig.get("FROM_NUMBER");
+            String usCountryCodes = flowConfig.get("US_COUNTRY_CODES");
+            String restrictedCodes = flowConfig.get("RESTRICTED_COUNTRY_CODES");
+            
+            if (defaultFromNumber == null || defaultFromNumber.trim().isEmpty()) {
+                logger.error("FROM_NUMBER not configured");
+                return null;
+            }
+            
+            // Parse US country codes for matching
+            Set<String> usCountrySet = new HashSet<>();
+            if (usCountryCodes != null && !usCountryCodes.trim().isEmpty()) {
+                usCountrySet = Arrays.stream(usCountryCodes.split(","))
+                        .map(String::trim)
+                        .filter(s -> !s.isEmpty())
+                        .collect(Collectors.toSet());
+            }
+            logger.info("US_COUNTRY_CODES from config: '{}' -> parsed to: {}", usCountryCodes, usCountrySet);
+            
+            // Parse restricted country codes for matching
+            Set<String> restrictedSet = new HashSet<>();
+            if (restrictedCodes != null && !restrictedCodes.trim().isEmpty()) {
+                restrictedSet = Arrays.stream(restrictedCodes.split(","))
+                        .map(String::trim)
+                        .filter(s -> !s.isEmpty())
+                        .collect(Collectors.toSet());
+            }
+            
+            // Combine both sets for accurate country code extraction
+            Set<String> allKnownCodes = new HashSet<>();
+            allKnownCodes.addAll(usCountrySet);
+            allKnownCodes.addAll(restrictedSet);
+            
+            // Extract country code from phone number
+            String countryCode = extractCountryCode(phone, allKnownCodes);
+            logger.info("Phone: '{}' -> Extracted country code: '{}'", phone, countryCode);
+            
+            if (countryCode == null || countryCode.isEmpty()) {
+                logger.info("No country code extracted, using default sender");
+                return defaultFromNumber;
+            }
+
+            // Priority 1: Check if country code is in US_COUNTRY_CODES - use US-specific sender
+            logger.info("Checking if country code '{}' is in US_COUNTRY_CODES: {}", countryCode, usCountrySet);
+            logger.info("usCountrySet.size(): {}, usCountrySet.contains('{}'): {}", usCountrySet.size(), countryCode, usCountrySet.contains(countryCode));
+            if (usCountrySet.contains(countryCode)) {
+                String usFromNumber = flowConfig.get("FROM_NUMBER_US");
+                logger.info("Retrieved FROM_NUMBER_US from config: '{}'", usFromNumber);
+                
+                if (usFromNumber != null && !usFromNumber.trim().isEmpty()) {
+                    logger.info("Using US-specific sender {} for country code {}", usFromNumber, countryCode);
+                    return usFromNumber;
+                }
+            }
+
+            // Priority 2: Check if country code is in restricted list
+            logger.info("Checking if country code '{}' is in restricted list: {}", countryCode, restrictedSet);
+            if (restrictedSet.contains(countryCode)) {
+                String restrictedFromNumber = flowConfig.get("FROM_NUMBER_RESTRICTED_COUNTRIES");
+                
+                if (restrictedFromNumber != null && !restrictedFromNumber.trim().isEmpty()) {
+                    logger.info("Using restricted sender {} for country code {}", restrictedFromNumber, countryCode);
+                    return restrictedFromNumber;
+                }
+            }
+
+            logger.info("No matching category found, returning default sender: {}", defaultFromNumber);
+            return defaultFromNumber;
+        } catch (Exception ex) {
+            logger.error("Error in getFromNumberForPhone: {}", ex.getMessage(), ex);
+            return flowConfig.get("FROM_NUMBER");
+        }
+    }
+
+    /**
+     * Extract country code from phone number by matching against known codes.
+     * Returns 1-digit code "1" or 2-3 digit country code.
+     */
+    private String extractCountryCode(String phone, Set<String> knownCodes) {
+        logger.info("extractCountryCode: input phone='{}'", phone);
+        
+        if (phone == null || phone.trim().isEmpty()) {
+            return null;
+        }
+
+        String cleaned = phone.startsWith("+") ? phone.substring(1) : phone;
+        logger.info("extractCountryCode: after removing +, cleaned='{}'", cleaned);
+        
+        if (cleaned.length() < 2) {
+            return null;
+        }
+
+        // Handle code "1" first (US/Canada and territories)
+        boolean isDigit = cleaned.length() > 1 && Character.isDigit(cleaned.charAt(1));
+        logger.info("extractCountryCode: startsWith('1')? {}, length > 1? {}, charAt(1) is digit? {}", 
+                    cleaned.startsWith("1"), cleaned.length() > 1, isDigit);
+        
+        if (cleaned.startsWith("1") && cleaned.length() > 1 && Character.isDigit(cleaned.charAt(1))) {
+            logger.info("extractCountryCode: returning '1'");
+            return "1";
+        }
+        
+        // Try 3-digit codes ONLY if they're in our knownCodes list
+        if (cleaned.length() >= 3 && knownCodes != null && !knownCodes.isEmpty()) {
+            String threeDigit = cleaned.substring(0, 3);
+            if (knownCodes.contains(threeDigit)) {
+                return threeDigit;
+            }
+        }
+        
+        // Default: Extract 2-digit country code
+        return cleaned.substring(0, 2);
     }
 
     public boolean validateOTPCode(String phone, String code) {
@@ -623,12 +751,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         return null; // or return "" if you prefer
     }
 
-    // ============================
     // IP RATE LIMITING
-    // ============================
-
-    // Store the latest client IP used for OTP request (default 127.0.0.1)
-
     // public static String setClientIp(String clientIp) {
     //     if (clientIp == null || clientIp.trim().isEmpty()) {
     //         currentClientIp = "127.0.0.1";
@@ -650,9 +773,8 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         });
         // ✅ FIXED: Was using 'ip' instead of 'clientIp'
         logger.info("📊 OTP attempt recorded for IP {} → count: {}", clientIp, ipAccessLog.get(clientIp).size());
-        LogUtils.log("|otp| OTP attempt recorded for IP {} → count: {}", clientIp, ipAccessLog.get(clientIp).size());
     }
-    
+
     private boolean isIpBlocked(String clientIp) {
         List<Long> timestamps = ipAccessLog.get(clientIp);
         if (timestamps == null) return false;
@@ -663,7 +785,6 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         boolean blocked = timestamps.size() >= MAX_ATTEMPTS_PER_DAY;
         if (blocked) {
             logger.warn(" IP {} BLOCKED for 24h — Attempts: {}/{}", clientIp, timestamps.size());
-            LogUtils.log("|otp| IP {} BLOCKED for 24h — Attempts: {}", clientIp, timestamps.size());
         }
         return blocked;
     }
