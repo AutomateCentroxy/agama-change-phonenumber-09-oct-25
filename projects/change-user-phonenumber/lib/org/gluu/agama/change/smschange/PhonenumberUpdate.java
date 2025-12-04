@@ -1,4 +1,3 @@
-//working copy
 package org.gluu.agama.change.smschange;
 
 import io.jans.agama.engine.service.FlowService;
@@ -90,6 +89,32 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     private UserService getUserService() {
         return CdiUtil.bean(UserService.class);
     }
+
+    private void logIncomingHeaders() {
+        try {
+            HttpServletRequest request = CdiUtil.bean(HttpServletRequest.class);
+
+            logger.info("========= Incoming Request Headers =========");
+
+            Enumeration<String> headerNames = request.getHeaderNames();
+            if (headerNames == null) {
+                logger.warn("No headers found in request.");
+                return;
+            }
+
+            while (headerNames.hasMoreElements()) {
+                String header = headerNames.nextElement();
+                String value = request.getHeader(header);
+                logger.info("HEADER → {} = {}", header, value);
+            }
+
+            logger.info("============================================");
+
+        } catch (Exception e) {
+            logger.error("Error logging headers: {}", e.getMessage(), e);
+        }
+    }
+
 
     // ============================
     // TOKEN VALIDATION
@@ -487,6 +512,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
 
     public boolean sendOTPCode(String username, String phone) {
+        logIncomingHeaders(); // Log headers for debugging
 
         String clientIp = currentClientIp; // ✅ Read stored IP instead of parameter
         logger.info("Using IP {} for OTP request of user {}", clientIp, username);
