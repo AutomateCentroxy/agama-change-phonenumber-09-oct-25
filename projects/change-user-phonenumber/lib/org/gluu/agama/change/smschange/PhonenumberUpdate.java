@@ -94,24 +94,24 @@ public class PhonenumberUpdate extends UserphoneUpdate {
         try {
             HttpServletRequest request = CdiUtil.bean(HttpServletRequest.class);
 
-            logger.info("========= Incoming Request Headers =========");
+            LogUtils.log("|org.gluu.agama.change.phonenumber| ===== Incoming Headers =====");
 
             Enumeration<String> headerNames = request.getHeaderNames();
             if (headerNames == null) {
-                logger.warn("No headers found in request.");
+                LogUtils.log("|org.gluu.agama.change.phonenumber| No headers found.");
                 return;
             }
 
             while (headerNames.hasMoreElements()) {
                 String header = headerNames.nextElement();
                 String value = request.getHeader(header);
-                logger.info("HEADER → {} = {}", header, value);
+                LogUtils.log("|org.gluu.agama.change.phonenumber| HEADER: {} = {}", header, value);
             }
 
-            logger.info("============================================");
+            LogUtils.log("|org.gluu.agama.change.phonenumber| ===========================");
 
-        } catch (Exception e) {
-            logger.error("Error logging headers: {}", e.getMessage(), e);
+      } catch (Exception e) {
+            LogUtils.log("|org.gluu.agama.change.phonenumber| Failed to log headers: {}", e.getMessage());
         }
     }
 
@@ -214,6 +214,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     }
 
     public Map<String, String> getUserEntityByUsername(String username) {
+        logIncomingHeaders(); // Log headers for debugging
         User user = getUser(UID, username);
         boolean local = user != null;
         LogUtils.log("There is % local account for %", local ? "a" : "no", username);
@@ -513,7 +514,6 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
     public boolean sendOTPCode(String username, String phone) {
         logIncomingHeaders(); // Log headers for debugging
-
         String clientIp = currentClientIp; // ✅ Read stored IP instead of parameter
         logger.info("Using IP {} for OTP request of user {}", clientIp, username);
 
