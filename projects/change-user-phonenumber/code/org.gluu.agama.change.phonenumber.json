@@ -35,7 +35,7 @@
 				"width": 170,
 				"height": 122
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
 		},
 		{
@@ -976,8 +976,8 @@
 			"id": "callNode-434b1955-eeda-4dc9-b996-bcd81c141d76",
 			"type": "callNode",
 			"position": {
-				"x": 5280,
-				"y": 412
+				"x": 5182.556062387263,
+				"y": 409.16182705982317
 			},
 			"data": {
 				"id": "callNode-434b1955-eeda-4dc9-b996-bcd81c141d76",
@@ -986,7 +986,7 @@
 					"x": 4780,
 					"y": 412
 				},
-				"previousNodeId": "callNode-870524e6-5dd2-4256-b8ce-69a786b96d68",
+				"previousNodeId": "whenNode-d4dfb8e2-af03-4ebf-a597-57eef39b387e",
 				"agamaData": {
 					"javaClassName": "",
 					"javaMethodName": "sendOTPCode",
@@ -1005,13 +1005,15 @@
 					"hasComment": true,
 					"comment": "sent sms otp",
 					"asssignedVariableName": "smsOtpSend"
-				}
+				},
+				"branching": "success"
 			},
 			"measured": {
 				"width": 170,
 				"height": 122
 			},
-			"selected": false
+			"selected": true,
+			"dragging": false
 		},
 		{
 			"id": "logNode-ea2bb0c5-5e4f-41cd-95f8-27a2404677ac",
@@ -2399,48 +2401,6 @@
 			},
 			"selected": false,
 			"dragging": false
-		},
-		{
-			"id": "callNode-870524e6-5dd2-4256-b8ce-69a786b96d68",
-			"type": "callNode",
-			"position": {
-				"x": 4992.483499247769,
-				"y": 412
-			},
-			"data": {
-				"id": "callNode-870524e6-5dd2-4256-b8ce-69a786b96d68",
-				"type": "callNode",
-				"position": {
-					"x": 5030,
-					"y": 412
-				},
-				"previousNodeId": "whenNode-d4dfb8e2-af03-4ebf-a597-57eef39b387e",
-				"branching": "success",
-				"agamaData": {
-					"javaClassName": "org.gluu.agama.change.smschange.PhonenumberUpdate",
-					"javaMethodName": "setClientIp",
-					"javaVariableName": "PhonenumberUpdateService",
-					"exceptionVariableField": "",
-					"callType": "Call static method",
-					"arguments": [
-						"clientIp"
-					],
-					"nodeIcon": "material-symbols:code",
-					"nodeColor": "",
-					"titleColor": "",
-					"descColor": "",
-					"displayName": "Capture IP before OTP send",
-					"hasComment": true,
-					"comment": "",
-					"asssignedVariableName": "storedIp"
-				}
-			},
-			"measured": {
-				"width": 170,
-				"height": 122
-			},
-			"selected": false,
-			"dragging": false
 		}
 	],
 	"edges": [
@@ -3581,44 +3541,6 @@
 			"sourceHandle": "source_whenNode-06b370b2-9574-4fcd-9d90-9511a72bcc67_success"
 		},
 		{
-			"id": "whenNode-d4dfb8e2-af03-4ebf-a597-57eef39b387e-callNode-870524e6-5dd2-4256-b8ce-69a786b96d68",
-			"type": "default",
-			"source": "whenNode-d4dfb8e2-af03-4ebf-a597-57eef39b387e",
-			"target": "callNode-870524e6-5dd2-4256-b8ce-69a786b96d68",
-			"labelBgPadding": [
-				8,
-				4
-			],
-			"labelBgBorderRadius": 4,
-			"label": "Condition met",
-			"labelBgStyle": {
-				"fill": "#009688",
-				"color": "#ffffff",
-				"fillOpacity": 0.7
-			},
-			"labelShowBg": true,
-			"sourceHandle": "source_whenNode-d4dfb8e2-af03-4ebf-a597-57eef39b387e_success"
-		},
-		{
-			"id": "callNode-870524e6-5dd2-4256-b8ce-69a786b96d68-callNode-434b1955-eeda-4dc9-b996-bcd81c141d76",
-			"type": "default",
-			"source": "callNode-870524e6-5dd2-4256-b8ce-69a786b96d68",
-			"target": "callNode-434b1955-eeda-4dc9-b996-bcd81c141d76",
-			"label": "",
-			"labelBgPadding": [
-				8,
-				4
-			],
-			"labelBgBorderRadius": 4,
-			"labelBgStyle": {
-				"fill": "#009688",
-				"color": "#ffffff",
-				"fillOpacity": 0.7
-			},
-			"sourceHandle": "source_callNode-870524e6-5dd2-4256-b8ce-69a786b96d68",
-			"targetHandle": "target_callNode-434b1955-eeda-4dc9-b996-bcd81c141d76"
-		},
-		{
 			"source": "rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e",
 			"sourceHandle": "source_rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e",
 			"target": "whenNode-d12d2612-54d0-480e-aeb0-65555cc8d788",
@@ -3635,11 +3557,29 @@
 				"fillOpacity": 0.7
 			},
 			"id": "xy-edge__rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5esource_rrfNode-5e791b65-e3a6-4242-98a2-6fce273a4b5e-whenNode-d12d2612-54d0-480e-aeb0-65555cc8d788target_whenNode-d12d2612-54d0-480e-aeb0-65555cc8d788"
+		},
+		{
+			"source": "whenNode-d4dfb8e2-af03-4ebf-a597-57eef39b387e",
+			"sourceHandle": "source_whenNode-d4dfb8e2-af03-4ebf-a597-57eef39b387e_success",
+			"target": "callNode-434b1955-eeda-4dc9-b996-bcd81c141d76",
+			"targetHandle": "target_callNode-434b1955-eeda-4dc9-b996-bcd81c141d76",
+			"label": "Condition met",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"id": "xy-edge__whenNode-d4dfb8e2-af03-4ebf-a597-57eef39b387esource_whenNode-d4dfb8e2-af03-4ebf-a597-57eef39b387e_success-callNode-434b1955-eeda-4dc9-b996-bcd81c141d76target_callNode-434b1955-eeda-4dc9-b996-bcd81c141d76"
 		}
 	],
 	"viewport": {
-		"x": -910.7331271546618,
-		"y": 281.33256322620343,
-		"zoom": 0.5
+		"x": -4772.461030275588,
+		"y": -60.57669324050926,
+		"zoom": 1.0570180405613803
 	}
 }
