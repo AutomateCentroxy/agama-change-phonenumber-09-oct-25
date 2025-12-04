@@ -69,7 +69,7 @@ public class PhonenumberUpdate extends UserphoneUpdate {
     private static final Map<String, List<Long>> ipAccessLog = new HashMap<>();
     private static final int MAX_ATTEMPTS_PER_DAY = 4; // 1 + 3 resends allowed
     private static final long TIME_WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
-    private static String currentClientIp = "127.0.0.1";
+    // private static String currentClientIp = "127.0.0.1";
 
     private static final Map<String, String> otpStore = new HashMap<>();
 
@@ -114,6 +114,26 @@ public class PhonenumberUpdate extends UserphoneUpdate {
             LogUtils.log("|org.gluu.agama.change.phonenumber| Failed to log headers: {}", e.getMessage());
         }
     }
+
+        private String extractClientIp() {
+            try {
+                HttpServletRequest request = CdiUtil.bean(HttpServletRequest.class);
+
+                // 1️⃣ Check X-Forwarded-For first (most reliable)
+                String xff = request.getHeader("X-Forwarded-For");
+                if (xff != null && !xff.isEmpty()) {
+                    // Handles multiple IPs: "10.1.1.1, 192.168.1.10"
+                    return xff.split(",")[0].trim();
+                }
+
+                // 2️⃣ fallback to remote address
+                return request.getRemoteAddr();
+            } catch (Exception e) {
+                LogUtils.log("Failed to extract client IP: {}", e.getMessage());
+                return "127.0.0.1";
+            }
+     }
+
 
 
     // ============================
@@ -513,8 +533,11 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
 
     public boolean sendOTPCode(String username, String phone) {
+
         logIncomingHeaders(); // Log headers for debugging
-        String clientIp = currentClientIp; // ✅ Read stored IP instead of parameter
+
+
+        String clientIp = extractClientIp(); // ✅ Read stored IP instead of parameter
         logger.info("Using IP {} for OTP request of user {}", clientIp, username);
 
         // ✅ Enforce resend rate limit
@@ -606,16 +629,16 @@ public class PhonenumberUpdate extends UserphoneUpdate {
 
     // Store the latest client IP used for OTP request (default 127.0.0.1)
 
-    public static String setClientIp(String clientIp) {
-        if (clientIp == null || clientIp.trim().isEmpty()) {
-            currentClientIp = "127.0.0.1";
-            logger.warn("No Client IP received — defaulting to {}", currentClientIp);
-        } else {
-            currentClientIp = clientIp.trim();
-            logger.info("Client IP set to {}", currentClientIp);
-        }
-        return currentClientIp;
-    }
+    // public static String setClientIp(String clientIp) {
+    //     if (clientIp == null || clientIp.trim().isEmpty()) {
+    //         currentClientIp = "127.0.0.1";
+    //         logger.warn("No Client IP received — defaulting to {}", currentClientIp);
+    //     } else {
+    //         currentClientIp = clientIp.trim();
+    //         logger.info("Client IP set to {}", currentClientIp);
+    //     }
+    //     return currentClientIp;
+    // }
 
     private void recordOtpAttempt(String clientIp) {
         long now = System.currentTimeMillis();
